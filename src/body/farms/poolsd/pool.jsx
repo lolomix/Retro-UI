@@ -1076,13 +1076,13 @@ export default function Pool(props) {
             <div className="ttl">Pending :</div>
             <div className="val">
               <span className="amount">
-                {(poolInfo.pending / 10 ** props.decimals).toFixed(2)}
+                {(poolInfo.pending / 10 ** 18).toFixed(2)}
               </span>
               <span style={{ fontSize: 13 }} className="value">
                 {" "}
                 ($
                 {(
-                  (poolInfo.pending / 10 ** props.decimals) *
+                  (poolInfo.pending / 10 ** 18) *
                   poolInfo.price
                 ).toFixed(2)}
                 )
