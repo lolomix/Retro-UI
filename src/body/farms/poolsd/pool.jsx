@@ -525,7 +525,7 @@ export default function Pool(props) {
           <div className="key">Yearly</div>
         </div>
         <div className="key-value balance">
-          <div className="val">{(balance / 10 ** 18).toFixed(2)}</div>
+          <div className="val">{(balance / 10 ** props.decimals).toFixed(2)}</div>
           <div className="key">Balance</div>
         </div>
         <div className="key-value deposited">
