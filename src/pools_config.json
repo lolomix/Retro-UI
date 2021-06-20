@@ -8,9 +8,21 @@
     "isLP": false,
     "poolAddress": "0xa0b6ddEB5bc30ef13a68352B3b37d645184cf958",
     "price": {
-      "lpaddress":"0x075da65514bc2af2508314f8a3150ca660e6eea1",
-      "reserve":0
+      "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
+      "reserve": 0
+    }
+  },
+  {
+    "name": "RCUBE",
+    "image_name": "rcube.png",
+    "token_address": "0x38D4AB57aB711359ffB7ea5FB39FA6Cd2d5ce16c",
+    "decimals": 18,
+    "url": "https://pancake/token/buy",
+    "isLP": false,
+    "poolAddress": "0x8540cd8E09f065B94b751F584A458f343a2ACB32",
+    "price": {
+      "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
+      "reserve": 0
     }
   }
- 
 ]
