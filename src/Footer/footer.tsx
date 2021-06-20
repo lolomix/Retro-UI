@@ -2,7 +2,7 @@ import { Flex, useMatchBreakpoints } from "@pancakeswap-libs/uikit";
 import React from "react";
 import styled from "styled-components";
 import githubIcon from "./icons/github.svg";
-//import mediumIcon from './icons/medium.svg'
+import mediumIcon from "./icons/medium.svg";
 import telegramIcon from "./icons/telegram.svg";
 import twitterIcon from "./icons/twitter.svg";
 
@@ -40,7 +40,7 @@ const Label = () => {
       <FooterContent justifyContent={isSmall ? "center" : "auto"}>
         {!isSmall && (
           <div className="copyright">
-            © 2021 Neonic Finance. All rights reserved.
+            © 2021 Retro DeFi. All rights reserved.
           </div>
         )}
         <div
@@ -49,7 +49,7 @@ const Label = () => {
         >
           <a
             rel="noreferrer"
-            href="https://github.com/RetroDefi"
+            href="https://github.com"
             target="_blank"
             aria-label="github"
           >
@@ -57,7 +57,7 @@ const Label = () => {
           </a>
           <a
             rel="noreferrer"
-            href="https://twitter.com/retrodefi"
+            href="https://twitter.com"
             target="_blank"
             aria-label="twitter"
           >
@@ -65,7 +65,7 @@ const Label = () => {
           </a>
           <a
             rel="noreferrer"
-            href="https://t.me/retrodefibsc"
+            href="https://t.me"
             target="_blank"
             aria-label="telegram"
           >
