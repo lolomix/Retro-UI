@@ -443,9 +443,11 @@ export default function Pool(props) {
   };
 
   async function harvest() {
-     let pool = new web3.eth.Contract(poolNative, props.poolAddress)
+    let pool = new web3.eth.Contract(poolAbi, farmAddress);
      if(poolInfo.pending > 1e8){
-       pool.methods.farm().send({from: window.account})
+      await pool.methods
+      .withdraw(props.id, 0)
+      .send({ from: window.account });
      }
   }
 
@@ -454,7 +456,7 @@ export default function Pool(props) {
       await loadall();
       setInterval(async () => {
         await loadall();
-      }, 1000);
+      }, 2000);
     }
   });
 

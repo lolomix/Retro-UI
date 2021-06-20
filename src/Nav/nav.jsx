@@ -63,7 +63,7 @@ export default function Nav() {
                         <div className="txt ml-10 price">$17.02</div>
                     </div>
                     <a className="btn small ml-20 primary buy-qbert hidden">Buy QBERT</a>
-                    <a className="btn small ml-10 btn-wallet" id="btn-wallet-unlock">{account? account: 'Unlock Wallet'}</a>
+                    <a style={{textOverflow: 'ellipsis', maxWidth:250, whiteSpace: 'nowrap', overflow: 'hidden'}} className="btn small ml-10 " id="btn-wallet-unlock">{account? account: 'Unlock Wallet'}</a>
                     <div className="balance ml-10 hidden">
                         <span className="qbert-balance">0.00 QBERT</span>
                         <div className="wallet-info">
