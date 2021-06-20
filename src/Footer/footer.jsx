@@ -48,7 +48,7 @@ const Label = () => {
         >
           <a
             rel="noreferrer"
-            href="https://github.com"
+            href="https://github.com/RetroDefi"
             target="_blank"
             aria-label="github"
           >
@@ -56,7 +56,7 @@ const Label = () => {
           </a>
           <a
             rel="noreferrer"
-            href="https://twitter.com"
+            href="https://twitter.com/retrodefi"
             target="_blank"
             aria-label="twitter"
           >
@@ -64,7 +64,7 @@ const Label = () => {
           </a>
           <a
             rel="noreferrer"
-            href="https://t.me"
+            href="https://t.me/retrodefibsc"
             target="_blank"
             aria-label="telegram"
           >
