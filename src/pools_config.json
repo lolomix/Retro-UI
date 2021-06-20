@@ -2,11 +2,11 @@
   {
     "name": "QBERT",
     "image_name": "qbert.png",
-    "token_address": "0x6543D61fd6B81072F1b07d719f0b38AA288375f9",
+    "token_address": "0xc5796708e863A15d1093E5154bee915fdeBdBD4A",
     "decimals": 18,
     "url": "https://pancake/token/buy",
     "isLP": false,
-    "poolAddress": "0xa0b6ddEB5bc30ef13a68352B3b37d645184cf958",
+    "poolAddress": "0xE3062f2C7b1a2c9b2339328Ef0C72A3f2457C1D4",
     "price": {
       "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
       "reserve": 0
@@ -19,20 +19,20 @@
     "decimals": 18,
     "url": "https://pancake/token/buy",
     "isLP": false,
-    "poolAddress": "0x8540cd8E09f065B94b751F584A458f343a2ACB32",
+    "poolAddress": "0x8559CB0875E93A919a1ae541DAb2dE711A183BC4",
     "price": {
       "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
       "reserve": 0
     }
   },
   {
-    "name": "RCUBE",
-    "image_name": "rcube.png",
+    "name": "BUSD",
+    "image_name": "busd.svg",
     "token_address": "0x38D4AB57aB711359ffB7ea5FB39FA6Cd2d5ce16c",
     "decimals": 18,
     "url": "https://pancake/token/buy",
     "isLP": false,
-    "poolAddress": "0x340114700fcDA90495727e4a477faB534BE45D38",
+    "poolAddress": "0x71787617E6342291016E88c08bF60A9E765C2848",
     "price": {
       "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
       "reserve": 0
