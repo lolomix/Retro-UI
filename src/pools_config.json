@@ -1,0 +1,16 @@
+[
+  {
+    "name": "QBERT",
+    "image_name": "qbert.png",
+    "token_address": "0x6543D61fd6B81072F1b07d719f0b38AA288375f9",
+    "decimals": 18,
+    "url": "https://pancake/token/buy",
+    "isLP": false,
+    "poolAddress": "0xa0b6ddEB5bc30ef13a68352B3b37d645184cf958",
+    "price": {
+      "lpaddress":"0x075da65514bc2af2508314f8a3150ca660e6eea1",
+      "reserve":0
+    }
+  }
+ 
+]
