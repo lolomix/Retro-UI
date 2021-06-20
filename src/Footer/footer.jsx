@@ -1,8 +1,7 @@
 import { Flex, useMatchBreakpoints } from "@pancakeswap-libs/uikit";
-import React from "react";
 import styled from "styled-components";
 import githubIcon from "./icons/github.svg";
-import mediumIcon from "./icons/medium.svg";
+//import mediumIcon from "./icons/medium.svg";
 import telegramIcon from "./icons/telegram.svg";
 import twitterIcon from "./icons/twitter.svg";
 
