@@ -526,7 +526,7 @@ export default function Pool(props) {
             <div className="sub-ttl"></div>
           </div>
           <div className="bottom">
-            <div className="tag multiplier">50x</div>
+            <div className="tag multiplier">{props.pool_multiplier}</div>
             <div className="provider ml-10">QBert</div>
           </div>
         </div>
