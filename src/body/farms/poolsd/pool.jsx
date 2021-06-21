@@ -3,7 +3,7 @@ import $ from "jquery";
 import getBalance from "../../../utils/tokenUtils";
 import poolAbi from "../../../utils/nativeFarmAbi";
 import { constants } from "ethers";
-const farmAddress = "0xA97A6C2cC6d981dEf4f7e8D9ecd0cfEDc9975873";
+const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
 import getTokenPrice from "../../../utils/aprLib/index";
@@ -307,9 +307,7 @@ export default function Pool(props) {
         let balanced = await getBalance(props.token_address, window.account);
         setBalance(balanced);
         await loadPool();
-      } catch (error) {
-    
-      }
+      } catch (error) {}
     }
   };
 
@@ -328,16 +326,17 @@ export default function Pool(props) {
         .call();
       let price = await tokenPrice();
       let balance = await token.methods.balanceOf(props.poolAddress).call();
-      let total = (balance / 10 ** props.decimals) * price
+      let total = (balance / 10 ** props.decimals) * price;
 
-      if(window.ts.times < 2 && !window.ts.added.includes[props.token_address]){
-        window.ts.value = window.ts.value + total
+      if (
+        window.ts.times < 2 &&
+        !window.ts.added.includes[props.token_address]
+      ) {
+        window.ts.value = window.ts.value + total;
         window.ts.times++;
-        window.ts.added.push(props.token_address)
-
+        window.ts.added.push(props.token_address);
       }
-    
-      
+
       let apr = await calculateApr(pool, balance);
       setLoaded(true);
       await setPoolInfo({
@@ -363,15 +362,13 @@ export default function Pool(props) {
   }
 
   const maxButton = async (param) => {
-    
     if (param == "deposit") {
-
       setDepositState(balance);
       let elem = document.getElementsByClassName("depositInput" + props.id);
       elem[0].value = balance / 10 ** props.decimals;
     } else if (param == "withdraw") {
       setWithdrawState(poolInfo.deposited);
-      let elem = document.getElementsByClassName("withdrawInput"+props.id);
+      let elem = document.getElementsByClassName("withdrawInput" + props.id);
       elem[0].value = poolInfo.deposited / 10 ** props.decimals;
     }
   };
@@ -463,16 +460,12 @@ export default function Pool(props) {
   useEffect(async () => {
     if (!loaded) {
       await loadall();
-      
-     
+
       setInterval(async () => {
         await loadall();
-  
       }, 3000);
     }
   });
-
-
 
   function numFormatter(num) {
     if (num > 999 && num < 1000000) {
@@ -590,7 +583,7 @@ export default function Pool(props) {
             </div>
             <div className="input-container number with-max">
               <input
-                className={"depositInput"+props.id}
+                className={"depositInput" + props.id}
                 onChange={(e) => handdleInput("deposit", e)}
                 type="number"
                 data-humanize="false"
@@ -638,7 +631,7 @@ export default function Pool(props) {
             </div>
             <div className="input-container number with-max">
               <input
-                className={"withdrawInput"+props.id}
+                className={"withdrawInput" + props.id}
                 onChange={(e) => handdleInput("withdraw", e)}
                 type="number"
                 data-humanize="false"
@@ -671,11 +664,7 @@ export default function Pool(props) {
               <span style={{ fontSize: 13 }} className="value">
                 {" "}
                 ($
-                {(
-                  (poolInfo.pending / 10 ** 18) *
-                  poolInfo.price
-                ).toFixed(2)}
-                )
+                {((poolInfo.pending / 10 ** 18) * poolInfo.price).toFixed(2)})
               </span>
             </div>
             <div
@@ -699,7 +688,6 @@ export default function Pool(props) {
                 <span className="val">{numFormatter(poolInfo.apr)} %</span>
                 <img className="tooltip" src={info}></img>
               </div>
-              
             </div>
             <div className="info">
               <div className="itm head">
@@ -714,7 +702,7 @@ export default function Pool(props) {
               <div className="itm head">
                 <span className="ttl">Farm</span>
               </div>
-              
+
               <div className="itm qbert-daily-apy">
                 <span className="ttl">{props.name} TVL:&nbsp;</span>
                 <span className="val">
