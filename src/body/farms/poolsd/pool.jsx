@@ -780,13 +780,15 @@ export default function Pool(props) {
   }
 
   const maxButton = async (param) => {
+    
     if (param == "deposit") {
+      console.log(balance)
       setDepositState(balance);
-      let elem = document.getElementsByClassName("depositInput");
+      let elem = document.getElementsByClassName("depositInput" + props.id);
       elem[0].value = balance / 10 ** props.decimals;
     } else if (param == "withdraw") {
       setWithdrawState(poolInfo.deposited);
-      let elem = document.getElementsByClassName("withdrawInput");
+      let elem = document.getElementsByClassName("withdrawInput"+props.id);
       elem[0].value = poolInfo.deposited / 10 ** props.decimals;
     }
   };
@@ -880,7 +882,7 @@ export default function Pool(props) {
       await loadall();
       setInterval(async () => {
         await loadall();
-      }, 2000);
+      }, 3000);
     }
   });
 
@@ -1000,7 +1002,7 @@ export default function Pool(props) {
             </div>
             <div className="input-container number with-max">
               <input
-                className="depositInput"
+                className={"depositInput"+props.id}
                 onChange={(e) => handdleInput("deposit", e)}
                 type="number"
                 data-humanize="false"
@@ -1048,7 +1050,7 @@ export default function Pool(props) {
             </div>
             <div className="input-container number with-max">
               <input
-                className="withdrawInput"
+                className={"withdrawInput"+props.id}
                 onChange={(e) => handdleInput("withdraw", e)}
                 type="number"
                 data-humanize="false"
