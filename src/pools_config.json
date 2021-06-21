@@ -6,7 +6,7 @@
     "pair_image": "none.png",
     "pool_multiplier": "50x",
     "token_address": "0x38D4AB57aB711359ffB7ea5FB39FA6Cd2d5ce16c",
-    "decimals": 18,
+    "decimals": 8,
     "url": "https://pancake/token/buy",
     "isLP": false,
     "poolAddress": "0x6039B923C10dE8Ba9406a7E195E71aDD5661E7a9",
