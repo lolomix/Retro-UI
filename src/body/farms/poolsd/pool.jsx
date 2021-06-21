@@ -1111,12 +1111,7 @@ export default function Pool(props) {
                 <span className="val">{numFormatter(poolInfo.apr)} %</span>
                 <img className="tooltip" src={info}></img>
               </div>
-              <div className="itm total-apy">
-                <span className="ttl">Total Returns:&nbsp;</span>
-                <span className="val highlight">
-                  {numFormatter(poolInfo.apr)}%
-                </span>
-              </div>
+              
             </div>
             <div className="info">
               <div className="itm head">
@@ -1126,19 +1121,12 @@ export default function Pool(props) {
                 <span className="ttl">{props.name} Daily:&nbsp;</span>
                 <span className="val">{numFormatter(poolInfo.apr / 366)}%</span>
               </div>
-              <div className="itm total-daily-apy">
-                <span className="ttl">Total Daily:&nbsp;</span>
-                <span className="val highlight">0.78%</span>
-              </div>
             </div>
             <div className="info">
               <div className="itm head">
                 <span className="ttl">Farm</span>
               </div>
-              <div className="itm pond-daily-apy">
-                <span className="ttl">Weight:&nbsp;</span>
-                <span className="val">50x</span>
-              </div>
+              
               <div className="itm qbert-daily-apy">
                 <span className="ttl">{props.name} TVL:&nbsp;</span>
                 <span className="val">
