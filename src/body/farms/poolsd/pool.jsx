@@ -518,6 +518,7 @@ export default function Pool(props) {
       <div className="info">
         <div className="symbols">
           <img src={window.location.href + "/images/" + props.image_name} />
+          <img src={window.location.href + "/images/" + props.pair_image} />
         </div>
         <div className="pool">
           <div className="ttl">
@@ -559,7 +560,7 @@ export default function Pool(props) {
           </div>
           <div className="key">TVL</div>
         </div>
-        <div className="btn outlined loading ml-auto get">Get {name}</div>
+        <div className="btn outlined loading ml-auto get">Get {props.name}</div>
         <div
           onClick={() => {
             sd();

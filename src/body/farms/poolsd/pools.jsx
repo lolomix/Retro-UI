@@ -292,6 +292,7 @@ export default function Pools() {
           id={i}
           name={pool.name}
           image_name={pool.image_name}
+          pair_image={pool.pair_image}
           decimals={pool.decimals}
           token_address={pool.token_address}
           buy_url={pool.url}

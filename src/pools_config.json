@@ -2,6 +2,7 @@
   {
     "name": "QBERT",
     "image_name": "qbert.png",
+    "pair_image": "none.png",
     "token_address": "0xF653d8b120775F86458afA4cAB41C0cA58bc4295",
     "decimals": 18,
     "url": "https://pancake/token/buy",
@@ -13,15 +14,16 @@
     }
   },
   {
-    "name": "QBERT/BNB LP",
-    "image_name": "qbert.png",
-    "token_address": "0xfd96ce3302036a0c6b6f3c04aa36ad74793ec16a",
+    "name": "BNB/QBERT LP",
+    "image_name": "bnb.svg",
+    "pair_image": "qbert.png",
+    "token_address": "0xF653d8b120775F86458afA4cAB41C0cA58bc4295",
     "decimals": 18,
     "url": "https://pancake/token/buy",
     "isLP": true,
-    "poolAddress": "0x8d318353aDFc25c72Bc43A1dDb4835C7567E0cf1",
+    "poolAddress": "0x27fafcceDb4002600a9b5827BCC32Ec4C51AB042",
     "price": {
-      "lpaddress": "0xfd96ce3302036a0c6b6f3c04aa36ad74793ec16a",
+      "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
       "reserve": 0
     }
   }
