@@ -1,8 +1,8 @@
 [
   {
-    "id": "0",
-    "name": "QBERT",
-    "image_name": "qbert.png",
+    "id": "2",
+    "name": "RCUBE",
+    "image_name": "rcube.png",
     "pair_image": "none.png",
     "pool_multiplier": "50x",
     "token_address": "0xF653d8b120775F86458afA4cAB41C0cA58bc4295",
@@ -16,9 +16,9 @@
     }
   },
   {
-    "id": "2",
-    "name": "RCUBE",
-    "image_name": "rcube.png",
+    "id": "0",
+    "name": "QBERT",
+    "image_name": "qbert.png",
     "pair_image": "none.png",
     "pool_multiplier": "50x",
     "token_address": "0xF653d8b120775F86458afA4cAB41C0cA58bc4295",
