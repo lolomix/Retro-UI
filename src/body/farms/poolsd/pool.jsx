@@ -286,433 +286,6 @@ const tokenAbi = [
     type: "event"
   }
 ];
-const poolNative = [
-  {
-    inputs: [
-      { internalType: "address", name: "_nativeFarmAddress", type: "address" },
-      { internalType: "address", name: "_NATIVEAddress", type: "address" },
-      { internalType: "bool", name: "_isCAKEStaking", type: "bool" },
-      { internalType: "bool", name: "_isNativeVault", type: "bool" },
-      {
-        internalType: "address",
-        name: "_farmContractAddress",
-        type: "address"
-      },
-      { internalType: "uint256", name: "_pid", type: "uint256" },
-      { internalType: "address", name: "_wantAddress", type: "address" },
-      { internalType: "address", name: "_token0Address", type: "address" },
-      { internalType: "address", name: "_token1Address", type: "address" },
-      { internalType: "address", name: "_earnedAddress", type: "address" },
-      { internalType: "address", name: "_uniRouterAddress", type: "address" }
-    ],
-    stateMutability: "nonpayable",
-    type: "constructor"
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "previousOwner",
-        type: "address"
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "newOwner",
-        type: "address"
-      }
-    ],
-    name: "OwnershipTransferred",
-    type: "event"
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "account",
-        type: "address"
-      }
-    ],
-    name: "Paused",
-    type: "event"
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "account",
-        type: "address"
-      }
-    ],
-    name: "Unpaused",
-    type: "event"
-  },
-  {
-    inputs: [],
-    name: "NATIVEAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "buyBackAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "buyBackRate",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "buyBackRateMax",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "buyBackRateUL",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "controllerFee",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "controllerFeeMax",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "controllerFeeUL",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "convertDustToEarned",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_userAddress", type: "address" },
-      { internalType: "uint256", name: "_wantAmt", type: "uint256" }
-    ],
-    name: "deposit",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "earn",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "earnedAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    name: "earnedToNATIVEPath",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    name: "earnedToToken0Path",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    name: "earnedToToken1Path",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "entranceFeeFactor",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "entranceFeeFactorLL",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "entranceFeeFactorMax",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "farm",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "farmContractAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "govAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_token", type: "address" },
-      { internalType: "uint256", name: "_amount", type: "uint256" },
-      { internalType: "address", name: "_to", type: "address" }
-    ],
-    name: "inCaseTokensGetStuck",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "isCAKEStaking",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "isNativeVault",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "lastEarnBlock",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "nativeFarmAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "onlyGov",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "owner",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "pause",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "paused",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "pid",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      { internalType: "uint256", name: "_controllerFee", type: "uint256" }
-    ],
-    name: "setControllerFee",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      { internalType: "uint256", name: "_entranceFeeFactor", type: "uint256" }
-    ],
-    name: "setEntranceFeeFactor",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [{ internalType: "address", name: "_govAddress", type: "address" }],
-    name: "setGov",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [{ internalType: "bool", name: "_onlyGov", type: "bool" }],
-    name: "setOnlyGov",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      { internalType: "uint256", name: "_buyBackRate", type: "uint256" }
-    ],
-    name: "setbuyBackRate",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "sharesTotal",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "token0Address",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    name: "token0ToEarnedPath",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "token1Address",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    name: "token1ToEarnedPath",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
-    name: "transferOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "uniRouterAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "unpause",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "wantAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "wantLockedTotal",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "wbnbAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_userAddress", type: "address" },
-      { internalType: "uint256", name: "_wantAmt", type: "uint256" }
-    ],
-    name: "withdraw",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function"
-  }
-];
 
 export default function Pool(props) {
   var [balance, setBalance] = useState(0);
@@ -729,13 +302,13 @@ export default function Pool(props) {
   });
   var [loaded, setLoaded] = useState(false);
   const loadall = async () => {
-    if (window.web3) {
+    if (window.web3.eth) {
       try {
         let balanced = await getBalance(props.token_address, window.account);
         setBalance(balanced);
         await loadPool();
       } catch (error) {
-        console.log(error);
+    
       }
     }
   };
@@ -755,6 +328,14 @@ export default function Pool(props) {
         .call();
       let price = await tokenPrice();
       let balance = await token.methods.balanceOf(props.poolAddress).call();
+      let total = (balance / 10 ** props.decimals) * price
+
+      if(window.ts.times < 2){
+        window.ts.value = window.ts.value + total
+        window.ts.times++
+      }
+    
+      
       let apr = await calculateApr(pool, balance);
       setLoaded(true);
       await setPoolInfo({
@@ -782,7 +363,7 @@ export default function Pool(props) {
   const maxButton = async (param) => {
     
     if (param == "deposit") {
-      console.log(balance)
+
       setDepositState(balance);
       let elem = document.getElementsByClassName("depositInput" + props.id);
       elem[0].value = balance / 10 ** props.decimals;
@@ -880,11 +461,16 @@ export default function Pool(props) {
   useEffect(async () => {
     if (!loaded) {
       await loadall();
+      
+     
       setInterval(async () => {
         await loadall();
+  
       }, 3000);
     }
   });
+
+
 
   function numFormatter(num) {
     if (num > 999 && num < 1000000) {

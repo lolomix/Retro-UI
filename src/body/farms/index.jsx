@@ -1,8 +1,9 @@
 
 import Stats from './stats'
 import Pools from './poolsd/pools'
-
+import Tvl from './tvl'
 export default function Farms() {
+  
 
   
 
@@ -10,7 +11,7 @@ export default function Farms() {
     <div className="content">
     <div className="title">
         <div className="txt ttl">RetroDEFI <br></br> QBERT Optimized Farms</div>
-        <div className="txt tvl ml-auto">TVL $0</div>
+        <Tvl></Tvl>
     </div>
 
 
