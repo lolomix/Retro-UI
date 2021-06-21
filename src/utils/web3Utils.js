@@ -17,7 +17,7 @@ const getWeb3 = () => {
         }
         let accounts = await ethereum.request({ method: 'eth_requestAccounts' });
         window.account = accounts[0]
-        window.ts = {times: 0, value: 0}
+        window.ts = {times: 0, value: 0, added: []}
         window.web3 = new Web3(window.ethereum);
 
 

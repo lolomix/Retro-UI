@@ -330,9 +330,11 @@ export default function Pool(props) {
       let balance = await token.methods.balanceOf(props.poolAddress).call();
       let total = (balance / 10 ** props.decimals) * price
 
-      if(window.ts.times < 2){
+      if(window.ts.times < 2 && !window.ts.added.includes[props.token_address]){
         window.ts.value = window.ts.value + total
-        window.ts.times++
+        window.ts.times++;
+        window.ts.added.push(props.token_address)
+
       }
     
       
