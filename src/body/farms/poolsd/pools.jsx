@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
-import config from '../../../pools_config.json'
-import Pool from './pool.jsx'
-import getTokenPrice from "../../../utils/aprLib/index"
+import { useEffect } from "react";
+import config from "../../../pools_config.json";
+import Pool from "./pool.jsx";
+import getTokenPrice from "../../../utils/aprLib/index";
 import Web3 from "web3";
 const tokenAbi = [
   {
@@ -284,19 +284,22 @@ const tokenAbi = [
 ];
 
 export default function Pools() {
-
-
-return(
-  <div className="pools">
-    {config.map((pool, i)=>( 
-      <Pool key={i} id={i} name={pool.name} image_name={pool.image_name} 
-      decimals={pool.decimals}
-      token_address={pool.token_address}
-      buy_url={pool.url}
-      poolAddress={pool.poolAddress}
-      isLp={pool.isLP}
-      price={pool.price}/>
-    ))}
-  </div>
-)
+  return (
+    <div className="pools">
+      {config.map((pool, i) => (
+        <Pool
+          key={i}
+          id={i}
+          name={pool.name}
+          image_name={pool.image_name}
+          decimals={pool.decimals}
+          token_address={pool.token_address}
+          buy_url={pool.url}
+          poolAddress={pool.poolAddress}
+          isLp={pool.isLP}
+          price={pool.price}
+        />
+      ))}
+    </div>
+  );
 }
