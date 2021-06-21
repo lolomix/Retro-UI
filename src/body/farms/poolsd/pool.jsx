@@ -328,6 +328,7 @@ export default function Pool(props) {
         .pendingNATIVE(props.id, window.account)
         .call();
       let price = await tokenPrice();
+      console.log(price)
       let balance = await token.methods.balanceOf(props.poolAddress).call();
       let total = (balance / 10 ** props.decimals) * price;
   
