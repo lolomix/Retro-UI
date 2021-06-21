@@ -1,5 +1,6 @@
 [
   {
+    "id": "0",
     "name": "QBERT",
     "image_name": "qbert.png",
     "pair_image": "none.png",
@@ -15,6 +16,7 @@
     }
   },
   {
+    "id": "2",
     "name": "RCUBE",
     "image_name": "rcube.png",
     "pair_image": "none.png",
@@ -30,6 +32,7 @@
     }
   },
   {
+    "id": "1",
     "name": "BNB/QBERT LP",
     "image_name": "bnb.svg",
     "pair_image": "qbert.png",

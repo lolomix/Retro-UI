@@ -289,7 +289,7 @@ export default function Pools() {
       {config.map((pool, i) => (
         <Pool
           key={i}
-          id={i}
+          id={pool.id}
           name={pool.name}
           image_name={pool.image_name}
           pair_image={pool.pair_image}
