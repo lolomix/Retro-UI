@@ -12,7 +12,6 @@ const bnbContract = new Contract(bep20Abi.data, bnb);
 
 async function getTokenPrice(poolAddress, decimals){
   var pool = new Contract(poolAbi.data, poolAddress);
-  
   let tokenInfo = await getTokensInfo(pool);
   let bnbPrice = await axios.get('https://api.coingecko.com/api/v3/coins/binancecoin')
   
@@ -25,23 +24,24 @@ async function getTokenPrice(poolAddress, decimals){
 async function getTokensInfo(pool) {
   await Contract.setProvider(provider);
   let token0 = await pool.methods.token0().call()
+  
   let token1 = await pool.methods.token1().call()
   let {_reserve0, _reserve1, _blockTimestampLast} = await pool.methods.getReserves().call()
   return {token0 , token1, _reserve0, _reserve1}
 }
 
-async function getLpPrice(poolAddress) {
- 
+async function getLpPrice(poolAddress, decimals) {
+
   let pool = new Contract(poolAbi.data, poolAddress);
-  let lpSupply = await pool.methods.totalSupply().call();
-  let bnbBalance = await bnbContract.methods.balanceOf(poolAddress).call()
-  bnbBalance = Web3.utils.fromWei(bnbBalance, 'ether')
-  lpSupply = Web3.utils.fromWei(lpSupply, 'ether')
   
-  let bnbPrice = await axios.get('https://api.coingecko.com/api/v3/coins/binancecoin')
-  bnbPrice = bnbPrice.data.market_data.current_price.usd
-  let lpPrice = ((bnbBalance / lpSupply) * 2) * bnbPrice
-  return lpPrice;
+  let lpSupply = await pool.methods.totalSupply().call();
+  let {_reserve0, _reserve1, _blockTimestampLast} = await pool.methods.getReserves().call()
+  let amount0 = (_reserve0 / 10 ** decimals) / (lpSupply / 10 ** 18)
+  let amount1 = (_reserve1 / 10 ** decimals) /(lpSupply / 10 ** 18) 
+ 
+  return [amount0, amount1];
+
+  
 }
 
-export default getTokenPrice;
+export default {getTokenPrice, getLpPrice};

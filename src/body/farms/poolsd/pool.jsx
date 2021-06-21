@@ -6,7 +6,7 @@ import { constants } from "ethers";
 const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
-import getTokenPrice from "../../../utils/aprLib/index";
+import util from "../../../utils/aprLib/index";
 const tokenAbi = [
   {
     constant: true,
@@ -302,8 +302,10 @@ export default function Pool(props) {
   });
   var [loaded, setLoaded] = useState(false);
   const loadall = async () => {
+    
     if (window.web3.eth) {
       try {
+        
         let balanced = await getBalance(props.token_address, window.account);
         setBalance(balanced);
         await loadPool();
@@ -312,6 +314,7 @@ export default function Pool(props) {
   };
 
   const loadPool = async () => {
+  
     try {
       let token = new web3.eth.Contract(tokenAbi, props.token_address);
       let pool = new web3.eth.Contract(poolAbi, farmAddress);
@@ -327,18 +330,10 @@ export default function Pool(props) {
       let price = await tokenPrice();
       let balance = await token.methods.balanceOf(props.poolAddress).call();
       let total = (balance / 10 ** props.decimals) * price;
-
-      if (
-        window.ts.times < 2 &&
-        !window.ts.added.includes[props.token_address]
-      ) {
-        window.ts.value = window.ts.value + total;
-        window.ts.times++;
-        window.ts.added.push(props.token_address);
-      }
+  
 
       let apr = await calculateApr(pool, balance);
-      setLoaded(true);
+     
       await setPoolInfo({
         pool,
         deposited,
@@ -392,12 +387,27 @@ export default function Pool(props) {
 
   async function tokenPrice() {
     if (!props.isLp) {
-      let tokenPrice = await getTokenPrice(
+   
+      let tokenPrice = await util.getTokenPrice(
         props.price.lpaddress,
         props.decimals
       );
       tokenPrice = tokenPrice[props.price.reserve];
       return tokenPrice;
+    } else{
+      let value = await util.getLpPrice(
+        props.price.lpaddress, 
+        props.decimals)
+      value = value[props.price.reserve] * 2 
+      let tokenPrice = await util.getTokenPrice(
+        props.price.bnnlpaddress,
+        props.decimals
+      );
+
+      tokenPrice = tokenPrice[props.price.reserve]
+      return value * tokenPrice
+
+
     }
   }
 
@@ -409,7 +419,6 @@ export default function Pool(props) {
     let allowance = await token.methods
       .allowance(window.account, farmAddress)
       .call();
-    await loadall();
   }
 
   function formatNumber(num) {
@@ -432,7 +441,6 @@ export default function Pool(props) {
       await pool.methods
         .deposit(props.id, amount)
         .send({ from: window.account });
-      await loadall();
     }
   };
 
@@ -460,7 +468,8 @@ export default function Pool(props) {
   useEffect(async () => {
     if (!loaded) {
       await loadall();
-
+      
+      setLoaded(true);
       setInterval(async () => {
         await loadall();
       }, 3000);
