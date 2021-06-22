@@ -3735,9 +3735,13 @@ div.create-lp-content .btn.create {
 }
 
 @media(max-width: 1000px) {
-    .app .content .pools .pool-card .info .key-value.apy {
+    .app .content .pools .pool-card .info .key-value.deposited {
         display:none
     }
+
+    /*.app .content .pools .pool-card .info .key-value.apy {
+        display:none
+    }*/
 
     .app .content .pools .pool-card .details .transactions {
         flex-direction: column
