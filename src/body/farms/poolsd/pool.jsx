@@ -331,7 +331,10 @@ export default function Pool(props) {
       let balance = await token.methods.balanceOf(props.poolAddress).call();
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance);
-     
+      if(!window.ts.added.includes(props.token_address)){
+        window.ts.value =  window.ts.value + (balance / 10 ** props.decimals) * price
+        window.ts.added.push(props.token_address)
+      }
       await setPoolInfo({
         pool,
         deposited,
@@ -543,27 +546,24 @@ export default function Pool(props) {
         </div>
         <div className="key-value balance">
           <div className="val">
-            {poolInfo.userBalance? (poolInfo.userBalance  / 10 ** props.decimals).toFixed(2): 'Loading...'}
+            {poolInfo.userBalance? (poolInfo.userBalance  / 10 ** props.decimals).toFixed(2): '***'}
           </div>
           <div className="key">Balance</div>
         </div>
         <div className="key-value deposited">
           <div className="val">
-            {(poolInfo.deposited / 10 ** props.decimals).toFixed(2)}
+            {poolInfo.deposited?(poolInfo.deposited / 10 ** props.decimals).toFixed(2): '***'}
           </div>
           <div className="key">Deposited</div>
         </div>
 
         <div className="key-value daily shorter">
-          <div className="val">{numFormatter(poolInfo.apr / 366)}%</div>
+          <div className="val">{poolInfo.apr?numFormatter(poolInfo.apr / 366) + '%': '***'}</div>
           <div className="key">Daily</div>
         </div>
         <div className="key-value tvl shorter">
           <div className="val">
-            $
-            {numFormatter(
-              (poolInfo.balance / 10 ** props.decimals) * poolInfo.price
-            )}
+            {poolInfo.price? '$'+ numFormatter((poolInfo.balance / 10 ** props.decimals) * poolInfo.price): '***'}
           </div>
           <div className="key">TVL</div>
         </div>
