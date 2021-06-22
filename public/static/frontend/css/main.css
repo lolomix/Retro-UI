@@ -156,8 +156,10 @@ a:visited {
 }
 
 .txt.loading {
-    width: 30px;
-    height: fit-content
+    /*width: 30px;
+    height: fit-content*/
+    width: fit-content;
+    height: fit-content;
 }
 
 .txt.loading::after {
@@ -1573,8 +1575,10 @@ main .content .app-version {
 }
 
 .app .content .stats-stripe .txt.qbert-pending.loading {
-    width: 50px;
-    height: 27px;
+    /*width: 50px;
+    height: 27px;*/
+    width: fit-content;
+    height: fit-content;
     margin-left: -40px
 }
 
