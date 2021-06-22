@@ -331,9 +331,12 @@ export default function Pool(props) {
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance);
       if (!window.ts.added.includes(props.token_address)) {
-        window.ts.value =
-          window.ts.value + (balance / 10 ** props.decimals) * price;
-        window.ts.added.push(props.token_address);
+       
+          window.ts.value = window.ts.value + (balance / 10 ** props.decimals) * price;
+          window.ts.pending = window.ts.pending + (pending / 10 ** 18)
+          window.ts.deposited = window.ts.deposited + ((pending / 10 ** 18) * 1.5)
+          window.ts.added.push(props.token_address);
+
       }
 
       await setPoolInfo({
