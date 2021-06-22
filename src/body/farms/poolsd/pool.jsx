@@ -346,7 +346,7 @@ export default function Pool(props) {
         apr,
         userBalance: balanced
       });
-    } catch (error) {console.log(error)}
+    } catch (error) {}
   };
 
   async function calculateApr(pool, balance) {
