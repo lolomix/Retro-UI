@@ -334,7 +334,7 @@ export default function Pool(props) {
          
           window.ts.value = window.ts.value + (balance / 10 ** props.decimals) * price;
           window.ts.pending = window.ts.pending + (pending / 10 ** 18)
-          window.ts.deposited = window.ts.deposited + ((deposited / 10 ** props.decimals) * 1.5)
+          window.ts.deposited = window.ts.deposited + ((deposited / 10 ** props.decimals) * price)
           window.ts.added.push(props.token_address);
 
       }
@@ -472,7 +472,7 @@ export default function Pool(props) {
       console.log("loadded true");
       setInterval(async () => {
         await loadall();
-      }, 1000);
+      }, 2500);
     }
   });
 
