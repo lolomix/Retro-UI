@@ -467,7 +467,7 @@ export default function Pool(props) {
       console.log("loadded true");
       setInterval(async () => {
         await loadall();
-      }, 3000);
+      }, 1000);
     }
   });
 
