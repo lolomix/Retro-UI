@@ -70,19 +70,30 @@ export default function Nav() {
           <a
             style={{
               textOverflow: "ellipsis",
-              maxWidth: 250,
+              maxWidth: 150,
               whiteSpace: "nowrap",
-              overflow: "hidden"
+              overflow: "hidden",
+              display: "none"
             }}
             className="btn small ml-10 "
             id="btn-wallet-unlock"
           >
             {account ? account : "Unlock Wallet"}
           </a>
-          <div className="balance ml-10 hidden">
+          <div className="balance ml-10">
             <span className="qbert-balance">0.00 QBERT</span>
             <div className="wallet-info">
-              <span className="wallet-address">...</span>
+              <span
+                className="wallet-address"
+                style={{
+                  textOverflow: "ellipsis",
+                  maxWidth: 250,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden"
+                }}
+              >
+                {account ? account : "Unlock Wallet"}
+              </span>
               <span className="icon ml-10"></span>
             </div>
           </div>
@@ -111,13 +122,27 @@ export default function Nav() {
       </div>
       <div className={`mobile-menu ${menu ? "visible" : null}`}>
         <div className="wallet">
-          <a className="btn small ml-10 btn-wallet" id="btn-wallet-unlock">
+          <a
+            className="btn small ml-10 btn-wallet"
+            id="btn-wallet-unlock"
+            style={{ display: "none" }}
+          >
             {account ? account : "Unlock Wallet"}
           </a>
-          <div className="balance ml-10 hidden">
+          <div className="balance ml-10">
             <span className="qbert-balance">0 QBERT</span>
             <div className="wallet-info">
-              <span className="wallet-address">...</span>
+              <span
+                className="wallet-address"
+                style={{
+                  textOverflow: "ellipsis",
+                  maxWidth: 130,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden"
+                }}
+              >
+                {account ? account : "Unlock Wallet"}
+              </span>
               <span className="icon ml-10"></span>
             </div>
           </div>
