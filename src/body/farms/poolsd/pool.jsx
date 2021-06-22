@@ -702,7 +702,7 @@ export default function Pool(props) {
                 Deposit Fees
               </span>
               <br />
-              <span className="val">Deposit fee: 0.1%</span>
+              <span className="val">Deposit fee: 1.0%</span>
               <br />
               <br />
               <span className="ttl" style={{ color: "#ff0a9c" }}>
