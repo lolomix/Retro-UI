@@ -1,4 +1,35 @@
-[
+[ {
+  "id": "0",
+  "name": "QBERT",
+  "image_name": "qbert.png",
+  "pair_image": "none.png",
+  "pool_multiplier": "10x",
+  "token_address": "0xF653d8b120775F86458afA4cAB41C0cA58bc4295",
+  "decimals": 18,
+  "url": "https://pancake/token/buy",
+  "isLP": false,
+  "poolAddress": "0x27fafcceDb4002600a9b5827BCC32Ec4C51AB042",
+  "price": {
+    "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
+    "reserve": 0
+  }
+},
+{
+  "id": "0",
+  "name": "QUBERT - BNB",
+  "image_name": "qbert.png",
+  "pair_image": "bnb.svg",
+  "pool_multiplier": "20x",
+  "token_address": "0xfD96CE3302036A0c6b6F3c04aa36aD74793eC16A",
+  "decimals": 8,
+  "url": "https://pancake/token/buy",
+  "isLP": false,
+  "poolAddress": "0x8d318353aDFc25c72Bc43A1dDb4835C7567E0cf1",
+  "price": {
+    "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
+    "reserve": 0
+  }
+},
   {
     "id": "2",
     "name": "RCUBE",
@@ -12,172 +43,6 @@
     "poolAddress": "0x6039B923C10dE8Ba9406a7E195E71aDD5661E7a9",
     "price": {
       "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "0",
-    "name": "QBERT",
-    "image_name": "qbert.png",
-    "pair_image": "none.png",
-    "pool_multiplier": "10x",
-    "token_address": "0xF653d8b120775F86458afA4cAB41C0cA58bc4295",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": false,
-    "poolAddress": "0x27fafcceDb4002600a9b5827BCC32Ec4C51AB042",
-    "price": {
-      "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "3",
-    "name": "BUSD",
-    "image_name": "busd.svg",
-    "pair_image": "none.png",
-    "pool_multiplier": "4x",
-    "token_address": "0x0000000000000000000000000000000000000000",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": false,
-    "poolAddress": "0x0000000000000000000000000000000000000000",
-    "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "4",
-    "name": "BNB",
-    "image_name": "bnb.svg",
-    "pair_image": "none.png",
-    "pool_multiplier": "4x",
-    "token_address": "0x0000000000000000000000000000000000000000",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": false,
-    "poolAddress": "0x0000000000000000000000000000000000000000",
-    "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "5",
-    "name": "CAKE Compound",
-    "image_name": "cake.svg",
-    "pair_image": "none.png",
-    "pool_multiplier": "5x",
-    "token_address": "0x0000000000000000000000000000000000000000",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": false,
-    "poolAddress": "0x0000000000000000000000000000000000000000",
-    "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "6",
-    "name": "BNB/RCUBE LP",
-    "image_name": "bnb.svg",
-    "pair_image": "rcube.png",
-    "pool_multiplier": "15x",
-    "token_address": "0x0000000000000000000000000000000000000000",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": true,
-    "poolAddress": "0x0000000000000000000000000000000000000000",
-    "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "bnnlpaddress": "0x0000000000000000000000000000000000000000",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "1",
-    "name": "BNB/QBERT LP",
-    "image_name": "bnb.svg",
-    "pair_image": "qbert.png",
-    "pool_multiplier": "15x",
-    "token_address": "0xfd96ce3302036a0c6b6f3c04aa36ad74793ec16a",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": true,
-    "poolAddress": "0x8d318353aDFc25c72Bc43A1dDb4835C7567E0cf1",
-    "price": {
-      "lpaddress": "0x075DA65514Bc2aF2508314f8a3150ca660E6Eea1",
-      "bnnlpaddress": "0x075DA65514Bc2aF2508314f8a3150ca660E6Eea1",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "7",
-    "name": "BUSD/QBERT LP",
-    "image_name": "busd.svg",
-    "pair_image": "qbert.png",
-    "pool_multiplier": "12x",
-    "token_address": "0x0000000000000000000000000000000000000000",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": true,
-    "poolAddress": "0x0000000000000000000000000000000000000000",
-    "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "bnnlpaddress": "0x0000000000000000000000000000000000000000",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "8",
-    "name": "CAKE/BNB LP",
-    "image_name": "cake.svg",
-    "pair_image": "bnb.svg",
-    "pool_multiplier": "6x",
-    "token_address": "0x0000000000000000000000000000000000000000",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": true,
-    "poolAddress": "0x0000000000000000000000000000000000000000",
-    "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "bnnlpaddress": "0x0000000000000000000000000000000000000000",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "9",
-    "name": "BNB/BUSD LP",
-    "image_name": "bnb.svg",
-    "pair_image": "busd.svg",
-    "pool_multiplier": "5x",
-    "token_address": "0x0000000000000000000000000000000000000000",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": true,
-    "poolAddress": "0x0000000000000000000000000000000000000000",
-    "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "bnnlpaddress": "0x0000000000000000000000000000000000000000",
-      "reserve": 0
-    }
-  },
-  {
-    "id": "10",
-    "name": "BNB/BUSD LP",
-    "image_name": "DUSA.png",
-    "pair_image": "bnb.svg",
-    "pool_multiplier": "4x",
-    "token_address": "0x0000000000000000000000000000000000000000",
-    "decimals": 18,
-    "url": "https://pancake/token/buy",
-    "isLP": true,
-    "poolAddress": "0x0000000000000000000000000000000000000000",
-    "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "bnnlpaddress": "0x0000000000000000000000000000000000000000",
       "reserve": 0
     }
   }
