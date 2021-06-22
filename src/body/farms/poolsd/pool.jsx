@@ -305,10 +305,9 @@ export default function Pool(props) {
     
     if (window.web3.eth) {
       try {
-        
-        let balanced = await getBalance(props.token_address, window.account);
-        setBalance(balanced);
+        window.ts.times = 1
         await loadPool();
+        console.log('update')
       } catch (error) {}
     }
   };
@@ -318,6 +317,7 @@ export default function Pool(props) {
     try {
       let token = new web3.eth.Contract(tokenAbi, props.token_address);
       let pool = new web3.eth.Contract(poolAbi, farmAddress);
+      let balanced = await getBalance(props.token_address, window.account);
       let deposited = await pool.methods
         .stakedWantTokens(props.id, window.account)
         .call();
@@ -328,11 +328,8 @@ export default function Pool(props) {
         .pendingNATIVE(props.id, window.account)
         .call();
       let price = await tokenPrice();
-      console.log(price)
       let balance = await token.methods.balanceOf(props.poolAddress).call();
       let total = (balance / 10 ** props.decimals) * price;
-  
-
       let apr = await calculateApr(pool, balance);
      
       await setPoolInfo({
@@ -342,7 +339,8 @@ export default function Pool(props) {
         pending,
         price,
         balance,
-        apr
+        apr,
+        userBalance: balanced
       });
     } catch (error) {}
   };
@@ -468,9 +466,8 @@ export default function Pool(props) {
 
   useEffect(async () => {
     if (!loaded) {
-      await loadall();
-      
       setLoaded(true);
+      console.log('loadded true')
       setInterval(async () => {
         await loadall();
       }, 3000);
@@ -546,7 +543,7 @@ export default function Pool(props) {
         </div>
         <div className="key-value balance">
           <div className="val">
-            {(balance / 10 ** props.decimals).toFixed(2)}
+            {poolInfo.userBalance? (poolInfo.userBalance  / 10 ** props.decimals).toFixed(2): 'Loading...'}
           </div>
           <div className="key">Balance</div>
         </div>
@@ -585,7 +582,7 @@ export default function Pool(props) {
             <div className="amount">
               <span className="ttl">Wallet:</span>
               <span className="val" data-display-decimals="6">
-                {(balance / 10 ** props.decimals).toFixed(3)}{" "}
+                {(poolInfo.userBalance  / 10 ** props.decimals).toFixed(3)}{" "}
                 <span className="estimate"></span>
               </span>
             </div>
