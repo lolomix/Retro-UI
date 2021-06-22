@@ -302,18 +302,16 @@ export default function Pool(props) {
   });
   var [loaded, setLoaded] = useState(false);
   const loadall = async () => {
-    
     if (window.web3.eth) {
       try {
-        window.ts.times = 1
+        window.ts.times = 1;
         await loadPool();
-        console.log('update')
+        console.log("update");
       } catch (error) {}
     }
   };
 
   const loadPool = async () => {
-  
     try {
       let token = new web3.eth.Contract(tokenAbi, props.token_address);
       let pool = new web3.eth.Contract(poolAbi, farmAddress);
@@ -331,7 +329,7 @@ export default function Pool(props) {
       let balance = await token.methods.balanceOf(props.poolAddress).call();
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance);
-     
+
       await setPoolInfo({
         pool,
         deposited,
@@ -386,27 +384,22 @@ export default function Pool(props) {
 
   async function tokenPrice() {
     if (!props.isLp) {
-   
       let tokenPrice = await util.getTokenPrice(
         props.price.lpaddress,
         props.decimals
       );
       tokenPrice = tokenPrice[props.price.reserve];
       return tokenPrice;
-    } else{
-      let value = await util.getLpPrice(
-        props.price.lpaddress, 
-        props.decimals)
-      value = value[props.price.reserve] * 2 
+    } else {
+      let value = await util.getLpPrice(props.price.lpaddress, props.decimals);
+      value = value[props.price.reserve] * 2;
       let tokenPrice = await util.getTokenPrice(
         props.price.bnnlpaddress,
         props.decimals
       );
 
-      tokenPrice = tokenPrice[props.price.reserve]
-      return value * tokenPrice
-
-
+      tokenPrice = tokenPrice[props.price.reserve];
+      return value * tokenPrice;
     }
   }
 
@@ -467,7 +460,7 @@ export default function Pool(props) {
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-      console.log('loadded true')
+      console.log("loadded true");
       setInterval(async () => {
         await loadall();
       }, 3000);
@@ -490,37 +483,7 @@ export default function Pool(props) {
   };
 
   return (
-    <div
-      className={`pool-card  highlighted id${props.id}`}
-      data-pid="1"
-      data-pool-type="1"
-      data-platform="2"
-      data-platform-swap-single-url="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
-      data-platform-swap-lp-url="https://exchange.pancakeswap.finance/#/add/"
-      data-platform-swap-lp-with-gas-url="https://exchange.pancakeswap.finance/#/add/BNB/"
-      data-platform-zap-enabled="true"
-      data-currencies="[3, -1, 3]"
-      data-pool-title="RCUBE"
-      data-pool-subtitle=""
-      data-currency-id="3"
-      data-currency-name="RCube"
-      data-currency-ticker="RCUBE"
-      data-currency-contract="0x0000000000000000000000000000000000000000"
-      data-strategy-contract-address="0x0000000000000000000000000000000000000000"
-      data-custom-swap-url="false"
-      data-is-lp="false"
-      data-token0-ticker="qbert"
-      data-token0-contract="0x0000000000000000000000000000000000000000"
-      data-token0-is-gas="false"
-      data-updated="false"
-      data-deposited="0"
-      data-pending="0"
-      data-balance="0"
-      data-apy="284.29231967"
-      data-daily="0.7788830675890410958904109589"
-      data-tvl="4746112.42832821"
-      data-gas-limit-tx="1"
-    >
+    <div className={`pool-card  highlighted id${props.id}`}>
       <div className="tag-container"></div>
       <div className="info">
         <div className="symbols">
@@ -543,7 +506,9 @@ export default function Pool(props) {
         </div>
         <div className="key-value balance">
           <div className="val">
-            {poolInfo.userBalance? (poolInfo.userBalance  / 10 ** props.decimals).toFixed(2): 'Loading...'}
+            {poolInfo.userBalance
+              ? (poolInfo.userBalance / 10 ** props.decimals).toFixed(2)
+              : "Loading..."}
           </div>
           <div className="key">Balance</div>
         </div>
@@ -582,7 +547,7 @@ export default function Pool(props) {
             <div className="amount">
               <span className="ttl">Wallet:</span>
               <span className="val" data-display-decimals="6">
-                {(poolInfo.userBalance  / 10 ** props.decimals).toFixed(3)}{" "}
+                {(poolInfo.userBalance / 10 ** props.decimals).toFixed(3)}{" "}
                 <span className="estimate"></span>
               </span>
             </div>
