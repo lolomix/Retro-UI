@@ -1491,6 +1491,8 @@ main .content .app-version {
     margin-top: 20px;
     flex-direction: row;
     align-items: center*/
+
+    /*
     --text-blur-amount: 5px;
     width: 100%;
     height: 90px;
@@ -1504,7 +1506,22 @@ main .content .app-version {
     align-items: center;
     flex-wrap: wrap;
     align-content: space-around;
-    justify-content: space-evenly;
+    justify-content: space-evenly;*/
+    --text-blur-amount: 5px;
+    width: 100%;
+    height: 90px;
+    min-height: 90px;
+    display: flex;
+    border-radius: var(--r-border-3);
+    background-color: var(--c-background-4);
+    padding: 20px 30px;
+    margin-top: 20px;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 }
 
 .app .content .stats-stripe .btn.show-hide {
@@ -1561,14 +1578,15 @@ main .content .app-version {
 .app .content .stats-stripe .txt.qbert-ttl {
     color: var(--c-txt-4);
     /*margin: 0 50px 0 auto*/
-    margin: auto;
+    /*margin: auto;*/
+    margin: 0 10px 0 20px;
 }
 
 .app .content .stats-stripe .txt.qbert-pending {
     width: fit-content;
     font-size: 18px;
     color: var(--c-txt-4);
-    margin-right: 15px
+    /*margin-right: 15px+/
 }
 
 .app .content .stats-stripe:not(.visible) .txt.qbert-pending:not(.loading) span {
@@ -1581,8 +1599,8 @@ main .content .app-version {
     width: fit-content;
     height: fit-content;
     /*margin-left: -40px*/
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;
+    margin-right: auto;*/
 }
 
 .app .content .stats-stripe .txt.qbert-pending.loading::before {
@@ -3747,7 +3765,7 @@ div.create-lp-content .btn.create {
     }
 
     .app .content .stats-stripe .txt.qbert-pending {
-        margin-right: -40px
+        /*margin-right: -40px*/
     }
 
     .app .content .stats-stripe .btn.harvest-all {
