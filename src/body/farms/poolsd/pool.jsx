@@ -316,6 +316,7 @@ export default function Pool(props) {
       let token = new web3.eth.Contract(tokenAbi, props.token_address);
       let pool = new web3.eth.Contract(poolAbi, farmAddress);
       let balanced = await getBalance(props.token_address, window.account);
+      setBalance(balanced);
       let deposited = await pool.methods
         .stakedWantTokens(props.id, window.account)
         .call();
@@ -343,7 +344,7 @@ export default function Pool(props) {
         price,
         balance,
         apr,
-        userBalance: balance
+        userBalance: balanced
       });
     } catch (error) {}
   };
