@@ -162,7 +162,7 @@ a:visited {
     height: fit-content;
 }
 
-.txt.loading::after {
+/*.txt.loading::after {
     content: '';
     position: absolute;
     display: block;
@@ -174,7 +174,7 @@ a:visited {
     animation: rotate 1s linear infinite;
     left: calc(50% - 10px);
     top: 2px
-}
+}*/
 
 a.btn,div.btn {
     width: fit-content;
