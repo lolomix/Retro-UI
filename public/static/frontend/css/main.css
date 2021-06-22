@@ -1579,7 +1579,7 @@ main .content .app-version {
     height: 27px;*/
     width: fit-content;
     height: fit-content;
-    margin-left: -40px
+    /*margin-left: -40px*/
 }
 
 .app .content .stats-stripe .txt.qbert-pending.loading::before {
