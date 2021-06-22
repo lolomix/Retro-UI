@@ -702,7 +702,6 @@ export default function Pool(props) {
                 Deposit Fees
               </span>
               <br />
-              <br />
               <span className="val">Deposit fee: 0.1%</span>
               <br />
               <br />
@@ -710,12 +709,9 @@ export default function Pool(props) {
                 Harvest Fees:
               </span>
               <br />
-              <br />
               <span className="val">Buyback: 2.0% </span>
               <br />
-              <br />
               <span className="val">Network fee: 0.2%</span>
-              <br />
               <br />
               <span className="val">Operational fee: 1.8% </span>
               <br />
