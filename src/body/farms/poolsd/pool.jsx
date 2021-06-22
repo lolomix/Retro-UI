@@ -343,7 +343,7 @@ export default function Pool(props) {
         price,
         balance,
         apr,
-        userBalance: balanced
+        userBalance: balance
       });
     } catch (error) {}
   };
