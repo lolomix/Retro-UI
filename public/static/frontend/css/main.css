@@ -1560,7 +1560,8 @@ main .content .app-version {
 
 .app .content .stats-stripe .txt.qbert-ttl {
     color: var(--c-txt-4);
-    margin: 0 50px 0 auto
+    /*margin: 0 50px 0 auto*/
+    margin: auto;
 }
 
 .app .content .stats-stripe .txt.qbert-pending {
@@ -1580,26 +1581,28 @@ main .content .app-version {
     width: fit-content;
     height: fit-content;
     /*margin-left: -40px*/
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .app .content .stats-stripe .txt.qbert-pending.loading::before {
     opacity: 0
 }
 
-.app .content .stats-stripe .txt.qbert-pending::before {
+/*.app .content .stats-stripe .txt.qbert-pending::before {
     content: '';
     position: absolute;
     display: block;
     width: 35px;
     height: 35px;
-    background: url(../img/symbols/qbertpxl.png) no-repeat;
+    background: url(images/qbert.png) no-repeat;
     left: -40px;
     top: -3px
-}
+}*
 
-.app .content .stats-stripe:not(.visible) .txt.qbert-pending::before {
+/*.app .content .stats-stripe:not(.visible) .txt.qbert-pending::before {
     background: url(../img/qbert-symbol-eye-closed.svg) no-repeat
-}
+}*/
 
 .app .content .stats-stripe .txt.qbert-pending span.amount {
     display: inline-block;
