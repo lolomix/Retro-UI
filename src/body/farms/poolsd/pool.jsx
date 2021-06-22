@@ -488,7 +488,7 @@ export default function Pool(props) {
   };
 
   return (
-    <div className={`pool-card  highlighted id${props.id}`}>
+    <div className={`pool-card  highlighted radioactive id${props.id}`}>
       <div className="tag-container"></div>
       <div className="info">
         <div className="symbols">
