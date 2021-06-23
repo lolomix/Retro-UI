@@ -3446,7 +3446,7 @@ div.create-lp-content .btn.create {
   border-radius: 20px;
   z-index: 11;
   pointer-events: auto;
-  margin-top: -100px;
+  /*margin-top: -100px;*/
   box-shadow: var(--popup-shadow);
 }
 
