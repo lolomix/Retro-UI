@@ -1,21 +1,22 @@
-
 import { useState, useEffect } from "react";
 import poolAbi from "../../utils/nativeFarmAbi";
 const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
 import config from '../../pools_config.json'
 export default function Stats() {
-  let [data, setData] = useState({pending: 0, deposit: 0, loaded: false})
-  useEffect(()=>{
-    if(!data.loaded){
-      setData({loaded: true})
-      console.log('stats load')
+  let [data, setData] = useState({ pending: 0, deposit: 0, loaded: false });
+  useEffect(() => {
+    if (!data.loaded) {
+      setData({ loaded: true });
+      console.log("stats load");
       setInterval(() => {
-        setData({pending: window.ts.pending, deposited: window.ts.deposited, loaded: true})
-        
+        setData({
+          pending: window.ts.pending,
+          deposited: window.ts.deposited,
+          loaded: true
+        });
       }, 3000);
-      
-    }  
-  })
+    }
+  });
 
   function formatNumber(num) {
     if (num > 999 && num < 1000000) {
