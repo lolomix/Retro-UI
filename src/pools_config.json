@@ -166,7 +166,7 @@
   },
   {
     "id": "10",
-    "name": "BNB/BUSD LP",
+    "name": "BNB/DUSA LP",
     "image_name": "DUSA.png",
     "pair_image": "bnb.svg",
     "pool_multiplier": "4x",
