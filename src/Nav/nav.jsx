@@ -282,14 +282,12 @@ const tokenAbi = [
     type: "event"
   }
 ];
-const qbertAddress = "0xF653d8b120775F86458afA4cAB41C0cA58bc4295"
+const qbertAddress = "0xF653d8b120775F86458afA4cAB41C0cA58bc4295";
 
 export default function Nav() {
   var [menu, setMenu] = useState(false);
   var [account, setAccount] = useState("");
-  var [data, setData] = useState({balance: 0, totalSupply:0})
-
-
+  var [data, setData] = useState({ balance: 0, totalSupply: 0 });
 
   const toggleMenu = () => {
     if (!menu) {
@@ -302,23 +300,22 @@ export default function Nav() {
   useEffect(async () => {
     if (window.account) {
       setAccount(window.account);
-      if(!data.loaded){
-        setInterval(async ()=>{
+      if (!data.loaded) {
+        setInterval(async () => {
           try {
             let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
-            let balance = await qbert.methods.balanceOf(window.account).call()
-            let totalSupply = await qbert.methods.totalSupply().call()
-  
-          setData({balance: balance/10**18, totalSupply:totalSupply/10**18, loaded:true})
-          } catch (error) { }
-        }, 3000)
-        
-        
+            let balance = await qbert.methods.balanceOf(window.account).call();
+            let totalSupply = await qbert.methods.totalSupply().call();
 
+            setData({
+              balance: balance / 10 ** 18,
+              totalSupply: totalSupply / 10 ** 18,
+              loaded: true
+            });
+          } catch (error) {}
+        }, 3000);
       }
     }
-
-    
   });
 
   return (
@@ -357,9 +354,6 @@ export default function Nav() {
             <li>
               <a href="#">Buy BNB</a>
             </li>
-            <li>
-              <a href="#">Download Wallet</a>
-            </li>
           </ul>
         </menu>
         <div className="wallet">
@@ -394,14 +388,16 @@ export default function Nav() {
                   </div>
                   <div className="content">
                     <img src="images/qbert.png" />
-                    <div className="balance">{(data.balance).toFixed(2)}</div>
+                    <div className="balance">{data.balance.toFixed(2)}</div>
                     <div className="key-value">
                       <div className="key">Price</div>
                       <div className="value qbert-price">$17.02</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Current Supply</div>
-                      <div className="value qbert-supply">{(data.totalSupply).toFixed(3)}</div>
+                      <div className="value qbert-supply">
+                        {data.totalSupply.toFixed(3)}
+                      </div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Market Cap</div>
@@ -450,7 +446,9 @@ export default function Nav() {
             {account ? account : "Unlock Wallet"}
           </a>
           <div className="balance ml-10">
-            <span className="qbert-balance">{(data.balance).toFixed(1)} QBERT</span>
+            <span className="qbert-balance">
+              {data.balance.toFixed(1)} QBERT
+            </span>
             <div className="wallet-info">
               <span
                 className="wallet-address"
@@ -544,15 +542,17 @@ export default function Nav() {
                   </div>
                   <div className="content">
                     <img src="images/qbert.png" />
-                    <div className="balance">{(data.balance).toFixed(2)}</div>
-              
+                    <div className="balance">{data.balance.toFixed(2)}</div>
+
                     <div className="key-value">
                       <div className="key">Price</div>
                       <div className="value qbert-price">$17.02</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Current Supply</div>
-                      <div className="value qbert-supply">{(data.totalSupply).toFixed(2)}</div>
+                      <div className="value qbert-supply">
+                        {data.totalSupply.toFixed(2)}
+                      </div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Market Cap</div>
@@ -604,9 +604,6 @@ export default function Nav() {
             </li>
             <li>
               <a href="#">Buy BNB</a>
-            </li>
-            <li>
-              <a href="#">Download Wallet</a>
             </li>
           </ul>
         </div>
