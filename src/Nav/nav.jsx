@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logos/logo.png";
 import qbertpxl from "../assets/logos/qbertpxl.png";
-import React, { useEffect, useState } from "react";
 
 export default function Nav() {
   var [menu, setMenu] = useState(false);
