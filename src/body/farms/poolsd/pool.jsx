@@ -547,7 +547,15 @@ export default function Pool(props) {
           </div>
           <div className="key">TVL</div>
         </div>
-        <div className="btn outlined ml-auto get">Get {props.name}</div>
+        <div>
+          <a
+            className="btn outlined ml-auto get"
+            href={props.buy_url}
+            target="_blank"
+          >
+            Get {props.name}
+          </a>
+        </div>
         <div
           onClick={() => {
             sd();

@@ -129,14 +129,14 @@ export default function Nav() {
                     <a
                       className="chart"
                       target="_blank"
-                      data-url="https://dex.guru/token/"
+                      href="https://dex.guru/token/"
                     >
                       View chart
                     </a>
                     <a
                       className="btn primary buy"
                       target="_blank"
-                      data-url="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
+                      href="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
                     >
                       Buy QBERT
                     </a>
@@ -288,14 +288,14 @@ export default function Nav() {
                     <a
                       className="chart"
                       target="_blank"
-                      data-url="https://dex.guru/token/"
+                      href="https://dex.guru/token/"
                     >
                       View chart
                     </a>
                     <a
                       className="btn primary buy"
                       target="_blank"
-                      data-url="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
+                      href="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
                     >
                       Buy QBERT
                     </a>
