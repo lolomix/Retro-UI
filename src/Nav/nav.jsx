@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logos/logo.png";
 import qbertpxl from "../assets/logos/qbertpxl.png";
+import Popup from "reactjs-popup";
 
 export default function Nav() {
   var [menu, setMenu] = useState(false);
@@ -66,7 +67,84 @@ export default function Nav() {
             <img src={qbertpxl} />
             <div className="txt ml-10 price">$17.02</div>
           </div>
-          <a className="btn small ml-20 primary buy-qbert hidden">Buy QBERT</a>
+          <Popup
+            trigger={
+              <a className="btn small ml-20 primary buy-qbert hidden">
+                {" "}
+                Buy QBERT{" "}
+              </a>
+            }
+            modal
+            nested
+          >
+            {(close) => (
+              <div className="popup-container visible">
+                <div
+                  id="popup-buy-qbert"
+                  className="popup"
+                  style={{ display: "block" }}
+                >
+                  <div className="header">
+                    <div className="ttl">Your Qbert</div>
+                    <img
+                      className="btn close"
+                      src="static/frontend/img/popup-close.svg"
+                      onClick={close}
+                    />
+                  </div>
+                  <div className="content">
+                    <img src="images/qbert.png" />
+                    <div className="balance">0</div>
+                    <div className="key-value">
+                      <div className="key">Balance</div>
+                      <div className="value qbert-balance">0 QBERT</div>
+                    </div>
+                    <div className="key-value mt-10">
+                      <div className="key">Balance in Vault</div>
+                      <div className="value qbert-balance-vault">0 QBERT</div>
+                    </div>
+                    <div className="seperator" />
+                    <div className="key-value">
+                      <div className="key">Price</div>
+                      <div className="value qbert-price">$17.02</div>
+                    </div>
+                    <div className="key-value mt-10">
+                      <div className="key">Current Supply</div>
+                      <div className="value qbert-supply">-</div>
+                    </div>
+                    <div className="key-value mt-10">
+                      <div className="key">Market Cap</div>
+                      <div className="value market-cap">-</div>
+                    </div>
+                    <div className="key-value mt-10">
+                      <div className="key">Contract Address</div>
+                      <div className="value qbert-contract">
+                        <span />
+                        <img
+                          className="copy"
+                          src="static/frontend/img/copy.svg"
+                        />
+                      </div>
+                    </div>
+                    <a
+                      className="chart"
+                      target="_blank"
+                      data-url="https://dex.guru/token/"
+                    >
+                      View chart
+                    </a>
+                    <a
+                      className="btn primary buy"
+                      target="_blank"
+                      data-url="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
+                    >
+                      Buy QBERT
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </Popup>
           <a
             style={{
               textOverflow: "ellipsis",
@@ -151,7 +229,81 @@ export default function Nav() {
             <img src={qbertpxl} />
             <div className="txt ml-10 price">$17.02</div>
           </div>
-          <a className="btn small ml-20 primary buy-qbert">Buy QBERT</a>
+          <Popup
+            trigger={
+              <a className="btn small ml-20 primary buy-qbert"> Buy QBERT </a>
+            }
+            modal
+            nested
+          >
+            {(close) => (
+              <div className="popup-container visible">
+                <div
+                  id="popup-buy-qbert"
+                  className="popup"
+                  style={{ display: "block" }}
+                >
+                  <div className="header">
+                    <div className="ttl">Your Qbert</div>
+                    <img
+                      className="btn close"
+                      src="static/frontend/img/popup-close.svg"
+                      onClick={close}
+                    />
+                  </div>
+                  <div className="content">
+                    <img src="images/qbert.png" />
+                    <div className="balance">0</div>
+                    <div className="key-value">
+                      <div className="key">Balance</div>
+                      <div className="value qbert-balance">0 QBERT</div>
+                    </div>
+                    <div className="key-value mt-10">
+                      <div className="key">Balance in Vault</div>
+                      <div className="value qbert-balance-vault">0 QBERT</div>
+                    </div>
+                    <div className="seperator" />
+                    <div className="key-value">
+                      <div className="key">Price</div>
+                      <div className="value qbert-price">$17.02</div>
+                    </div>
+                    <div className="key-value mt-10">
+                      <div className="key">Current Supply</div>
+                      <div className="value qbert-supply">-</div>
+                    </div>
+                    <div className="key-value mt-10">
+                      <div className="key">Market Cap</div>
+                      <div className="value market-cap">-</div>
+                    </div>
+                    <div className="key-value mt-10">
+                      <div className="key">Contract Address</div>
+                      <div className="value qbert-contract">
+                        <span />
+                        <img
+                          className="copy"
+                          src="static/frontend/img/copy.svg"
+                        />
+                      </div>
+                    </div>
+                    <a
+                      className="chart"
+                      target="_blank"
+                      data-url="https://dex.guru/token/"
+                    >
+                      View chart
+                    </a>
+                    <a
+                      className="btn primary buy"
+                      target="_blank"
+                      data-url="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
+                    >
+                      Buy QBERT
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </Popup>
         </div>
         <div className="menu ">
           <ul>
