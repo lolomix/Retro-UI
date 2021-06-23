@@ -1778,7 +1778,8 @@ main .content .app-version {
   width: 7ch;
   color: var(--c-primary);
   white-space: nowrap;
-  text-align: left;
+  /*text-align: left;*/
+  text-align: center;
 }
 
 .app .content .stats-stripe .txt.qbert-pending span.value {
