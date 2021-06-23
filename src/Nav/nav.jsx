@@ -303,12 +303,18 @@ export default function Nav() {
     if (window.account) {
       setAccount(window.account);
       if(!data.loaded){
-        let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
-        let balance = await qbert.methods.balanceOf(window.account).call()
-        let totalSupply = await qbert.methods.totalSupply().call()
+        setInterval(async ()=>{
+          try {
+            let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
+            let balance = await qbert.methods.balanceOf(window.account).call()
+            let totalSupply = await qbert.methods.totalSupply().call()
+  
+          setData({balance: balance/10**18, totalSupply:totalSupply/10**18, loaded:true})
+          } catch (error) { }
+        }, 3000)
+        
+        
 
-        setData({balance: balance/10**18, totalSupply:totalSupply/10**18, loaded:true})
-        console.log('dsds')
       }
     }
 
