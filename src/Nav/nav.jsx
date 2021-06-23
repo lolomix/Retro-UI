@@ -497,7 +497,9 @@ export default function Nav() {
             {account ? account : "Unlock Wallet"}
           </a>
           <div className="balance ml-10">
-            <span className="qbert-balance">0 QBERT</span>
+            <span className="qbert-balance">
+              {data.balance.toFixed(1)} QBERT
+            </span>
             <div className="wallet-info">
               <span
                 className="wallet-address"
