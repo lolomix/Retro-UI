@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from "react";
-
+import poolAbi from "../../utils/nativeFarmAbi";
+const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
+import config from '../../pools_config.json'
 export default function Stats() {
   let [data, setData] = useState({pending: 0, deposit: 0, loaded: false})
   useEffect(()=>{
@@ -24,6 +26,23 @@ export default function Stats() {
       return num;
     }
   }
+
+  async function harvestall() {
+    let pool = new web3.eth.Contract(poolAbi, farmAddress);
+     for (let i = 0; i < 1000; i++) {
+       try {
+        let balance = await pool.methods.pendingNATIVE(config[i].id, window.account).call()
+        console.log(balance)
+        if(balance > 1e8){
+          pool.methods.withdraw(config[i].id, 0).send({from: window.account})
+        }
+       } catch (error) { 
+       }
+      
+
+    }
+    console.log('finished')
+  }
   return(
     <div className="stats-stripe">
                 <div className="btn show-hide"></div>
@@ -33,7 +52,7 @@ export default function Stats() {
                 <div className="txt qbert-pending loading">
                     <span className="amount">{data.pending? (data.pending).toFixed(3): '***'}</span>
                 </div>
-                <div className="btn harvest-all disabled">Harvest All</div>
+                <div onClick={()=>{harvestall()}} className="btn harvest-all disabled">Harvest All</div>
             </div>
   )
 }
