@@ -3,9 +3,293 @@ import logo from "../assets/logos/logo.png";
 import qbertpxl from "../assets/logos/qbertpxl.png";
 import Popup from "reactjs-popup";
 
+const tokenAbi = [
+  {
+    constant: true,
+    inputs: [],
+    name: "name",
+    outputs: [
+      {
+        name: "",
+        type: "string"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        name: "guy",
+        type: "address"
+      },
+      {
+        name: "wad",
+        type: "uint256"
+      }
+    ],
+    name: "approve",
+    outputs: [
+      {
+        name: "",
+        type: "bool"
+      }
+    ],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
+      {
+        name: "",
+        type: "uint256"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        name: "src",
+        type: "address"
+      },
+      {
+        name: "dst",
+        type: "address"
+      },
+      {
+        name: "wad",
+        type: "uint256"
+      }
+    ],
+    name: "transferFrom",
+    outputs: [
+      {
+        name: "",
+        type: "bool"
+      }
+    ],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        name: "wad",
+        type: "uint256"
+      }
+    ],
+    name: "withdraw",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "decimals",
+    outputs: [
+      {
+        name: "",
+        type: "uint8"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        name: "",
+        type: "address"
+      }
+    ],
+    name: "balanceOf",
+    outputs: [
+      {
+        name: "",
+        type: "uint256"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "symbol",
+    outputs: [
+      {
+        name: "",
+        type: "string"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        name: "dst",
+        type: "address"
+      },
+      {
+        name: "wad",
+        type: "uint256"
+      }
+    ],
+    name: "transfer",
+    outputs: [
+      {
+        name: "",
+        type: "bool"
+      }
+    ],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [],
+    name: "deposit",
+    outputs: [],
+    payable: true,
+    stateMutability: "payable",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        name: "",
+        type: "address"
+      },
+      {
+        name: "",
+        type: "address"
+      }
+    ],
+    name: "allowance",
+    outputs: [
+      {
+        name: "",
+        type: "uint256"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    payable: true,
+    stateMutability: "payable",
+    type: "fallback"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        name: "src",
+        type: "address"
+      },
+      {
+        indexed: true,
+        name: "guy",
+        type: "address"
+      },
+      {
+        indexed: false,
+        name: "wad",
+        type: "uint256"
+      }
+    ],
+    name: "Approval",
+    type: "event"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        name: "src",
+        type: "address"
+      },
+      {
+        indexed: true,
+        name: "dst",
+        type: "address"
+      },
+      {
+        indexed: false,
+        name: "wad",
+        type: "uint256"
+      }
+    ],
+    name: "Transfer",
+    type: "event"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        name: "dst",
+        type: "address"
+      },
+      {
+        indexed: false,
+        name: "wad",
+        type: "uint256"
+      }
+    ],
+    name: "Deposit",
+    type: "event"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        name: "src",
+        type: "address"
+      },
+      {
+        indexed: false,
+        name: "wad",
+        type: "uint256"
+      }
+    ],
+    name: "Withdrawal",
+    type: "event"
+  }
+];
+const qbertAddress = "0xF653d8b120775F86458afA4cAB41C0cA58bc4295"
+
 export default function Nav() {
   var [menu, setMenu] = useState(false);
   var [account, setAccount] = useState("");
+  var [data, setData] = useState({balance: 0, totalSupply:0})
+
+
 
   const toggleMenu = () => {
     if (!menu) {
@@ -15,10 +299,20 @@ export default function Nav() {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (window.account) {
       setAccount(window.account);
+      if(!data.loaded){
+        let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
+        let balance = await qbert.methods.balanceOf(window.account).call()
+        let totalSupply = await qbert.methods.totalSupply().call()
+
+        setData({balance: balance/10**18, totalSupply:totalSupply/10**18, loaded:true})
+        console.log('dsds')
+      }
     }
+
+    
   });
 
   return (
@@ -94,23 +388,14 @@ export default function Nav() {
                   </div>
                   <div className="content">
                     <img src="images/qbert.png" />
-                    <div className="balance">0</div>
-                    <div className="key-value">
-                      <div className="key">Balance</div>
-                      <div className="value qbert-balance">0 QBERT</div>
-                    </div>
-                    <div className="key-value mt-10">
-                      <div className="key">Balance in Vault</div>
-                      <div className="value qbert-balance-vault">0 QBERT</div>
-                    </div>
-                    <div className="seperator" />
+                    <div className="balance">{(data.balance).toFixed(2)}</div>
                     <div className="key-value">
                       <div className="key">Price</div>
                       <div className="value qbert-price">$17.02</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Current Supply</div>
-                      <div className="value qbert-supply">-</div>
+                      <div className="value qbert-supply">{(data.totalSupply).toFixed(3)}</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Market Cap</div>
@@ -136,7 +421,7 @@ export default function Nav() {
                     <a
                       className="btn primary buy"
                       target="_blank"
-                      href="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
+                      href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x6ED390Befbb50f4b492f08Ea0965735906034F81"
                     >
                       Buy QBERT
                     </a>
@@ -159,7 +444,7 @@ export default function Nav() {
             {account ? account : "Unlock Wallet"}
           </a>
           <div className="balance ml-10">
-            <span className="qbert-balance">0.00 QBERT</span>
+            <span className="qbert-balance">{(data.balance).toFixed(1)} QBERT</span>
             <div className="wallet-info">
               <span
                 className="wallet-address"
@@ -253,23 +538,15 @@ export default function Nav() {
                   </div>
                   <div className="content">
                     <img src="images/qbert.png" />
-                    <div className="balance">0</div>
-                    <div className="key-value">
-                      <div className="key">Balance</div>
-                      <div className="value qbert-balance">0 QBERT</div>
-                    </div>
-                    <div className="key-value mt-10">
-                      <div className="key">Balance in Vault</div>
-                      <div className="value qbert-balance-vault">0 QBERT</div>
-                    </div>
-                    <div className="seperator" />
+                    <div className="balance">{(data.balance).toFixed(2)}</div>
+              
                     <div className="key-value">
                       <div className="key">Price</div>
                       <div className="value qbert-price">$17.02</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Current Supply</div>
-                      <div className="value qbert-supply">-</div>
+                      <div className="value qbert-supply">{(data.totalSupply).toFixed(2)}</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Market Cap</div>
