@@ -14,7 +14,7 @@ export default function Stats() {
           deposited: window.ts.deposited,
           loaded: true
         });
-      }, 3000);
+      }, 1000);
     }
   });
 

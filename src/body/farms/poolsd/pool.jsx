@@ -442,6 +442,16 @@ export default function Pool(props) {
       await pool.methods
         .deposit(props.id, amount)
         .send({ from: window.account });
+
+        setTimeout(async () => {
+          let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
+          let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
+          window.ts.deposited = window.ts.deposited + (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
+          window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
+        }, 3500);
+
+       
+     
     }
   };
 
@@ -455,7 +465,14 @@ export default function Pool(props) {
       await pool.methods
         .withdraw(props.id, amount)
         .send({ from: window.account });
-      await loadall();
+        
+        setTimeout(async () => {
+          let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
+          let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
+          window.ts.deposited = window.ts.deposited - (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
+          window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
+        }, 4000);
+        
     }
   };
 
@@ -463,6 +480,8 @@ export default function Pool(props) {
     let pool = new web3.eth.Contract(poolAbi, farmAddress);
     if (poolInfo.pending > 1e8) {
       await pool.methods.withdraw(props.id, 0).send({ from: window.account });
+      let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
+      window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
     }
   }
 
