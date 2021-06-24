@@ -7,7 +7,7 @@
     "pool_multiplier": "20x",
     "token_address": "0x38D4AB57aB711359ffB7ea5FB39FA6Cd2d5ce16c",
     "decimals": 8,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xa6e53f07bD410df069e20Ced725bdC9135146Fe9",
     "isLP": false,
     "poolAddress": "0x6039B923C10dE8Ba9406a7E195E71aDD5661E7a9",
     "price": {
@@ -23,7 +23,7 @@
     "pool_multiplier": "10x",
     "token_address": "0xF653d8b120775F86458afA4cAB41C0cA58bc4295",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x6ED390Befbb50f4b492f08Ea0965735906034F81",
     "isLP": false,
     "poolAddress": "0x27fafcceDb4002600a9b5827BCC32Ec4C51AB042",
     "price": {
@@ -39,7 +39,7 @@
     "pool_multiplier": "4x",
     "token_address": "0x0000000000000000000000000000000000000000",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xe9e7cea3dedca5984780bafc599bd69add087d56",
     "isLP": false,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {
@@ -55,7 +55,7 @@
     "pool_multiplier": "4x",
     "token_address": "0x0000000000000000000000000000000000000000",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/swap",
     "isLP": false,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {
@@ -71,7 +71,7 @@
     "pool_multiplier": "5x",
     "token_address": "0x0000000000000000000000000000000000000000",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
     "isLP": false,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {
@@ -87,7 +87,7 @@
     "pool_multiplier": "15x",
     "token_address": "0x0000000000000000000000000000000000000000",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/add/BNB/0xa6e53f07bD410df069e20Ced725bdC9135146Fe9",
     "isLP": true,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {
@@ -104,7 +104,7 @@
     "pool_multiplier": "15x",
     "token_address": "0xfd96ce3302036a0c6b6f3c04aa36ad74793ec16a",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/add/BNB/0x6ED390Befbb50f4b492f08Ea0965735906034F81",
     "isLP": true,
     "poolAddress": "0x8d318353aDFc25c72Bc43A1dDb4835C7567E0cf1",
     "price": {
@@ -121,7 +121,7 @@
     "pool_multiplier": "12x",
     "token_address": "0x0000000000000000000000000000000000000000",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/add/BUSD/0x6ED390Befbb50f4b492f08Ea0965735906034F81",
     "isLP": true,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {
@@ -138,7 +138,7 @@
     "pool_multiplier": "6x",
     "token_address": "0x0000000000000000000000000000000000000000",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/add/BNB/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
     "isLP": true,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {
@@ -155,7 +155,7 @@
     "pool_multiplier": "5x",
     "token_address": "0x0000000000000000000000000000000000000000",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/add/BNB/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
     "isLP": true,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {
@@ -172,7 +172,7 @@
     "pool_multiplier": "4x",
     "token_address": "0x0000000000000000000000000000000000000000",
     "decimals": 18,
-    "url": "https://pancake/token/buy",
+    "url": "https://exchange.pancakeswap.finance/#/add/BNB/0x376ba3ffac2643555731349fae9fc8ca28e2c9a2",
     "isLP": true,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {

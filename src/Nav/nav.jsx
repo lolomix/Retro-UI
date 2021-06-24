@@ -580,7 +580,7 @@ export default function Nav() {
                     <a
                       className="btn primary buy"
                       target="_blank"
-                      href="https://exchange.pancakeswap.finance/#/swap?outputCurrency="
+                      href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x6ED390Befbb50f4b492f08Ea0965735906034F81"
                     >
                       Buy QBERT
                     </a>
