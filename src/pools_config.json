@@ -21,11 +21,11 @@
     "image_name": "qbert.png",
     "pair_image": "none.png",
     "pool_multiplier": "10x",
-    "token_address": "0x939B132fb1fA5dC4C03a2a3c1d6a0D0A08A8d94b",
+    "token_address": "0xF653d8b120775F86458afA4cAB41C0cA58bc4295",
     "decimals": 18,
     "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x6ED390Befbb50f4b492f08Ea0965735906034F81",
     "isLP": false,
-    "poolAddress": "0xC59f927a81E43B86a33ca6727Da7a20AdD5f08F3",
+    "poolAddress": "0x27fafcceDb4002600a9b5827BCC32Ec4C51AB042",
     "price": {
       "lpaddress": "0x075da65514bc2af2508314f8a3150ca660e6eea1",
       "reserve": 0
