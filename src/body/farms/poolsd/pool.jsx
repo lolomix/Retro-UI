@@ -323,6 +323,8 @@ export default function Pool(props) {
       let allowance = await token.methods
         .allowance(window.account, farmAddress)
         .call();
+      let pendingBefore = poolInfo.pending;
+      console.log(poolInfo)
       let pending = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
@@ -338,6 +340,7 @@ export default function Pool(props) {
           window.ts.deposited + (deposited / 10 ** props.decimals) * price;
         window.ts.added.push(props.token_address);
       }
+
 
       await setPoolInfo({
         pool,
@@ -445,9 +448,7 @@ export default function Pool(props) {
 
         setTimeout(async () => {
           let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
-          let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
           window.ts.deposited = window.ts.deposited + (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-          window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
         }, 3500);
 
        
@@ -468,9 +469,7 @@ export default function Pool(props) {
         
         setTimeout(async () => {
           let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
-          let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
           window.ts.deposited = window.ts.deposited - (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-          window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
         }, 4000);
         
     }

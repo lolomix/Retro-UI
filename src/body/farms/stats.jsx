@@ -9,11 +9,14 @@ export default function Stats() {
       setData({ loaded: true });
       console.log("stats load");
       setInterval(() => {
-        setData({
-          pending: window.ts.pending,
-          deposited: window.ts.deposited,
-          loaded: true
-        });
+        if(window.ts){
+          setData({
+            pending: window.ts.pending,
+            deposited: window.ts.deposited,
+            loaded: true
+          });
+        }
+        
       }, 1000);
     }
   });
@@ -48,10 +51,10 @@ export default function Stats() {
     <div className="stats-stripe">
                 <div className="btn show-hide"></div>
                 <div className="txt deposit-ttl">My total deposit:</div>
-                <div className={'txt total-deposit loading'}>{data.deposited? '$'+ formatNumber((data.deposited).toFixed(2)): '***'}</div>
+                <div className={'txt total-deposit loading'}>{data.deposited? '$'+ formatNumber((data.deposited).toFixed(2)): '0.00'}</div>
                 <div className="txt qbert-ttl">QBert pending:</div>
                 <div className="txt qbert-pending loading">
-                    <span className="amount">{data.pending? (data.pending).toFixed(3): '***'}</span>
+                    <span className="amount">{data.pending? (data.pending).toFixed(3): '0.000'}</span>
                 </div>
                 <div onClick={()=>{harvestall()}} className="btn harvest-all disabled">Harvest All</div>
             </div>

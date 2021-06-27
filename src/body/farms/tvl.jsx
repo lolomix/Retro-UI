@@ -7,7 +7,10 @@ export default function Tvl() {
   var [value, setValue] = useState(0)
   useEffect(()=>{
     setInterval(() => {
-      setValue(window.ts.value)
+      if(window.ts){
+        setValue(window.ts.value)
+      }
+      
     }, 3000);
   })
 
