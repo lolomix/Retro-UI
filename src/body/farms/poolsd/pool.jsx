@@ -5,7 +5,7 @@ import info from "../../../assets/svg/info-primary.svg";
 import poolAbi from "../../../utils/nativeFarmAbi";
 import getBalance from "../../../utils/tokenUtils";
 
-const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
+const farmAddress = "0x3e38e75aa716693fe23D157B0fa48e99a14a44FD";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
 import util from "../../../utils/aprLib/index";
@@ -445,15 +445,18 @@ export default function Pool(props) {
         .deposit(props.id, amount)
         .send({ from: window.account });
 
-        setTimeout(async () => {
-          let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
-          let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
-          window.ts.deposited = window.ts.deposited + (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-          window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
-        }, 3500);
-
-       
-     
+      setTimeout(async () => {
+        let tokenStakeds = await pool.methods
+          .stakedWantTokens(props.id, window.account)
+          .call();
+        let pendingQbert = await pool.methods
+          .pendingNATIVE(props.id, window.account)
+          .call();
+        window.ts.deposited =
+          window.ts.deposited +
+          (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
+        window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
+      }, 3500);
     }
   };
 
@@ -467,14 +470,19 @@ export default function Pool(props) {
       await pool.methods
         .withdraw(props.id, amount)
         .send({ from: window.account });
-        
-        setTimeout(async () => {
-          let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
-          let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
-          window.ts.deposited = window.ts.deposited - (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-          window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
-        }, 4000);
-        
+
+      setTimeout(async () => {
+        let tokenStakeds = await pool.methods
+          .stakedWantTokens(props.id, window.account)
+          .call();
+        let pendingQbert = await pool.methods
+          .pendingNATIVE(props.id, window.account)
+          .call();
+        window.ts.deposited =
+          window.ts.deposited -
+          (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
+        window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
+      }, 4000);
     }
   };
 
@@ -482,8 +490,10 @@ export default function Pool(props) {
     let pool = new web3.eth.Contract(poolAbi, farmAddress);
     if (poolInfo.pending > 1e8) {
       await pool.methods.withdraw(props.id, 0).send({ from: window.account });
-      let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
-      window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
+      let pendingQbert = await pool.methods
+        .pendingNATIVE(props.id, window.account)
+        .call();
+      window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
     }
   }
 
@@ -703,7 +713,8 @@ export default function Pool(props) {
               <div className="itm qbert-apy">
                 <span className="ttl">{props.name} APR:&nbsp;</span>
                 <span className="val">{numFormatter(poolInfo.apr)} %</span>
-                <img className="tooltip" src={info}></img></div>
+                <img className="tooltip" src={info}></img>
+              </div>
             </div>
             <div className="info">
               <div className="itm head">
