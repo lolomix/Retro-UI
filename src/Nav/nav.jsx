@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Popup from "reactjs-popup";
+
 import logo from "../assets/logos/logo.png";
 import qbertpxl from "../assets/logos/qbertpxl.png";
-import Popup from "reactjs-popup";
 
 const tokenAbi = [
   {
@@ -336,12 +337,17 @@ export default function Nav() {
               <a href="#">Earn</a>
             </li>
             <li>
-              <a href="#">
-                Create LP<div className="mini-tag">NEW</div>
+              <a href="https://exchange.pancakeswap.finance/#/pool"
+              target="_blank"
+              >
+                Create LP<div className="mini-tag">SWAP</div>
               </a>
             </li>
             <li>
-              <a href="#">Tutorials</a>
+              <a href="https://www.youtube.com/watch?v=3zsoLuEvTz8"
+              target="_blank"
+              >
+              Tutorials</a>
             </li>
             <li>
               <a
@@ -352,7 +358,10 @@ export default function Nav() {
               </a>
             </li>
             <li>
-              <a href="#">Buy BNB</a>
+              <a href="https://wwww.rdice.retrofarms.net/"
+                target="_blank"
+               >
+                RCUBE Dice<div className='mini-tag'>PLAY</div></a>
             </li>
           </ul>
         </menu>
@@ -365,7 +374,7 @@ export default function Nav() {
             trigger={
               <a className="btn small ml-20 primary buy-qbert hidden">
                 {" "}
-                Buy QBERT{" "}
+                BUY QBERT{" "}
               </a>
             }
             modal
@@ -379,7 +388,7 @@ export default function Nav() {
                   style={{ display: "block" }}
                 >
                   <div className="header">
-                    <div className="ttl">Your Qbert</div>
+                    <div className="ttl">Your QBERT</div>
                     <img
                       className="btn close"
                       src="static/frontend/img/popup-close.svg"
@@ -596,16 +605,16 @@ export default function Nav() {
               <a href="#">Earn</a>
             </li>
             <li>
-              <a href="#">Create LP</a>
+              <a href="https://exchange.pancakeswap.finance/#/pool">Create LP</a>
             </li>
             <li>
-              <a href="#">Tutorials</a>
+              <a href="https://www.youtube.com/watch?v=3zsoLuEvTz8">Tutorials</a>
             </li>
             <li>
               <a href="https://retrodefi.gitbook.io/retro-defi/">Docs</a>
             </li>
             <li>
-              <a href="#">Buy BNB</a>
+              <a href="https://wwww.rdice.retrofarms.net">RCUBE DICE</a>
             </li>
           </ul>
         </div>

@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import poolAbi from "../../utils/nativeFarmAbi";
+
 const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
 import config from "../../pools_config.json";
 export default function Stats() {
@@ -45,11 +47,11 @@ export default function Stats() {
   }
   return (
     <div className="stats-stripe">
-      <div className="txt deposit-ttl">My total deposit:</div>
+      <div className="txt deposit-ttl">My Total Deposit:</div>
       <div className={"txt total-deposit loading"}>
         {data.deposited ? "$" + formatNumber(data.deposited.toFixed(2)) : "***"}
       </div>
-      <div className="txt qbert-ttl">QBert pending:</div>
+      <div className="txt qbert-ttl">QBert Pending:</div>
       <div className="txt qbert-pending loading">
         <span className="amount">
           {data.pending ? data.pending.toFixed(3) : "***"}

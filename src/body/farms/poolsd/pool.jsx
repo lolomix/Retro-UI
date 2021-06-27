@@ -1,8 +1,10 @@
-import info from "../../../assets/svg/info-primary.svg";
-import $ from "jquery";
-import getBalance from "../../../utils/tokenUtils";
-import poolAbi from "../../../utils/nativeFarmAbi";
 import { constants } from "ethers";
+import $ from "jquery";
+
+import info from "../../../assets/svg/info-primary.svg";
+import poolAbi from "../../../utils/nativeFarmAbi";
+import getBalance from "../../../utils/tokenUtils";
+
 const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
@@ -701,8 +703,7 @@ export default function Pool(props) {
               <div className="itm qbert-apy">
                 <span className="ttl">{props.name} APR:&nbsp;</span>
                 <span className="val">{numFormatter(poolInfo.apr)} %</span>
-                <img className="tooltip" src={info}></img>
-              </div>
+                <img className="tooltip" src={info}></img></div>
             </div>
             <div className="info">
               <div className="itm head">
