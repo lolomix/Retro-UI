@@ -498,7 +498,7 @@ export default function Pool(props) {
 
       setInterval(async () => {
         await loadall();
-      }, 1000);
+      }, 1500);
     }
   });
 
