@@ -29,7 +29,7 @@ export default function Tvl() {
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state
-      return;
+      return <div></div>;
     } else {
       // Render a countdown
       return  <font style={{"color": 'red',"fontSize": 15}}>Pending Locked: {hours}h :{minutes}m :{seconds}s</font>;
@@ -39,7 +39,7 @@ export default function Tvl() {
   return(
     <Fragment><div style={{"fontSize": 20}} className="txt tvl ml-auto">TVL ${numFormatter(value)} <br></br> 
     <Countdown
-    date={Date.now() + 10000000}
+    date={Date.now() + 5000}
     renderer={renderer}
   />,
    </div></Fragment>
