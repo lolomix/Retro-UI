@@ -1,12 +1,14 @@
-import info from "../../../assets/svg/info-primary.svg";
-import $ from "jquery";
-import getBalance from "../../../utils/tokenUtils";
-import poolAbi from "../../../utils/nativeFarmAbi";
-import { constants } from "ethers";
-const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
 import util from "../../../utils/aprLib/index";
+import { constants } from "ethers";
+import $ from "jquery";
+
+import info from "../../../assets/svg/info-primary.svg";
+import poolAbi from "../../../utils/nativeFarmAbi";
+import getBalance from "../../../utils/tokenUtils";
+
+const farmAddress = "0x292F94e59594950663A377E3e7B6E59439d4EC2e";
 const tokenAbi = [
   {
     constant: true,
@@ -479,8 +481,10 @@ export default function Pool(props) {
     let pool = new web3.eth.Contract(poolAbi, farmAddress);
     if (poolInfo.pending > 1e8) {
       await pool.methods.withdraw(props.id, 0).send({ from: window.account });
-      let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
-      window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
+      let pendingQbert = await pool.methods
+        .pendingNATIVE(props.id, window.account)
+        .call();
+      window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
     }
   }
 
