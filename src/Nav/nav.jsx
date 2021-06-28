@@ -283,7 +283,7 @@ const tokenAbi = [
     type: "event"
   }
 ];
-const qbertAddress = "0xF653d8b120775F86458afA4cAB41C0cA58bc4295";
+const qbertAddress = "0xfDaD3bA8f0644d2b3EDDf51e63Ff854E54e099e1";
 
 export default function Nav() {
   var [menu, setMenu] = useState(false);
@@ -337,17 +337,20 @@ export default function Nav() {
               <a href="#">Earn</a>
             </li>
             <li>
-              <a href="https://exchange.pancakeswap.finance/#/pool"
-              target="_blank"
+              <a
+                href="https://exchange.pancakeswap.finance/#/pool"
+                target="_blank"
               >
                 Create LP<div className="mini-tag">SWAP</div>
               </a>
             </li>
             <li>
-              <a href="https://www.youtube.com/watch?v=3zsoLuEvTz8"
-              target="_blank"
+              <a
+                href="https://www.youtube.com/watch?v=3zsoLuEvTz8"
+                target="_blank"
               >
-              Tutorials</a>
+                Tutorials
+              </a>
             </li>
             <li>
               <a
@@ -358,10 +361,9 @@ export default function Nav() {
               </a>
             </li>
             <li>
-              <a href="https://wwww.rdice.retrofarms.net/"
-                target="_blank"
-               >
-                RCUBE Dice<div className='mini-tag'>PLAY</div></a>
+              <a href="https://wwww.rdice.retrofarms.net/" target="_blank">
+                RCUBE Dice<div className="mini-tag">PLAY</div>
+              </a>
             </li>
           </ul>
         </menu>
@@ -605,10 +607,14 @@ export default function Nav() {
               <a href="#">Earn</a>
             </li>
             <li>
-              <a href="https://exchange.pancakeswap.finance/#/pool">Create LP</a>
+              <a href="https://exchange.pancakeswap.finance/#/pool">
+                Create LP
+              </a>
             </li>
             <li>
-              <a href="https://www.youtube.com/watch?v=3zsoLuEvTz8">Tutorials</a>
+              <a href="https://www.youtube.com/watch?v=3zsoLuEvTz8">
+                Tutorials
+              </a>
             </li>
             <li>
               <a href="https://retrodefi.gitbook.io/retro-defi/">Docs</a>
