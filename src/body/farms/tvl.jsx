@@ -8,7 +8,7 @@ import { load } from 'dotenv';
 export default function Tvl() {
 
   var [value, setValue] = useState(0)
-  var [timeLeft, setTimeLeft] = useState(1)
+  var [timeLeft, setTimeLeft] = useState(0)
   var [loaded, setLoaded] = useState(false)
   var [text, setText] = useState('')
   useEffect(async ()=>{
