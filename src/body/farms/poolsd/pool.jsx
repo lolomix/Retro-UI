@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import Web3 from "web3";
+import util from "../../../utils/aprLib/index";
 import { constants } from "ethers";
 import $ from "jquery";
 
@@ -5,10 +8,7 @@ import info from "../../../assets/svg/info-primary.svg";
 import poolAbi from "../../../utils/nativeFarmAbi";
 import getBalance from "../../../utils/tokenUtils";
 
-const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
-import { useState, useEffect } from "react";
-import Web3 from "web3";
-import util from "../../../utils/aprLib/index";
+const farmAddress = "0x967d62a4652b87c7cc2dC6154d3369ff2A6b1AD2";
 const tokenAbi = [
   {
     constant: true,

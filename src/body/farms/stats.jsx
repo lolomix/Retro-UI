@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-
+import { useState, useEffect } from "react";
 import poolAbi from "../../utils/nativeFarmAbi";
-
-const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
 import config from "../../pools_config.json";
+
+const farmAddress = "0x967d62a4652b87c7cc2dC6154d3369ff2A6b1AD2";
+
 export default function Stats() {
-  let [data, setData] = useState({ pending: 0, deposit: 0, loaded: false });
+  var [data, setData] = useState({ pending: 0, deposit: 0, loaded: false });
   useEffect(() => {
     if (!data.loaded) {
       setData({ loaded: true });
