@@ -3,7 +3,7 @@ import $ from "jquery";
 import getBalance from "../../../utils/tokenUtils";
 import poolAbi from "../../../utils/nativeFarmAbi";
 import { constants } from "ethers";
-const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
+const farmAddress = "0x292F94e59594950663A377E3e7B6E59439d4EC2e";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
 import util from "../../../utils/aprLib/index";
@@ -306,7 +306,6 @@ export default function Pool(props) {
       try {
         window.ts.times = 1;
         await loadPool();
-
       } catch (error) {}
     }
   };
@@ -324,13 +323,13 @@ export default function Pool(props) {
         .allowance(window.account, farmAddress)
         .call();
       let pendingBefore = poolInfo.pending;
-     
+
       let pending = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
       let price;
-      if(!poolInfo.price){
-         price = await tokenPrice();
+      if (!poolInfo.price) {
+        price = await tokenPrice();
       }
 
       let balance = await token.methods.balanceOf(props.poolAddress).call();
@@ -344,7 +343,6 @@ export default function Pool(props) {
           window.ts.deposited + (deposited / 10 ** props.decimals) * price;
         window.ts.added.push(props.token_address);
       }
-
 
       await setPoolInfo({
         pool,
@@ -450,13 +448,14 @@ export default function Pool(props) {
         .deposit(props.id, amount)
         .send({ from: window.account });
 
-        setTimeout(async () => {
-          let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
-          window.ts.deposited = window.ts.deposited + (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-        }, 3500);
-
-       
-     
+      setTimeout(async () => {
+        let tokenStakeds = await pool.methods
+          .stakedWantTokens(props.id, window.account)
+          .call();
+        window.ts.deposited =
+          window.ts.deposited +
+          (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
+      }, 3500);
     }
   };
 
@@ -470,12 +469,15 @@ export default function Pool(props) {
       await pool.methods
         .withdraw(props.id, amount)
         .send({ from: window.account });
-        
-        setTimeout(async () => {
-          let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
-          window.ts.deposited = window.ts.deposited - (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-        }, 4000);
-        
+
+      setTimeout(async () => {
+        let tokenStakeds = await pool.methods
+          .stakedWantTokens(props.id, window.account)
+          .call();
+        window.ts.deposited =
+          window.ts.deposited -
+          (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
+      }, 4000);
     }
   };
 
@@ -483,15 +485,17 @@ export default function Pool(props) {
     let pool = new web3.eth.Contract(poolAbi, farmAddress);
     if (poolInfo.pending > 1e8) {
       await pool.methods.withdraw(props.id, 0).send({ from: window.account });
-      let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
-      window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
+      let pendingQbert = await pool.methods
+        .pendingNATIVE(props.id, window.account)
+        .call();
+      window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
     }
   }
 
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-  
+
       setInterval(async () => {
         await loadall();
       }, 1000);
