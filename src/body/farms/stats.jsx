@@ -47,7 +47,6 @@ export default function Stats() {
   }
   return (
     <div className="stats-stripe">
-      <div className="btn show-hide"></div>
       <div className="txt deposit-ttl">My total deposit:</div>
       <div className={"txt total-deposit loading"}>
         {data.deposited
@@ -64,7 +63,7 @@ export default function Stats() {
         onClick={() => {
           harvestall();
         }}
-        className="btn harvest-all disabled"
+        className="btn outlined harvest-all"
       >
         Harvest All
       </div>
