@@ -306,7 +306,7 @@ export default function Pool(props) {
       try {
         window.ts.times = 1;
         await loadPool();
-        console.log("update");
+
       } catch (error) {}
     }
   };
@@ -324,7 +324,7 @@ export default function Pool(props) {
         .allowance(window.account, farmAddress)
         .call();
       let pendingBefore = poolInfo.pending;
-      console.log(poolInfo)
+     
       let pending = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
@@ -332,6 +332,7 @@ export default function Pool(props) {
       if(!poolInfo.price){
          price = await tokenPrice();
       }
+
       let balance = await token.methods.balanceOf(props.poolAddress).call();
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance);
@@ -490,10 +491,10 @@ export default function Pool(props) {
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-      console.log("loadded true");
+  
       setInterval(async () => {
         await loadall();
-      }, 500);
+      }, 1000);
     }
   });
 

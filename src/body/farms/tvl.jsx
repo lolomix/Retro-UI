@@ -1,6 +1,6 @@
 
 import {Fragment, useState, useEffect} from 'react'
-
+import Countdown from 'react-countdown';
 
 export default function Tvl() {
 
@@ -8,9 +8,7 @@ export default function Tvl() {
   useEffect(()=>{
     if (window.web3) {
       console.log('ye')
-    } else{
-      console.log('noo')
-    }
+    } 
     setInterval(() => {
       if(window.ts){
         setValue(window.ts.value)
@@ -28,8 +26,23 @@ export default function Tvl() {
     }
   }
 
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return;
+    } else {
+      // Render a countdown
+      return  <font style={{"color": 'red',"fontSize": 15}}>Pending Locked: {hours}h :{minutes}m :{seconds}s</font>;
+    }
+  };
+
   return(
-    <Fragment><div className="txt tvl ml-auto">TVL ${numFormatter(value)}</div><br></br>xd</Fragment>
+    <Fragment><div style={{"fontSize": 20}} className="txt tvl ml-auto">TVL ${numFormatter(value)} <br></br> 
+    <Countdown
+    date={Date.now() + 10000000}
+    renderer={renderer}
+  />,
+   </div></Fragment>
   
     )
 }
