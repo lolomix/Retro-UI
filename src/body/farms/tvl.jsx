@@ -6,11 +6,15 @@ export default function Tvl() {
 
   var [value, setValue] = useState(0)
   useEffect(()=>{
+    if (window.web3) {
+      console.log('ye')
+    } else{
+      console.log('noo')
+    }
     setInterval(() => {
       if(window.ts){
         setValue(window.ts.value)
       }
-      
     }, 3000);
   })
 
@@ -25,7 +29,7 @@ export default function Tvl() {
   }
 
   return(
-    <Fragment><div className="txt tvl ml-auto">TVL ${numFormatter(value)}</div></Fragment>
+    <Fragment><div className="txt tvl ml-auto">TVL ${numFormatter(value)}</div><br></br>xd</Fragment>
   
     )
 }

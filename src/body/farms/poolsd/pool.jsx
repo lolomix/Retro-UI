@@ -328,7 +328,10 @@ export default function Pool(props) {
       let pending = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
-      let price = await tokenPrice();
+      let price;
+      if(!poolInfo.price){
+         price = await tokenPrice();
+      }
       let balance = await token.methods.balanceOf(props.poolAddress).call();
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance);
@@ -490,7 +493,7 @@ export default function Pool(props) {
       console.log("loadded true");
       setInterval(async () => {
         await loadall();
-      }, 2500);
+      }, 500);
     }
   });
 
