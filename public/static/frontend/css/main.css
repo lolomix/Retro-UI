@@ -287,7 +287,6 @@ div.btn {
   position: relative;
   height: 50px;
   background-color: var(--c-secondary);
-  box-shadow: 0px 0px 10px .1px #09e2f1;
   color: var(--c-txt);
   border-radius: var(--r-border);
   cursor: pointer;
@@ -346,7 +345,7 @@ a.btn.secondary,
 div.btn.secondary {
   background-color: var(--c-secondary);
   color: var(--c-txt);
-  box-shadow: 0px 0px 10px .5px #09e2f1;
+  box-shadow: none;
 }
 
 a.btn.secondary:hover,
@@ -407,7 +406,6 @@ div.btn.outlined:hover {
   border-color: var(--c-primary);
   color: var(--c-txt-3);
   background-color: var(--c-primary);
-  box-shadow: 0px 0px 6px 4px #07f8d0;
 }
 
 a.btn.expand,
@@ -844,7 +842,6 @@ input[type="checkbox"]:checked::before {
   line-height: 30px;
   font-size: 15px;
   background-color: var(--c-primary);
-  box-shadow: 0px 0px 5px 1.5px #07f8d0;
   color: var(--c-txt-3);
   font-weight: 700;
   border-radius: var(--r-border-2);
@@ -1252,7 +1249,6 @@ header .wallet .balance .wallet-info {
   background-color: var(--c-background-2);
   color: var(--c-primary);
   border-radius: var(--r-border);
-  box-shadow: 0px 0px 10px .5px #18da8d;
   align-items: center;
   margin-left: 20px;
 }
@@ -4135,7 +4131,6 @@ div.create-lp-content .btn.create {
 
   main .content .title .ttl {
     font-size: 24px;
-    text-align: center;
   }
 
   main .content .title .tvl {
@@ -4320,8 +4315,8 @@ div.create-lp-content .btn.create {
   }
 
   .app .content .pools .pool-card .info .symbols img {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .app .content .pools .pool-card .info .pool {
