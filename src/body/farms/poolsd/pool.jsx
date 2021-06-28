@@ -456,7 +456,7 @@ export default function Pool(props) {
           window.ts.deposited +
           (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
         window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
-      }, 3500);
+      }, 500);
     }
   };
 
@@ -482,7 +482,7 @@ export default function Pool(props) {
           window.ts.deposited -
           (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
         window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
-      }, 4000);
+      }, 500);
     }
   };
 
