@@ -35,7 +35,7 @@ export default function Tvl() {
       if(window.ts){
         setValue(window.ts.value)
       }
-    }, 3000);
+    }, 1500);
   })
 
   function numFormatter(num) {
