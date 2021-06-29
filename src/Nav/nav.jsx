@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logos/logo.png";
 import qbertpxl from "../assets/logos/qbertpxl.png";
 import Popup from "reactjs-popup";
-
+import utils from "../utils/aprLib/index";
 const tokenAbi = [
   {
     constant: true,
@@ -287,7 +287,7 @@ const qbertAddress = "0xF653d8b120775F86458afA4cAB41C0cA58bc4295";
 export default function Nav() {
   var [menu, setMenu] = useState(false);
   var [account, setAccount] = useState("");
-  var [data, setData] = useState({ balance: 0, totalSupply: 0 });
+  var [data, setData] = useState({ balance: 0, totalSupply: 0, price:0 });
 
   const toggleMenu = () => {
     if (!menu) {
@@ -306,10 +306,12 @@ export default function Nav() {
             let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
             let balance = await qbert.methods.balanceOf(window.account).call();
             let totalSupply = await qbert.methods.totalSupply().call();
-
+            let price = await utils.getTokenPrice('0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f', 18);
+          
             setData({
               balance: balance / 10 ** 18,
               totalSupply: totalSupply / 10 ** 18,
+              price: price[0],
               loaded: true
             });
           } catch (error) {}
@@ -369,7 +371,7 @@ export default function Nav() {
         <div className="wallet">
           <div className="qbert-price">
             <img src={qbertpxl} />
-            <div className="txt ml-10 price">$17.02</div>
+            <div className="txt ml-10 price">${(data.price).toFixed(2)}</div>
           </div>
           <Popup
             trigger={
@@ -401,7 +403,7 @@ export default function Nav() {
                     <div className="balance">{data.balance.toFixed(2)}</div>
                     <div className="key-value">
                       <div className="key">Price</div>
-                      <div className="value qbert-price">$17.02</div>
+                      <div className="value qbert-price">${(data.price).toFixed(2)}</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Current Supply</div>
@@ -528,7 +530,7 @@ export default function Nav() {
           <div className="break"></div>
           <div className="qbert-price">
             <img src={qbertpxl} />
-            <div className="txt ml-10 price">$17.02</div>
+            <div className="txt ml-10 price">${(data.price).toFixed(2)}</div>
           </div>
           <Popup
             trigger={
@@ -558,7 +560,7 @@ export default function Nav() {
 
                     <div className="key-value">
                       <div className="key">Price</div>
-                      <div className="value qbert-price">$17.02</div>
+                      <div className="value qbert-price">${(data.price).toFixed(2)}</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Current Supply</div>

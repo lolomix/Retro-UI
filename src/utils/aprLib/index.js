@@ -15,8 +15,8 @@ async function getTokenPrice(poolAddress, decimals){
   let tokenInfo = await getTokensInfo(pool);
   let bnbPrice = await axios.get('https://api.coingecko.com/api/v3/coins/binancecoin')
   
-  let tokenprice0 = (tokenInfo._reserve1 / 10 ** 18) / (tokenInfo._reserve0 / 10 ** 8) * bnbPrice.data.market_data.current_price.usd;
-  let tokenprice1 = (tokenInfo._reserve0 / 10 ** 8) / (tokenInfo._reserve1 / 10 ** 18) * bnbPrice.data.market_data.current_price.usd;
+  let tokenprice0 = (tokenInfo._reserve1 / 10 ** 18) / (tokenInfo._reserve0 / 10 ** decimals) * bnbPrice.data.market_data.current_price.usd;
+  let tokenprice1 = (tokenInfo._reserve0 / 10 ** decimals) / (tokenInfo._reserve1 / 10 ** 18) * bnbPrice.data.market_data.current_price.usd;
   return [tokenprice0 , tokenprice1 ]
 }
 
