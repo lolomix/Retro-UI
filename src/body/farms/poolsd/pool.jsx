@@ -424,12 +424,15 @@ export default function Pool(props) {
     } else {
       let value = await util.getLpPrice(props.price.lpaddress, props.tokenDecimals);
       value = value[props.price.reserve] * 2;
+     
       
       let tokenPrice = await util.getTokenPrice(
         props.price.bnnlpaddress,
-        props.decimals
+        props.tokenDecimals
       );
+      
       tokenPrice = tokenPrice[props.price.reserve];
+      console.log(tokenPrice, props.tokenDecimals)
       return value * tokenPrice;
     }
   }
