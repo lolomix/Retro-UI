@@ -44,6 +44,7 @@
     "decimals": 18,
     "url": "https://exchange.pancakeswap.finance/#/swap",
     "isLP": false,
+    "isBNB": true,
     "poolAddress": "0x88fbC202e8B79EEbaB497AAa8d190857Ae55367B",
     "price": {
       "lpaddress": "0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16",

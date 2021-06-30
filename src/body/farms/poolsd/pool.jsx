@@ -397,12 +397,18 @@ export default function Pool(props) {
 
   async function tokenPrice() {
     if (!props.isLp) {
-      let tokenPrice = await util.getTokenPrice(
-        props.price.lpaddress,
-        props.decimals
-      );
-      tokenPrice = tokenPrice[props.price.reserve];
-      return tokenPrice;
+      if (!props.isBNB) {
+        let tokenPrice = await util.getTokenPrice(
+          props.price.lpaddress,
+          props.decimals
+        );
+        tokenPrice = tokenPrice[props.price.reserve];
+        return tokenPrice;
+      } else{
+        return 340
+      }
+        
+      
     } else {
       let value = await util.getLpPrice(props.price.lpaddress, props.decimals);
       value = value[props.price.reserve] * 2;
