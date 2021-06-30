@@ -2,6 +2,7 @@ import info from "../../../assets/svg/info-primary.svg";
 import $ from "jquery";
 import getBalance from "../../../utils/tokenUtils";
 import poolAbi from "../../../utils/nativeFarmAbi";
+import strategyAbi from "../../../utils/strategyAbi";
 import { constants } from "ethers";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 import { useState, useEffect } from "react";
@@ -314,6 +315,7 @@ export default function Pool(props) {
     try {
       let token = new web3.eth.Contract(tokenAbi, props.token_address);
       let pool = new web3.eth.Contract(poolAbi, farmAddress);
+      let strategy = new web3.eth.Contract(strategyAbi, props.poolAddress);
       let balanced = await getBalance(props.token_address, window.account);
       setBalance(balanced);
       let deposited = await pool.methods
@@ -332,7 +334,17 @@ export default function Pool(props) {
         price = await tokenPrice();
       }
 
-      let balance = await token.methods.balanceOf(props.poolAddress).call();
+      let balance
+      if (!props.isLp) {
+        balance = await token.methods.balanceOf(props.poolAddress).call();
+      } else {
+        balance = await strategy.methods.wantLockedTotal().call();
+      }
+      
+      
+        
+        
+
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance);
       if (!window.ts.added.includes(props.token_address)) {
@@ -405,7 +417,7 @@ export default function Pool(props) {
       tokenPrice = tokenPrice[props.price.reserve];
       return tokenPrice;
     } else {
-      let value = await util.getLpPrice(props.price.lpaddress, props.decimals);
+      let value = await util.getLpPrice(props.price.lpaddress, props.tokenDecimals);
       value = value[props.price.reserve] * 2;
       let tokenPrice = await util.getTokenPrice(
         props.price.bnnlpaddress,
@@ -507,7 +519,7 @@ export default function Pool(props) {
       return (num / 1000).toFixed(1) + "K"; // convert to K for number from > 1000 < 1 million
     } else if (num > 1000000) {
       return (num / 1000000).toFixed(1) + "M"; // convert to M for number from > 1 million
-    } else if (num < 900) {
+    } else if (num <= 999) {
       return num.toFixed(2); // if value < 1000, nothing to do
     }
   }

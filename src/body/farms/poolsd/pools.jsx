@@ -23,6 +23,7 @@ export default function Pools() {
           pair_image={pool.pair_image}
           pool_multiplier={pool.pool_multiplier}
           decimals={pool.decimals}
+          tokenDecimals={pool.tokenDecimals}
           token_address={pool.token_address}
           buy_url={pool.url}
           poolAddress={pool.poolAddress}
