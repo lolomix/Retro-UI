@@ -7,7 +7,7 @@ import { load } from "dotenv";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 export default function Tvl() {
   var [value, setValue] = useState(0);
-  var [timeLeft, setTimeLeft] = useState(2);
+  var [timeLeft, setTimeLeft] = useState(5);
   var [loaded, setLoaded] = useState(false);
   var [text, setText] = useState("");
   useEffect(async () => {
