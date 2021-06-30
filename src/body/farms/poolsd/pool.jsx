@@ -373,10 +373,11 @@ export default function Pool(props) {
     let info = await pool.methods.poolInfo(props.id).call();
     let totalAlloc = await pool.methods.totalAllocPoint().call();
     let perBlock = await pool.methods.NATIVEPerBlock().call();
-    let poolAlloc = (perBlock * (info.allocPoint / totalAlloc)) / 10 ** 18;
+    let poolAlloc = (perBlock * (totalAlloc/info.allocPoint)) / 10 ** 18;
     let perUint = (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9; // Cambiar 1.9 por el precio de qubert
-    let apr = perUint * ((60 * 60 * 24 * 366) / 3);
-    return apr;
+    let apr = perUint * ((31536000) / 3);
+    let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
+    return dd;
   }
 
   const maxButton = async (param) => {
