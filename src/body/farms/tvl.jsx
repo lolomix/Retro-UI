@@ -1,42 +1,40 @@
-
-import {Fragment, useState, useEffect} from 'react'
-import Countdown from 'react-countdown';
-import nativeFarmAbi from '../../utils/nativeFarmAbi';
-const farmAddress = "0x292F94e59594950663A377E3e7B6E59439d4EC2e";
+import { Fragment, useState, useEffect } from "react";
+import Countdown from "react-countdown";
+import nativeFarmAbi from "../../utils/nativeFarmAbi";
+const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 import Web3 from "web3";
-import { load } from 'dotenv';
+import { load } from "dotenv";
 export default function Tvl() {
-
-  var [value, setValue] = useState(0)
-  var [timeLeft, setTimeLeft] = useState(0)
-  var [loaded, setLoaded] = useState(false)
-  var [text, setText] = useState('')
-  useEffect(async ()=>{
-    if(web3.eth && !loaded){
+  var [value, setValue] = useState(0);
+  var [timeLeft, setTimeLeft] = useState(0);
+  var [loaded, setLoaded] = useState(false);
+  var [text, setText] = useState("");
+  useEffect(async () => {
+    if (web3.eth && !loaded) {
       let pool = new web3.eth.Contract(nativeFarmAbi, farmAddress);
-      setLoaded(true)
-      let currentBlock = await web3.eth.getBlockNumber()
-      let startBlockHarvest = await pool.methods.startBlockHarvest().call()
-      let startBlock = await pool.methods.startBlock().call()
-      let startBlockTime  = startBlock - currentBlock
-      let startBlockHarvestTime  = startBlockHarvest - currentBlock
-      if(startBlockTime > 0){
-        setTimeLeft(time * 3)
-        setText('Farms Start')
+      setLoaded(true);
+      let currentBlock = await web3.eth.getBlockNumber();
+      let startBlockHarvest = await pool.methods.startBlockHarvest().call();
+      let startBlock = await pool.methods.startBlock().call();
+      let startBlockTime = startBlock - currentBlock;
+      let startBlockHarvestTime = startBlockHarvest - currentBlock;
+      if (startBlockTime > 0) {
+        setTimeLeft(time * 3);
+        setText("Farms Start");
       } else if (startBlockHarvestTime > 0) {
-        setTimeLeft(startBlockHarvestTime * 3)
-        setText('Pending Locked')
-      } else{
-        setTimeLeft(0)
+        setTimeLeft(startBlockHarvestTime * 3);
+        setText("Pending Locked");
+      } else {
+        setTimeLeft(0);
       }
     }
-    
+
     setInterval(() => {
-      if(window.ts){
-        setValue(window.ts.value)
+      if (window.ts) {
+        setValue(window.ts.value);
       }
     }, 1500);
-  })
+  });
 
   function numFormatter(num) {
     if (num > 999 && num < 1000000) {
@@ -49,23 +47,26 @@ export default function Tvl() {
   }
 
   const renderer = ({ hours, minutes, seconds, completed }) => {
-    console.log(seconds)
+    console.log(seconds);
     if (completed) {
       // Render a completed state
       return <div></div>;
     } else {
       // Render a countdown
-      return  <font style={{"color": 'red',"fontSize": 15}}>{text}: {hours}h :{minutes}m :{seconds}s</font>;
+      return (
+        <font style={{ color: "red", fontSize: 15 }}>
+          {text}: {hours}h :{minutes}m :{seconds}s
+        </font>
+      );
     }
   };
 
-  return(
-    <Fragment><div style={{"fontSize": 20}} className="txt tvl ml-auto">TVL ${numFormatter(value)} <br></br> 
-    <Countdown
-    date={Date.now()  + (timeLeft * 1000)}
-    renderer={renderer}
-  />,
-   </div></Fragment>
-  
-    )
+  return (
+    <Fragment>
+      <div style={{ fontSize: 20 }} className="txt tvl ml-auto">
+        TVL ${numFormatter(value)} <br></br>
+        <Countdown date={Date.now() + timeLeft * 1000} renderer={renderer} />,
+      </div>
+    </Fragment>
+  );
 }

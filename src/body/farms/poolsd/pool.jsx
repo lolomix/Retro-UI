@@ -3,7 +3,7 @@ import $ from "jquery";
 import getBalance from "../../../utils/tokenUtils";
 import poolAbi from "../../../utils/nativeFarmAbi";
 import { constants } from "ethers";
-const farmAddress = "0x292F94e59594950663A377E3e7B6E59439d4EC2e";
+const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
 import util from "../../../utils/aprLib/index";
