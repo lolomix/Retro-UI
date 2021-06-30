@@ -327,7 +327,7 @@ export default function Pool(props) {
         .allowance(window.account, farmAddress)
         .call();
       let pendingBefore = poolInfo.pending;
-
+      console.log(pending)
       let pending = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
@@ -375,15 +375,17 @@ export default function Pool(props) {
     let info = await pool.methods.poolInfo(props.id).call();
     let totalAlloc = await pool.methods.totalAllocPoint().call();
     let perBlock = await pool.methods.NATIVEPerBlock().call();
-    let poolAlloc = (perBlock * (totalAlloc/info.allocPoint)) / (10 ** 18);
-    let perUint = (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9; // Cambiar 1.9 por el precio de qubert
-    let apr = perUint * ((31536000) / 3);
-    let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
+    let poolAlloc = (perBlock * (info.allocPoint/totalAlloc)) / (10 ** 18);
+    let perUint = (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
+    let tvl = ((balance / 10 ** props.decimals) * price)
+
+    let apr = 28800 * (poolAlloc * 1.66) / (tvl);
+    //let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
     
     const totalStaked = (balance / 10 ** props.decimals) * price
     const totalRewardPricePerYear = new BigNumber(2).times(poolAlloc).times(BLOCKS_PER_YEAR)
     const aprr = totalRewardPricePerYear.div(totalStaked)
-    return aprr;
+    return apr * 356;
   }
 
   const maxButton = async (param) => {
