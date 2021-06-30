@@ -30,6 +30,8 @@ export default function Pools() {
           isLp={pool.isLP}
           price={pool.price}
           isBNB = {pool.isBNB}
+          compound = {pool.compound}
+          isLpCompund = {pool.isLPcompund}
         />
       ))}
     </div>

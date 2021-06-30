@@ -335,11 +335,13 @@ export default function Pool(props) {
       }
 
       let balance;
-      if (!props.isLp) {
-        balance = await token.methods.balanceOf(props.poolAddress).call();
-      } else {
+      if (!props.isLp || props.isLpCompund) {
         balance = await strategy.methods.wantLockedTotal().call();
+      } else {
+        balance = await token.methods.balanceOf(props.poolAddress).call();
       }
+
+     
 
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance, price);
@@ -428,7 +430,6 @@ export default function Pool(props) {
       );
 
       tokenPrice = tokenPrice[props.price.reserve];
-      console.log(tokenPrice, props.tokenDecimals);
       return value * tokenPrice;
     }
   }

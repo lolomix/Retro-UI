@@ -154,6 +154,7 @@
     "tokenDecimals": 18,
     "url": "https://exchange.pancakeswap.finance/#/add/BNB/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
     "isLP": true,
+    "isLPcompund": true,
     "poolAddress": "0x1ecaAd2992a494d074f2248AA5FC9Ce8a3B8B2c3",
     "price": {
       "lpaddress": "0x0eD7e52944161450477ee417DE9Cd3a859b14fD0",
@@ -173,6 +174,7 @@
     "tokenDecimals": 18,
     "url": "https://exchange.pancakeswap.finance/#/add/BNB/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
     "isLP": true,
+    "isLPcompund": true,
     "poolAddress": "0xe3c092e5aaE35e143Eb409a579105391918bC5C3",
     "price": {
       "lpaddress": "0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16",
