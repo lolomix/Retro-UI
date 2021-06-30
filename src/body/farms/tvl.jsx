@@ -7,7 +7,7 @@ import { load } from "dotenv";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 export default function Tvl() {
   var [value, setValue] = useState(0);
-  var [timeLeft, setTimeLeft] = useState(0);
+  var [timeLeft, setTimeLeft] = useState(2);
   var [loaded, setLoaded] = useState(false);
   var [text, setText] = useState("");
   useEffect(async () => {
@@ -20,6 +20,7 @@ export default function Tvl() {
       let startBlockTime = startBlock - currentBlock;
       let startBlockHarvestTime = startBlockHarvest - currentBlock;
       if (startBlockTime > 0) {
+        console.log('settttt')
         setTimeLeft(startBlockTime * 3);
         setText("Farms Start");
       } else if (startBlockHarvestTime > 0) {
@@ -48,8 +49,8 @@ export default function Tvl() {
     }
   }
 
-  const renderer = ({ hours, minutes, seconds, completed }) => {
- 
+  const renderer = ({ hours, minutes, seconds, completed , api}) => {
+    console.log(seconds)
     if (completed) {
       // Render a completed state
       return <div></div>;
@@ -67,7 +68,7 @@ export default function Tvl() {
     <Fragment>
       <div style={{ fontSize: 20 }} className="txt tvl ml-auto">
         TVL ${numFormatter(value)} <br></br>
-        <Countdown date={Date.now() + timeLeft * 1000} renderer={renderer} />,
+        <Countdown date={Date.now() + (timeLeft * 1000)} renderer={renderer} />,
       </div>
     </Fragment>
   );
