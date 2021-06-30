@@ -519,7 +519,9 @@ export default function Pool(props) {
 
   return (
     <div className={`pool-card  highlighted radioactive id${props.id}`}>
-      <div className="tag-container"><div className="mini-tag">{props.number_fee}</div></div>
+      <div className="tag-container">
+        <div className="mini-tag">{props.number_fee}</div>
+      </div>
       <div className="info">
         <div className="symbols">
           <img src={window.location.href + "/images/" + props.image_name} />
@@ -734,25 +736,6 @@ export default function Pool(props) {
                   )}
                 </span>
               </div>
-            </div>
-            <div className="info learn">
-              <span className="ttl" style={{ color: "#ff0a9c" }}>
-                Deposit Fees
-              </span>
-              <br />
-              <span className="val">Deposit fee: 1.0%.</span>
-              <br />
-              <br />
-              <span className="ttl" style={{ color: "#ff0a9c" }}>
-                Harvest Fees:
-              </span>
-              <br />
-              <span className="val">Buyback: 2.0%.</span>
-              <br />
-              <span className="val">Network fee: 0.2%.</span>
-              <br />
-              <span className="val">Operational fee: 1.8%.</span>
-              <br />
             </div>
           </div>
         </div>
