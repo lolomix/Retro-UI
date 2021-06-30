@@ -334,22 +334,18 @@ export default function Pool(props) {
         price = await tokenPrice();
       }
 
-      let balance
+      let balance;
       if (!props.isLp) {
         balance = await token.methods.balanceOf(props.poolAddress).call();
       } else {
         balance = await strategy.methods.wantLockedTotal().call();
       }
-      
-      
-        
-        
 
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance);
       if (!window.ts.added.includes(props.token_address)) {
         window.ts.value =
-        window.ts.value + (balance / 10 ** props.decimals) * price;
+          window.ts.value + (balance / 10 ** props.decimals) * price;
         window.ts.deposited =
           window.ts.deposited + (deposited / 10 ** props.decimals) * price;
         window.ts.added.push(props.token_address);
@@ -416,20 +412,23 @@ export default function Pool(props) {
         );
         tokenPrice = tokenPrice[props.price.reserve];
         return tokenPrice;
-      } else{
-        return 300
+      } else {
+        return 300;
       }
-        
-      
     } else {
-      let value = await util.getLpPrice(props.price.lpaddress, props.tokenDecimals);
+      let value = await util.getLpPrice(
+        props.price.lpaddress,
+        props.tokenDecimals
+      );
       value = value[props.price.reserve] * 2;
-      
+
       let tokenPrice = await util.getTokenPrice(
         props.price.bnnlpaddress,
         props.tokenDecimals
       );
+
       tokenPrice = tokenPrice[props.price.reserve];
+      console.log(tokenPrice, props.tokenDecimals);
       return value * tokenPrice;
     }
   }
@@ -505,7 +504,6 @@ export default function Pool(props) {
       let pendingQbert = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
-  
     }
   }
 
@@ -541,8 +539,8 @@ export default function Pool(props) {
       </div>
       <div className="info">
         <div className="symbols">
-          <img src={window.location.href + "/images/" + props.image_name} />
-          <img src={window.location.href + "/images/" + props.pair_image} />
+          <img src={"../images/" + props.image_name} />
+          <img src={"../images/" + props.pair_image} />
         </div>
         <div className="pool">
           <div className="ttl">
