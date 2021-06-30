@@ -2,14 +2,21 @@ import { useState, useEffect } from "react";
 import poolAbi from "../../utils/nativeFarmAbi";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 import config from "../../pools_config.json";
+import Web3 from "web3";
 export default function Stats() {
   let [data, setData] = useState({ pending: 0, deposit: 0, loaded: false });
   useEffect(() => {
     if (!data.loaded) {
       setData({ loaded: true });
-      console.log("stats load");
+     
+      if(web3.eth){
+        loadPending()
+      }
       setInterval(() => {
         if (window.ts) {
+          if(web3.eth){
+            loadPending()
+          }
           setData({
             pending: window.ts.pending,
             deposited: window.ts.deposited,
@@ -19,6 +26,21 @@ export default function Stats() {
       }, 1000);
     }
   });
+
+  async function loadPending(params) {
+    let pool = new web3.eth.Contract(poolAbi, farmAddress);
+    let num = 0;
+    for (let i = 0; i < 5; i++) {
+      try {
+        let pending = await pool.methods.pendingNATIVE(config[i].id, window.account).call();
+        
+          num = num + Number(pending)
+      } catch (error) {
+        
+      }
+    }
+    window.ts.pending = num / (10 ** 18);
+  }
 
   function formatNumber(num) {
     if (num > 999 && num < 1000000) {
@@ -37,10 +59,6 @@ export default function Stats() {
         let balance = await pool.methods
           .pendingNATIVE(config[i].id, window.account)
           .call();
-        console.log(balance);
-        if (balance > 1e8) {
-          pool.methods.withdraw(config[i].id, 0).send({ from: window.account });
-        }
       } catch (error) {}
     }
     console.log("finished");
