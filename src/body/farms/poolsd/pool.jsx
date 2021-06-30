@@ -8,6 +8,8 @@ const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
 import util from "../../../utils/aprLib/index";
+import BigNumber from "bignumber.js";
+const BLOCKS_PER_YEAR = new BigNumber((60 / 3) * 60 * 24 * 365)
 const tokenAbi = [
   {
     constant: true,
@@ -366,18 +368,22 @@ export default function Pool(props) {
         apr,
         userBalance: balanced
       });
-    } catch (error) {}
+    } catch (error) { console.log(error)}
   };
 
   async function calculateApr(pool, balance, price) {
     let info = await pool.methods.poolInfo(props.id).call();
     let totalAlloc = await pool.methods.totalAllocPoint().call();
     let perBlock = await pool.methods.NATIVEPerBlock().call();
-    let poolAlloc = (perBlock * (totalAlloc/info.allocPoint)) / 10 ** 18;
+    let poolAlloc = (perBlock * (totalAlloc/info.allocPoint)) / (10 ** 18);
     let perUint = (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9; // Cambiar 1.9 por el precio de qubert
     let apr = perUint * ((31536000) / 3);
     let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
-    return dd;
+    
+    const totalStaked = (balance / 10 ** props.decimals) * price
+    const totalRewardPricePerYear = new BigNumber(2).times(poolAlloc).times(BLOCKS_PER_YEAR)
+    const aprr = totalRewardPricePerYear.div(totalStaked)
+    return aprr;
   }
 
   const maxButton = async (param) => {
@@ -589,8 +595,8 @@ export default function Pool(props) {
             {poolInfo.price
               ? "$" +
                 numFormatter(
-                  (poolInfo.balance / 10 ** props.decimals) * poolInfo.price
-                )
+                  (poolInfo.balance / 10 ** props.decimals) * poolInfo.price)
+                  
               : "***"}
           </div>
           <div className="key">TVL</div>
