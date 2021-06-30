@@ -349,8 +349,7 @@ export default function Pool(props) {
       let apr = await calculateApr(pool, balance);
       if (!window.ts.added.includes(props.token_address)) {
         window.ts.value =
-          window.ts.value + (balance / 10 ** props.decimals) * price;
-        window.ts.pending = window.ts.pending + pending / 10 ** 18;
+        window.ts.value + (balance / 10 ** props.decimals) * price;
         window.ts.deposited =
           window.ts.deposited + (deposited / 10 ** props.decimals) * price;
         window.ts.added.push(props.token_address);
@@ -374,7 +373,7 @@ export default function Pool(props) {
     let totalAlloc = await pool.methods.totalAllocPoint().call();
     let perBlock = await pool.methods.NATIVEPerBlock().call();
     let poolAlloc = (perBlock * (info.allocPoint / totalAlloc)) / 10 ** 18;
-    let perUint = (poolAlloc / (balance / 10 ** props.decimals)) * 1.5; // Cambiar 1.5 por el precio de qubert
+    let perUint = (poolAlloc / (balance / 10 ** props.decimals)) * 1.9; // Cambiar 1.9 por el precio de qubert
     let apr = perUint * ((60 * 60 * 24 * 366) / 3);
     return apr;
   }
@@ -410,20 +409,26 @@ export default function Pool(props) {
 
   async function tokenPrice() {
     if (!props.isLp) {
-      let tokenPrice = await util.getTokenPrice(
-        props.price.lpaddress,
-        props.decimals
-      );
-      tokenPrice = tokenPrice[props.price.reserve];
-      return tokenPrice;
+      if (!props.isBNB) {
+        let tokenPrice = await util.getTokenPrice(
+          props.price.lpaddress,
+          props.decimals
+        );
+        tokenPrice = tokenPrice[props.price.reserve];
+        return tokenPrice;
+      } else{
+        return 300
+      }
+        
+      
     } else {
       let value = await util.getLpPrice(props.price.lpaddress, props.tokenDecimals);
       value = value[props.price.reserve] * 2;
+      
       let tokenPrice = await util.getTokenPrice(
         props.price.bnnlpaddress,
         props.decimals
       );
-
       tokenPrice = tokenPrice[props.price.reserve];
       return value * tokenPrice;
     }
@@ -467,7 +472,7 @@ export default function Pool(props) {
         window.ts.deposited =
           window.ts.deposited +
           (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-      }, 3500);
+      }, 4000);
     }
   };
 
@@ -500,7 +505,7 @@ export default function Pool(props) {
       let pendingQbert = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
-      window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
+  
     }
   }
 

@@ -29,6 +29,7 @@ export default function Pools() {
           poolAddress={pool.poolAddress}
           isLp={pool.isLP}
           price={pool.price}
+          isBNB = {pool.isBNB}
         />
       ))}
     </div>
