@@ -487,7 +487,7 @@ export default function Pool(props) {
       let pendingQbert = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
-      window.ts.pending = window.ts.pending - pendingQbert / 10 ** 18;
+  
     }
   }
 
