@@ -342,7 +342,7 @@ export default function Pool(props) {
       }
 
       let total = (balance / 10 ** props.decimals) * price;
-      let apr = await calculateApr(pool, balance);
+      let apr = await calculateApr(pool, balance, price);
       if (!window.ts.added.includes(props.token_address)) {
         window.ts.value =
           window.ts.value + (balance / 10 ** props.decimals) * price;
@@ -364,12 +364,12 @@ export default function Pool(props) {
     } catch (error) {}
   };
 
-  async function calculateApr(pool, balance) {
+  async function calculateApr(pool, balance, price) {
     let info = await pool.methods.poolInfo(props.id).call();
     let totalAlloc = await pool.methods.totalAllocPoint().call();
     let perBlock = await pool.methods.NATIVEPerBlock().call();
     let poolAlloc = (perBlock * (info.allocPoint / totalAlloc)) / 10 ** 18;
-    let perUint = (poolAlloc / (balance / 10 ** props.decimals)) * 1.9; // Cambiar 1.9 por el precio de qubert
+    let perUint = (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9; // Cambiar 1.9 por el precio de qubert
     let apr = perUint * ((60 * 60 * 24 * 366) / 3);
     return apr;
   }
