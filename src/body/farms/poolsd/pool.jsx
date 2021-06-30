@@ -340,6 +340,9 @@ export default function Pool(props) {
       } else {
         balance = await token.methods.balanceOf(props.poolAddress).call();
       }
+      if(props.poolAddress == "0xB9468Ee4bEf2979615855aB1Eb6718505b1BB756"){
+        console.log(price)
+      }
 
      
 
