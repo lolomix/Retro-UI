@@ -157,13 +157,8 @@
     "poolAddress": "0x1ecaAd2992a494d074f2248AA5FC9Ce8a3B8B2c3",
     "price": {
       "lpaddress": "0x0eD7e52944161450477ee417DE9Cd3a859b14fD0",
-<<<<<<< HEAD
       "bnnlpaddress": "0x1b96b92314c44b159149f7e0303511fb2fc4774f",
       "reserve": 1
-=======
-      "bnnlpaddress": "0x0eD7e52944161450477ee417DE9Cd3a859b14fD0",
-      "reserve": 0
->>>>>>> 41adf45666203564a2585d4509f87eb05c6bb67b
     }
   },
   {
