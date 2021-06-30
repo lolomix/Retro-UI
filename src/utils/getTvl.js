@@ -1,7 +1,7 @@
 import config from "../pools_config.json";
 import Web3 from "web3";
 const Contract = require("web3-eth-contract");
-const provider = "https://data-seed-prebsc-1-s1.binance.org:8545";
+const provider = "https://bsc-dataseed.binance.org/";
 
 import farmAbi from "./nativeFarmAbi";
 const poolAbi = require("./aprLib/pool");
