@@ -30,7 +30,7 @@ export default function Stats() {
   async function loadPending(params) {
     let pool = new web3.eth.Contract(poolAbi, farmAddress);
     let num = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < config.length; i++) {
       try {
         let pending = await pool.methods.pendingNATIVE(config[i].id, window.account).call();
         
