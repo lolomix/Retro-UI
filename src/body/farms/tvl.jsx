@@ -1,9 +1,9 @@
 import { Fragment, useState, useEffect } from "react";
 import Countdown from "react-countdown";
 import nativeFarmAbi from "../../utils/nativeFarmAbi";
-const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 import Web3 from "web3";
 import { load } from "dotenv";
+const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 export default function Tvl() {
   var [value, setValue] = useState(0);
   var [timeLeft, setTimeLeft] = useState(0);
@@ -19,7 +19,7 @@ export default function Tvl() {
       let startBlockTime = startBlock - currentBlock;
       let startBlockHarvestTime = startBlockHarvest - currentBlock;
       if (startBlockTime > 0) {
-        setTimeLeft(startBlockTime * 3);
+        setTimeLeft(time * 3);
         setText("Farms Start");
       } else if (startBlockHarvestTime > 0) {
         setTimeLeft(startBlockHarvestTime * 3);
@@ -28,7 +28,6 @@ export default function Tvl() {
         setTimeLeft(0);
       }
     }
-
     setInterval(() => {
       if (window.ts) {
         setValue(window.ts.value);
