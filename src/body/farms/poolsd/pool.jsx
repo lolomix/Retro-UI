@@ -405,7 +405,7 @@ export default function Pool(props) {
         tokenPrice = tokenPrice[props.price.reserve];
         return tokenPrice;
       } else{
-        return 340
+        return 300
       }
         
       
