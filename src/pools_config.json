@@ -101,7 +101,7 @@
     "price": {
       "lpaddress": "0x075DA65514Bc2aF2508314f8a3150ca660E6Eea1",
       "bnnlpaddress": "0x075DA65514Bc2aF2508314f8a3150ca660E6Eea1",
-      "reserve": 1
+      "reserve": 0
     }
   },
   {
@@ -195,8 +195,8 @@
     "poolAddress": "0x6F3F9c676b697643c49cb6e4f6b7756CFe275FC6",
     "price": {
       "lpaddress": "0x768Bacfd3bd11336d63B34fc92AEd75598f25E57",
-      "bnnlpaddress": "0x1b96b92314c44b159149f7e0303511fb2fc4774f",
-      "reserve": 1
+      "bnnlpaddress": "0x768Bacfd3bd11336d63B34fc92AEd75598f25E57",
+      "reserve": 0
     }
   }
 ]

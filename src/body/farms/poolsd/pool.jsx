@@ -427,7 +427,7 @@ export default function Pool(props) {
       
       let tokenPrice = await util.getTokenPrice(
         props.price.bnnlpaddress,
-        props.decimals
+        props.tokenDecimals
       );
       tokenPrice = tokenPrice[props.price.reserve];
       return value * tokenPrice;

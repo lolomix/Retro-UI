@@ -62,7 +62,6 @@ async function getTokenPrice(poolAddress, decimals) {
   let tokenprice1 =
     (tokenInfo._reserve0 / 10 ** 8 / (tokenInfo._reserve1 / 10 ** 18)) *
     bnbPrice.data.market_data.current_price.usd;
-  console.log([tokenprice0, tokenprice1]);
   return [tokenprice0, tokenprice1];
 }
 

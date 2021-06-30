@@ -49,7 +49,7 @@ async function getLpPrice(poolAddress, decimals) {
     _blockTimestampLast
   } = await pool.methods.getReserves().call();
   let amount0 = _reserve0 / 10 ** decimals / (lpSupply / 10 ** 18);
-  let amount1 = _reserve1 / 10 ** decimals / (lpSupply / 10 ** 18);
+  let amount1 = _reserve1 / 10 ** 18 / (lpSupply / 10 ** 18);
 
   return [amount0, amount1];
 }
