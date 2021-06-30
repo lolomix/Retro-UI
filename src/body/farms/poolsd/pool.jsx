@@ -454,7 +454,7 @@ export default function Pool(props) {
         window.ts.deposited =
           window.ts.deposited +
           (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-      }, 3500);
+      }, 4000);
     }
   };
 
