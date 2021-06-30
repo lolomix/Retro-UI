@@ -519,7 +519,7 @@ export default function Pool(props) {
 
   return (
     <div className={`pool-card  highlighted radioactive id${props.id}`}>
-      <div className="tag-container"></div>
+      <div className="tag-container"><div className="mini-tag">{props.number_fee}</div></div>
       <div className="info">
         <div className="symbols">
           <img src={window.location.href + "/images/" + props.image_name} />
