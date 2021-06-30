@@ -19,7 +19,7 @@ export default function Tvl() {
       let startBlockTime = startBlock - currentBlock;
       let startBlockHarvestTime = startBlockHarvest - currentBlock;
       if (startBlockTime > 0) {
-        setTimeLeft(time * 3);
+        setTimeLeft(startBlockTime * 3);
         setText("Farms Start");
       } else if (startBlockHarvestTime > 0) {
         setTimeLeft(startBlockHarvestTime * 3);

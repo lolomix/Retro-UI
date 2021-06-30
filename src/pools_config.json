@@ -60,7 +60,7 @@
     "poolAddress": "0xeC7Cc5E95F01Cc0D72D531C337b4F638f187781B",
     "price": {
       "lpaddress": "0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16",
-      "reserve": 0
+      "reserve": 1
     }
   },
   {
