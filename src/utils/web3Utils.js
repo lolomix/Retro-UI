@@ -16,7 +16,8 @@ const getWeb3 = () => {
           }
         }
         let accounts = await ethereum.request({
-          method: "eth_requestAccounts"
+          method: "eth_requestAccounts",
+          params: network.BSCmain
         });
         window.account = accounts[0];
         window.ts = { value: 0, pending: 0, deposited: 0, added: [] };
