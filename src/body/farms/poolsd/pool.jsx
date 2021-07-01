@@ -385,6 +385,7 @@ export default function Pool(props) {
     let info = await pool.methods.poolInfo(props.id).call();
     let totalAlloc = await pool.methods.totalAllocPoint().call();
     let perBlock = await pool.methods.NATIVEPerBlock().call();
+    var QBERT_PERBLOCK = perBlock / 10 ** 18;
     let poolAlloc = (perBlock * (info.allocPoint / totalAlloc)) / 10 ** 18;
     let perUint =
       (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
