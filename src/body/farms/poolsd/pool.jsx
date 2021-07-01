@@ -302,7 +302,7 @@ export default function Pool(props) {
     price: 0,
     balance: 0,
     apr: 0,
-    qbertPrice:0
+    qbertPrice: 0
   });
   var [loaded, setLoaded] = useState(false);
   const loadall = async () => {
@@ -336,12 +336,10 @@ export default function Pool(props) {
       if (!poolInfo.price) {
         price = await tokenPrice();
       }
-      let qbertPrice = await util.getTokenPrice('0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f', 18);
-      
-        
-      
-     
-
+      let qbertPrice = await util.getTokenPrice(
+        "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
+        18
+      );
 
       let balance;
       if (!props.isLp || props.isLpCompund) {
@@ -578,7 +576,7 @@ export default function Pool(props) {
         </div>
         <div className="key-value apy shorter">
           <div className="val primary">{numFormatter(poolInfo.apr)}%</div>
-          <div className="key">Yearly</div>
+          <div className="key">APR</div>
         </div>
         <div className="key-value balance">
           <div className="val">
@@ -727,7 +725,10 @@ export default function Pool(props) {
               <span style={{ fontSize: 13 }} className="value">
                 {" "}
                 ($
-                {((poolInfo.pending / 10 ** 18) * poolInfo.qbertPrice).toFixed(2)})
+                {((poolInfo.pending / 10 ** 18) * poolInfo.qbertPrice).toFixed(
+                  2
+                )}
+                )
               </span>
             </div>
             <div
@@ -744,7 +745,7 @@ export default function Pool(props) {
           <div className="information">
             <div className="info">
               <div className="itm head">
-                <span className="ttl">Annual</span>
+                <span className="ttl">APR</span>
               </div>
               <div className="itm qbert-apy">
                 <span className="ttl">{props.name} APR:&nbsp;</span>
