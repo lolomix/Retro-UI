@@ -9,7 +9,9 @@ import poolAbi from "../../../utils/nativeFarmAbi";
 import strategyAbi from "../../../utils/strategyAbi";
 import { constants, utils } from "ethers";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
-const BLOCKS_PER_YEAR = new BigNumber(((60 * 60 * 24) / 3) * 365);
+const BLOCKS_PER_DAY = new BigNumber((60 * 60 * 24) / 3);
+const BLOCKS_PER_YEAR = new BigNumber(BLOCKS_PER_DAY * 365);
+var QBERT_PERBLOCK;
 const tokenAbi = [
   {
     constant: true,
@@ -321,6 +323,7 @@ export default function Pool(props) {
       let strategy = new web3.eth.Contract(strategyAbi, props.poolAddress);
       let balanced = await getBalance(props.token_address, window.account);
       setBalance(balanced);
+      var QBERT_PERBLOCK = await pool.methods.NATIVEPerBlock.call();
       let deposited = await pool.methods
         .stakedWantTokens(props.id, window.account)
         .call();
@@ -532,7 +535,6 @@ export default function Pool(props) {
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-
       setInterval(async () => {
         await loadall();
       }, 1500);

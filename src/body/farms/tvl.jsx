@@ -1,9 +1,9 @@
+import Web3 from "web3";
+import { load } from "dotenv";
 import { Fragment, useState, useEffect } from "react";
 import Countdown from "react-countdown";
 import nativeFarmAbi from "../../utils/nativeFarmAbi";
 import config from "../../pools_config.json";
-import Web3 from "web3";
-import { load } from "dotenv";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 export default function Tvl() {
   var [value, setValue] = useState(0);
@@ -20,7 +20,6 @@ export default function Tvl() {
       let startBlockTime = startBlock - currentBlock;
       let startBlockHarvestTime = startBlockHarvest - currentBlock;
       if (startBlockTime > 0) {
-       
         setTimeLeft(startBlockTime * 3);
         setText("Farms Start");
       } else if (startBlockHarvestTime > 0) {
@@ -37,8 +36,6 @@ export default function Tvl() {
     }, 1500);
   });
 
-   
-
   function numFormatter(num) {
     if (num > 999 && num < 1000000) {
       return (num / 1000).toFixed(1) + "K"; // convert to K for number from > 1000 < 1 million
@@ -49,8 +46,7 @@ export default function Tvl() {
     }
   }
 
-  const renderer = ({ hours, minutes, seconds, completed , api}) => {
-  
+  const renderer = ({ hours, minutes, seconds, completed, api }) => {
     if (completed) {
       // Render a completed state
       return <div></div>;
@@ -68,7 +64,7 @@ export default function Tvl() {
     <Fragment>
       <div style={{ fontSize: 20 }} className="txt tvl ml-auto">
         TVL ${numFormatter(value)} <br></br>
-        <Countdown date={Date.now() + (timeLeft * 1000)} renderer={renderer} />,
+        <Countdown date={Date.now() + timeLeft * 1000} renderer={renderer} />,
       </div>
     </Fragment>
   );
