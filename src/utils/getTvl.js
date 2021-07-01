@@ -12,7 +12,7 @@ function send(results, status) {
   return new Promise(async (resolve, reject) => {
     for (var i = 0; i < config.length; i++) {
       let poolConfig = config[i];
-      const pool = new window.ethereum.eth.Contract(farmAbi, farmAddress);
+      const pool = new window.web3.eth.Contract(farmAbi, farmAddress);
       let deposited = await pool.methods
         .stakedWantTokens(poolConfig.id, window.account)
         .call();

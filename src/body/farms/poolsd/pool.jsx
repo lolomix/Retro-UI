@@ -305,7 +305,7 @@ export default function Pool(props) {
   });
   var [loaded, setLoaded] = useState(false);
   const loadall = async () => {
-    if (window.ethereum.eth) {
+    if (window.web3.eth) {
       try {
         window.ts.times = 1;
         await loadPool();

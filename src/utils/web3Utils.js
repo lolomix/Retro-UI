@@ -20,9 +20,9 @@ const getWeb3 = () => {
         });
         window.account = accounts[0];
         window.ts = { value: 0, pending: 0, deposited: 0, added: [] };
-        window.ethereum = new Web3(window.ethereum);
+        window.web3 = new Web3(window.ethereum);
 
-        console.log("Web3 enabled in window.ethereum");
+        console.log("Web3 enabled in window.web3");
         console.log("Account Logged", window.account);
 
         ethereum.on("accountsChanged", async (accounts) => {
@@ -39,10 +39,10 @@ const getWeb3 = () => {
       }
     }
     // Legacy dapp browsers...
-    else if (window.ethereum) {
+    else if (window.web3) {
       // Use Mist/MetaMask's provider.
-      const web3 = window.ethereum;
-      window.ethereum = web3;
+      const web3 = window.web3;
+      window.web3 = web3;
       console.log("Injected web3 detected.");
       resolve(true);
     }

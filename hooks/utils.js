@@ -21,8 +21,8 @@ const getWeb3 = () => {
             });
           }
         }
-        window.ethereum = new Web3(window.ethereum);
-        let accounts = await window.ethereum.eth.getAccounts();
+        window.web3 = new Web3(window.ethereum);
+        let accounts = await window.web3.eth.getAccounts();
         await window.ethereum.enable();
 
         resolve(true);
@@ -31,10 +31,10 @@ const getWeb3 = () => {
       }
     }
     // Legacy dapp browsers...
-    else if (window.ethereum) {
+    else if (window.web3) {
       // Use Mist/MetaMask's provider.
-      const web3 = window.ethereum;
-      window.ethereum = web3;
+      const web3 = window.web3;
+      window.web3 = web3;
       console.log("Injected web3 detected.");
       resolve(true);
     }
