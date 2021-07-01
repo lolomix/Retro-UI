@@ -1,8 +1,8 @@
+import Web3 from "web3";
 import { useEffect } from "react";
 import config from "../../../pools_config.json";
-import Pool from "./pool.jsx";
+import Pool from "./pool";
 import getTokenPrice from "../../../utils/aprLib/index";
-import Web3 from "web3";
 import send from "../../../utils/getTvl";
 
 export default function Pools() {
@@ -29,9 +29,9 @@ export default function Pools() {
           poolAddress={pool.poolAddress}
           isLp={pool.isLP}
           price={pool.price}
-          isBNB = {pool.isBNB}
-          compound = {pool.compound}
-          isLpCompund = {pool.isLPcompund}
+          isBNB={pool.isBNB}
+          compound={pool.compound}
+          isLpCompund={pool.isLPcompund}
         />
       ))}
     </div>

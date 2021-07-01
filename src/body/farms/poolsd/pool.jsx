@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import Web3 from "web3";
 import util from "../../../utils/aprLib/index";
 import BigNumber from "bignumber.js";
-const BLOCKS_PER_YEAR = new BigNumber((60 / 3) * 60 * 24 * 365)
+const BLOCKS_PER_YEAR = new BigNumber((60 / 3) * 60 * 24 * 365);
 const tokenAbi = [
   {
     constant: true,
@@ -305,7 +305,7 @@ export default function Pool(props) {
   });
   var [loaded, setLoaded] = useState(false);
   const loadall = async () => {
-    if (window.web3.eth) {
+    if (window.ethereum.eth) {
       try {
         window.ts.times = 1;
         await loadPool();
@@ -327,7 +327,7 @@ export default function Pool(props) {
         .allowance(window.account, farmAddress)
         .call();
       let pendingBefore = poolInfo.pending;
-      console.log(pending)
+      console.log(pending);
       let pending = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
@@ -342,11 +342,9 @@ export default function Pool(props) {
       } else {
         balance = await token.methods.balanceOf(props.poolAddress).call();
       }
-      if(props.poolAddress == "0xB9468Ee4bEf2979615855aB1Eb6718505b1BB756"){
-        console.log(price)
+      if (props.poolAddress == "0xB9468Ee4bEf2979615855aB1Eb6718505b1BB756") {
+        console.log(price);
       }
-
-     
 
       let total = (balance / 10 ** props.decimals) * price;
       let apr = await calculateApr(pool, balance, price);
@@ -368,23 +366,28 @@ export default function Pool(props) {
         apr,
         userBalance: balanced
       });
-    } catch (error) { console.log(error)}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   async function calculateApr(pool, balance, price) {
     let info = await pool.methods.poolInfo(props.id).call();
     let totalAlloc = await pool.methods.totalAllocPoint().call();
     let perBlock = await pool.methods.NATIVEPerBlock().call();
-    let poolAlloc = (perBlock * (info.allocPoint/totalAlloc)) / (10 ** 18);
-    let perUint = (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
-    let tvl = ((balance / 10 ** props.decimals) * price)
+    let poolAlloc = (perBlock * (info.allocPoint / totalAlloc)) / 10 ** 18;
+    let perUint =
+      (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
+    let tvl = (balance / 10 ** props.decimals) * price;
 
-    let apr = 28800 * (poolAlloc * 1.66) / (tvl);
+    let apr = (28800 * (poolAlloc * 1.66)) / tvl;
     //let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
-    
-    const totalStaked = (balance / 10 ** props.decimals) * price
-    const totalRewardPricePerYear = new BigNumber(2).times(poolAlloc).times(BLOCKS_PER_YEAR)
-    const aprr = totalRewardPricePerYear.div(totalStaked)
+
+    const totalStaked = (balance / 10 ** props.decimals) * price;
+    const totalRewardPricePerYear = new BigNumber(2)
+      .times(poolAlloc)
+      .times(BLOCKS_PER_YEAR);
+    const aprr = totalRewardPricePerYear.div(totalStaked);
     return apr * 356;
   }
 
@@ -597,8 +600,8 @@ export default function Pool(props) {
             {poolInfo.price
               ? "$" +
                 numFormatter(
-                  (poolInfo.balance / 10 ** props.decimals) * poolInfo.price)
-                  
+                  (poolInfo.balance / 10 ** props.decimals) * poolInfo.price
+                )
               : "***"}
           </div>
           <div className="key">TVL</div>
