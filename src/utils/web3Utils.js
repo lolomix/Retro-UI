@@ -6,7 +6,7 @@ const getWeb3 = () => {
     // Modern dapp browsers...
     if (window.ethereum) {
       try {
-        if (window.ethereum.isMetaMask) {
+        if (window.ethereum) {
           const provider = window.ethereum;
           if (provider) {
             await provider.request({
