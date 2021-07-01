@@ -7,7 +7,7 @@ import $ from "jquery";
 import getBalance from "../../../utils/tokenUtils";
 import poolAbi from "../../../utils/nativeFarmAbi";
 import strategyAbi from "../../../utils/strategyAbi";
-import { constants } from "ethers";
+import { constants, utils } from "ethers";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 const BLOCKS_PER_YEAR = new BigNumber(((60 * 60 * 24) / 3) * 365);
 const tokenAbi = [
@@ -336,6 +336,12 @@ export default function Pool(props) {
       if (!poolInfo.price) {
         price = await tokenPrice();
       }
+      let qbertPrice = await util.getTokenPrice('0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f', 18);
+      
+        
+      
+     
+
 
       let balance;
       if (!props.isLp || props.isLpCompund) {
@@ -365,7 +371,8 @@ export default function Pool(props) {
         price,
         balance,
         apr,
-        userBalance: balanced
+        userBalance: balanced,
+        qbertPrice: qbertPrice[0]
       });
     } catch (error) {
       console.log(error);
@@ -381,7 +388,7 @@ export default function Pool(props) {
       (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
     let tvl = (balance / 10 ** props.decimals) * price;
 
-    let apr = (28800 * (poolAlloc * 1.66)) / tvl;
+    let apr = (28800 * (poolAlloc * 0.5)) / tvl;
     //let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
 
     const totalStaked = (balance / 10 ** props.decimals) * price;
@@ -720,7 +727,7 @@ export default function Pool(props) {
               <span style={{ fontSize: 13 }} className="value">
                 {" "}
                 ($
-                {((poolInfo.pending / 10 ** 18) * 1.5).toFixed(2)})
+                {((poolInfo.pending / 10 ** 18) * poolInfo.qbertPrice).toFixed(2)})
               </span>
             </div>
             <div
