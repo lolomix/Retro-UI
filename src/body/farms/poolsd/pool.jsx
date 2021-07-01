@@ -301,7 +301,8 @@ export default function Pool(props) {
     pending: 0,
     price: 0,
     balance: 0,
-    apr: 0
+    apr: 0,
+    qbertPrice:0
   });
   var [loaded, setLoaded] = useState(false);
   const loadall = async () => {

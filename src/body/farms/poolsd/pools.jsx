@@ -6,11 +6,7 @@ import getTokenPrice from "../../../utils/aprLib/index";
 import send from "../../../utils/getTvl";
 
 export default function Pools() {
-  useEffect(() => {
-    if (window.account) {
-      //send().then(()=>{console.log('finished')})
-    }
-  });
+
   return (
     <div className="pools">
       {config.map((pool, i) => (
