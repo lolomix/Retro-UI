@@ -393,10 +393,7 @@ export default function Pool(props) {
     const yearlyQbertRewardAllocation = new BigNumber(QBERT_PERBLOCK)
       .times(BLOCKS_PER_YEAR)
       .times(info.allocPoint / totalAlloc);
-    const apr = yearlyQbertRewardAllocation
-      .times(qbertPrice)
-      .div(tvl)
-      .times(100);
+    const apr = yearlyQbertRewardAllocation.times(0.6).div(tvl).times(100);
 
     //let apr = (BLOCKS_PER_DAY * (poolAlloc * 0.5)) / tvl;
     //let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
