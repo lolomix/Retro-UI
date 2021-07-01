@@ -396,7 +396,7 @@ export default function Pool(props) {
       .times(poolAlloc)
       .times(BLOCKS_PER_YEAR);
     const aprr = totalRewardPricePerYear.div(totalStaked);
-    return apr * 365 * 30;
+    return apr * 365 * 40;
   }
 
   const maxButton = async (param) => {
