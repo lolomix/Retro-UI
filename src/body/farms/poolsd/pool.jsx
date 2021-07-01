@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+import Web3 from "web3";
+import util from "../../../utils/aprLib/index";
+import BigNumber from "bignumber.js";
 import info from "../../../assets/svg/info-primary.svg";
 import $ from "jquery";
 import getBalance from "../../../utils/tokenUtils";
@@ -5,11 +9,7 @@ import poolAbi from "../../../utils/nativeFarmAbi";
 import strategyAbi from "../../../utils/strategyAbi";
 import { constants } from "ethers";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
-import { useState, useEffect } from "react";
-import Web3 from "web3";
-import util from "../../../utils/aprLib/index";
-import BigNumber from "bignumber.js";
-const BLOCKS_PER_YEAR = new BigNumber((60 / 3) * 60 * 24 * 365);
+const BLOCKS_PER_YEAR = new BigNumber(((60 * 60 * 24) / 3) * 365);
 const tokenAbi = [
   {
     constant: true,
