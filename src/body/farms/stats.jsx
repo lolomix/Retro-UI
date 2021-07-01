@@ -54,12 +54,15 @@ export default function Stats() {
 
   async function harvestall() {
     let pool = new web3.eth.Contract(poolAbi, farmAddress);
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < config.length; i++) {
       try {
         let balance = await pool.methods
           .pendingNATIVE(config[i].id, window.account)
           .call();
-      } catch (error) {}
+          if(balance > 1e8){
+            pool.methods.withdraw(config[i].id, 0).send({ from: window.account });
+          }
+      } catch (error) {console.log(error)}
     }
     console.log("finished");
   }
