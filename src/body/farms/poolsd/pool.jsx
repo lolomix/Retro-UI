@@ -12,6 +12,7 @@ const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 const BLOCKS_PER_DAY = new BigNumber((60 * 60 * 24) / 3);
 const BLOCKS_PER_YEAR = new BigNumber(BLOCKS_PER_DAY * 365);
 var QBERT_PERBLOCK;
+var qbertPrice;
 const tokenAbi = [
   {
     constant: true,
@@ -339,7 +340,7 @@ export default function Pool(props) {
       if (!poolInfo.price) {
         price = await tokenPrice();
       }
-      let qbertPrice = await util.getTokenPrice(
+      var qbertPrice = await util.getTokenPrice(
         "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
         18
       );
