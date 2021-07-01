@@ -628,7 +628,7 @@ export default function Nav() {
               <a href="https://retrodefi.gitbook.io/retro-defi/">Docs</a>
             </li>
             <li>
-              <a href="https://wwww.rdice.retrofarms.net">RCUBE DICE</a>
+              <a href="https://wwww.retrofarms.net/qdice">BET QBERT</a>
             </li>
           </ul>
         </div>
