@@ -323,7 +323,7 @@ export default function Pool(props) {
       let strategy = new web3.eth.Contract(strategyAbi, props.poolAddress);
       let balanced = await getBalance(props.token_address, window.account);
       setBalance(balanced);
-      var QBERT_PERBLOCK = await pool.methods.NATIVEPerBlock.call();
+      var QBERT_PERBLOCK = await pool.methods.NATIVEPerBlock().call();
       let deposited = await pool.methods
         .stakedWantTokens(props.id, window.account)
         .call();
@@ -389,7 +389,15 @@ export default function Pool(props) {
       (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
     let tvl = (balance / 10 ** props.decimals) * price;
 
-    let apr = (28800 * (poolAlloc * 0.5)) / tvl;
+    const yearlyQbertRewardAllocation = new BigNumber(QBERT_PERBLOCK)
+      .times(BLOCKS_PER_YEAR)
+      .times(info.allocPoint / totalAlloc);
+    const apr = yearlyQbertRewardAllocation
+      .times(qbertPrice)
+      .div(tvl)
+      .times(100);
+
+    //let apr = (BLOCKS_PER_DAY * (poolAlloc * 0.5)) / tvl;
     //let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
 
     const totalStaked = (balance / 10 ** props.decimals) * price;
@@ -397,7 +405,8 @@ export default function Pool(props) {
       .times(poolAlloc)
       .times(BLOCKS_PER_YEAR);
     const aprr = totalRewardPricePerYear.div(totalStaked);
-    return apr * 365 * 50;
+    //return apr * 365 * 50;
+    return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber();
   }
 
   const maxButton = async (param) => {
