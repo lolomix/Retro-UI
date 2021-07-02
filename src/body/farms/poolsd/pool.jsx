@@ -332,7 +332,7 @@ export default function Pool(props) {
         .allowance(window.account, farmAddress)
         .call();
       let pendingBefore = poolInfo.pending;
-      console.log(pending);
+      //console.log(pending);
       let pending = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
