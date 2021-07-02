@@ -352,7 +352,7 @@ export default function Pool(props) {
         balance = await token.methods.balanceOf(props.poolAddress).call();
       }
       if (props.poolAddress == "0xB9468Ee4bEf2979615855aB1Eb6718505b1BB756") {
-        console.log(price);
+        //console.log(price);
       }
 
       let total = (balance / 10 ** props.decimals) * price;
@@ -377,7 +377,7 @@ export default function Pool(props) {
         qbertPrice: qbertPrice[0]
       });
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
