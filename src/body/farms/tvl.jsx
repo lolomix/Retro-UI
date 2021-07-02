@@ -1,10 +1,6 @@
-import Web3 from "web3";
 import Countdown from "react-countdown";
-import { load } from "dotenv";
 import { Fragment, useState, useEffect } from "react";
 import nativeFarmAbi from "../../utils/nativeFarmAbi";
-import config from "../../pools_config.json";
-const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 export default function Tvl() {
   var [value, setValue] = useState(0);
   var [timeLeft, setTimeLeft] = useState(5);
@@ -12,8 +8,9 @@ export default function Tvl() {
   var [text, setText] = useState("...");
   useEffect(async () => {
     if (!loaded) {
+      setLoaded(true);
       setInterval(async () => {
-        setLoaded(true);
+        const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
         let pool = new web3.eth.Contract(nativeFarmAbi, farmAddress);
         var currentBlock = await web3.eth.getBlockNumber();
         let startBlockHarvest = await pool.methods.startBlockHarvest().call();
