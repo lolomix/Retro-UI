@@ -1,7 +1,7 @@
 import Web3 from "web3";
+import Countdown from "react-countdown";
 import { load } from "dotenv";
 import { Fragment, useState, useEffect } from "react";
-import Countdown from "react-countdown";
 import nativeFarmAbi from "../../utils/nativeFarmAbi";
 import config from "../../pools_config.json";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
@@ -9,10 +9,10 @@ export default function Tvl() {
   var [value, setValue] = useState(0);
   var [timeLeft, setTimeLeft] = useState(5);
   var [loaded, setLoaded] = useState(false);
-  var [text, setText] = useState("");
+  var [text, setText] = useState("...");
   useEffect(async () => {
-    setInterval(() => {
-      if (web3.eth && !loaded) {
+    if (web3.eth && !loaded) {
+      setInterval(() => {
         setLoaded(true);
         async function refreshTVL() {
           let pool = new web3.eth.Contract(nativeFarmAbi, farmAddress);
@@ -31,11 +31,11 @@ export default function Tvl() {
             setTimeLeft(0);
           }
         }
-      }
-      // if (window.ts) {
-      //  setValue(window.ts.value);
-      // }
-    }, 1000);
+        // if (window.ts) {
+        //  setValue(window.ts.value);
+        // }
+      }, 1000);
+    }
   });
 
   function numFormatter(num) {
