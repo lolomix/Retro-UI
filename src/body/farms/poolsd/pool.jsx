@@ -501,7 +501,7 @@ export default function Pool(props) {
         window.ts.deposited =
           window.ts.deposited +
           (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-      }, 3000);
+      }, 4000);
     }
   }
 
@@ -523,7 +523,7 @@ export default function Pool(props) {
         window.ts.deposited =
           window.ts.deposited -
           (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-      }, 3000);
+      }, 4000);
     }
   }
 
@@ -542,7 +542,7 @@ export default function Pool(props) {
       setLoaded(true);
       setInterval(async () => {
         await loadall();
-      }, 1500);
+      }, 1000);
     }
   });
 
