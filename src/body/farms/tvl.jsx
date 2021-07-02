@@ -14,7 +14,7 @@ export default function Tvl() {
     if (!loaded) {
       setInterval(() => {
         setLoaded(true);
-        async function refreshTVL() {
+        async function refresh() {
           let pool = new web3.eth.Contract(nativeFarmAbi, farmAddress);
           var currentBlock = await web3.eth.getBlockNumber();
           let startBlockHarvest = await pool.methods.startBlockHarvest().call();
@@ -31,7 +31,7 @@ export default function Tvl() {
             setTimeLeft(0);
           }
         }
-        if (window.ts) {
+        if (web3.eth && window.ts) {
           setValue(window.ts.value);
         }
       }, 1000);
