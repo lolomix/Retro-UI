@@ -8,8 +8,8 @@ export default function Stats() {
   useEffect(async () => {
     if (!data.loaded) {
       setData({ loaded: true });
-      if (web3.eth) {
-        setInterval(async () => {
+      setInterval(async () => {
+        if (web3.eth) {
           await loadPending();
           if (window.ts) {
             setData({
@@ -18,8 +18,8 @@ export default function Stats() {
               loaded: true
             });
           }
-        }, 1500);
-      }
+        }
+      }, 1000);
     }
   });
 
