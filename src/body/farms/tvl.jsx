@@ -34,12 +34,16 @@ export default function Tvl() {
   });
 
   function numFormatter(num) {
-    if (num > 999 && num < 1000000) {
-      return (num / 1000).toFixed(1) + "K"; // convert to K for number from > 1000 < 1 million
-    } else if (num > 1000000) {
-      return (num / 1000000).toFixed(1) + "M"; // convert to M for number from > 1 million
-    } else if (num < 900) {
-      return num.toFixed(2); // if value < 1000, nothing to do
+    if (typeof num !== "number") {
+      num = parseFloat(num);
+    }
+    decimals = 2;
+    num = num.toFixed(decimals);
+    if (decimals == 0) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } else {
+      num = num.split(".");
+      return num[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + num[1];
     }
   }
 
