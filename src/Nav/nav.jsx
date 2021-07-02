@@ -364,8 +364,8 @@ export default function Nav() {
               </a>
             </li>
             <li>
-              <a href="https://wwww.rdice.retrofarms.net/" target="_blank">
-                RCUBE Dice<div className="mini-tag">PLAY</div>
+              <a href="https://wwww.retrofarms.net/qdice" target="_blank">
+                Lucky QBERT <div className="mini-tag">PLAY</div>
               </a>
             </li>
           </ul>
