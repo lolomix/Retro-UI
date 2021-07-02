@@ -390,17 +390,11 @@ export default function Pool(props) {
     let perUint =
       (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
     let tvl = (balance / 10 ** props.decimals) * price;
-    var qbertPrice = await util.getTokenPrice(
-      "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
-      18
-    );
+
     const yearlyQbertRewardAllocation = new BigNumber(QBERT_PERBLOCK)
       .times(BLOCKS_PER_YEAR)
       .times(info.allocPoint / totalAlloc);
-    const apr = yearlyQbertRewardAllocation
-      .times(qbertPrice)
-      .div(tvl)
-      .times(100);
+    const apr = yearlyQbertRewardAllocation.times(0.6).div(tvl).times(100);
 
     //let apr = (BLOCKS_PER_DAY * (poolAlloc * 0.5)) / tvl;
     //let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
@@ -536,21 +530,11 @@ export default function Pool(props) {
     }
   }
 
-  function formatNumber(num) {
-    if (num > 999 && num < 1000000) {
-      return (num / 1000).toFixed(1) + "K";
-    } else if (num > 1000000) {
-      return (num / 1000000).toFixed(1) + "K";
-    } else if (num < 999) {
-      return num;
-    }
-  }
-
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-      setInterval(() => {
-        loadall();
+      setInterval(async () => {
+        await loadall();
       }, 1000);
     }
   });
