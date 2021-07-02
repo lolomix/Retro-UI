@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Popup from "reactjs-popup";
+
 import logo from "../assets/logos/logo.png";
 import qbertpxl from "../assets/logos/qbertpxl.png";
-import Popup from "reactjs-popup";
-import utils from "../utils/aprLib/index";
+
 const tokenAbi = [
   {
     constant: true,
@@ -282,12 +283,12 @@ const tokenAbi = [
     type: "event"
   }
 ];
-const qbertAddress = "0x6ED390Befbb50f4b492f08Ea0965735906034F81";
+const qbertAddress = "0xF653d8b120775F86458afA4cAB41C0cA58bc4295";
 
 export default function Nav() {
   var [menu, setMenu] = useState(false);
   var [account, setAccount] = useState("");
-  var [data, setData] = useState({ balance: 0, totalSupply: 0, price: 0 });
+  var [data, setData] = useState({ balance: 0, totalSupply: 0 });
 
   const toggleMenu = () => {
     if (!menu) {
@@ -300,25 +301,21 @@ export default function Nav() {
   useEffect(async () => {
     if (window.account) {
       setAccount(window.account);
-      setInterval(async () => {
-        if (!data.loaded) {
+      if (!data.loaded) {
+        setInterval(async () => {
           try {
             let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
             let balance = await qbert.methods.balanceOf(window.account).call();
             let totalSupply = await qbert.methods.totalSupply().call();
-            let price = await utils.getTokenPrice(
-              "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
-              18
-            );
+
             setData({
               balance: balance / 10 ** 18,
               totalSupply: totalSupply / 10 ** 18,
-              price: price[0],
               loaded: true
             });
           } catch (error) {}
-        }
-      }, 1500);
+        }, 3000);
+      }
     }
   });
 
@@ -340,20 +337,17 @@ export default function Nav() {
               <a href="#">Earn</a>
             </li>
             <li>
-              <a
-                href="https://exchange.pancakeswap.finance/#/pool"
-                target="_blank"
+              <a href="https://exchange.pancakeswap.finance/#/pool"
+              target="_blank"
               >
                 Create LP<div className="mini-tag">SWAP</div>
               </a>
             </li>
             <li>
-              <a
-                href="https://www.youtube.com/watch?v=3zsoLuEvTz8"
-                target="_blank"
+              <a href="https://www.youtube.com/watch?v=3zsoLuEvTz8"
+              target="_blank"
               >
-                Tutorials
-              </a>
+              Tutorials</a>
             </li>
             <li>
               <a
@@ -364,22 +358,23 @@ export default function Nav() {
               </a>
             </li>
             <li>
-              <a href="https://wwww.retrofarms.net/qdice" target="_blank">
-                Lucky QBERT <div className="mini-tag">PLAY</div>
-              </a>
+              <a href="https://wwww.rdice.retrofarms.net/"
+                target="_blank"
+               >
+                RCUBE Dice<div className='mini-tag'>PLAY</div></a>
             </li>
           </ul>
         </menu>
         <div className="wallet">
           <div className="qbert-price">
             <img src={qbertpxl} />
-            <div className="txt ml-10 price">${data.price.toFixed(2)}</div>
+            <div className="txt ml-10 price">$17.02</div>
           </div>
           <Popup
             trigger={
               <a className="btn small ml-20 primary buy-qbert hidden">
                 {" "}
-                Buy QBERT{" "}
+                BUY QBERT{" "}
               </a>
             }
             modal
@@ -393,7 +388,7 @@ export default function Nav() {
                   style={{ display: "block" }}
                 >
                   <div className="header">
-                    <div className="ttl">Your Qbert</div>
+                    <div className="ttl">Your QBERT</div>
                     <img
                       className="btn close"
                       src="static/frontend/img/popup-close.svg"
@@ -405,9 +400,7 @@ export default function Nav() {
                     <div className="balance">{data.balance.toFixed(2)}</div>
                     <div className="key-value">
                       <div className="key">Price</div>
-                      <div className="value qbert-price">
-                        ${data.price.toFixed(2)}
-                      </div>
+                      <div className="value qbert-price">$17.02</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Current Supply</div>
@@ -534,7 +527,7 @@ export default function Nav() {
           <div className="break"></div>
           <div className="qbert-price">
             <img src={qbertpxl} />
-            <div className="txt ml-10 price">${data.price.toFixed(2)}</div>
+            <div className="txt ml-10 price">$17.02</div>
           </div>
           <Popup
             trigger={
@@ -564,9 +557,7 @@ export default function Nav() {
 
                     <div className="key-value">
                       <div className="key">Price</div>
-                      <div className="value qbert-price">
-                        ${data.price.toFixed(2)}
-                      </div>
+                      <div className="value qbert-price">$17.02</div>
                     </div>
                     <div className="key-value mt-10">
                       <div className="key">Current Supply</div>
@@ -610,24 +601,20 @@ export default function Nav() {
         </div>
         <div className="menu ">
           <ul>
-            <li>
+            <li className="selected">
               <a href="#">Earn</a>
             </li>
             <li>
-              <a href="https://exchange.pancakeswap.finance/#/pool">
-                Create LP
-              </a>
+              <a href="https://exchange.pancakeswap.finance/#/pool">Create LP</a>
             </li>
             <li>
-              <a href="https://www.youtube.com/watch?v=3zsoLuEvTz8">
-                Tutorials
-              </a>
+              <a href="https://www.youtube.com/watch?v=3zsoLuEvTz8">Tutorials</a>
             </li>
             <li>
               <a href="https://retrodefi.gitbook.io/retro-defi/">Docs</a>
             </li>
             <li>
-              <a href="https://wwww.retrofarms.net/qdice">BET QBERT</a>
+              <a href="https://wwww.rdice.retrofarms.net">RCUBE DICE</a>
             </li>
           </ul>
         </div>
