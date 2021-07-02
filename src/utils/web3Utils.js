@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import Web3Modal from "web3modal";
+
 import network from "./provider";
 const getWeb3 = () => {
   return new Promise(async (resolve, reject) => {
