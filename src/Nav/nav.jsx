@@ -298,30 +298,30 @@ export default function Nav() {
   };
 
   useEffect(async () => {
-    setInterval(async () => {
-      if (window.account) {
-        setAccount(window.account);
-        if (!data.loaded) {
-          try {
-            let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
-            let balance = await qbert.methods.balanceOf(window.account).call();
-            let totalSupply = await qbert.methods.totalSupply().call();
-            let price = await utils.getTokenPrice(
-              "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
-              18
-            );
+    //setInterval(() => {
+    if (window.account) {
+      setAccount(window.account);
+      if (!data.loaded) {
+        try {
+          let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
+          let balance = qbert.methods.balanceOf(window.account).call();
+          let totalSupply = qbert.methods.totalSupply().call();
+          let price = utils.getTokenPrice(
+            "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
+            18
+          );
 
-            setData({
-              balance: balance / 10 ** 18,
-              totalSupply: totalSupply / 10 ** 18,
-              price: price[0],
-              loaded: true
-            });
-          } catch (error) {}
-        }
+          setData({
+            balance: balance / 10 ** 18,
+            totalSupply: totalSupply / 10 ** 18,
+            price: price[0],
+            loaded: true
+          });
+        } catch (error) {}
       }
-    }, 1000);
-  });
+    }
+    //}, 1000);
+  }, 1000);
 
   return (
     <header>

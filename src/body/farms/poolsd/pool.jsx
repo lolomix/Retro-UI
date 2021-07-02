@@ -543,8 +543,8 @@ export default function Pool(props) {
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-      setInterval(async () => {
-        await loadall();
+      setInterval(() => {
+        loadall();
       }, 1000);
     }
   });
