@@ -1,21 +1,16 @@
-
-import Stats from './stats'
-import Pools from './poolsd/pools'
-import Tvl from './tvl'
+//import Stats from './stats'
+import Pools from "./poolsd/pools";
+//import Tvl from './tvl'
 export default function Farms() {
-  
-
-  
-
-  return(
+  return (
     <div className="content">
-    <div className="title">
-        <div className="txt ttl">RetroDEFI <br></br> QBERT Optimized Farms</div>
-        <Tvl></Tvl>
+      <div className="title">
+        <div className="txt ttl">
+          RetroDEFI <br></br> QBERT Optimized Farms
+        </div>
+      </div>
+
+      <Pools />
     </div>
-
-
-    <Stats/>   
-    <Pools/>
-    </div>)
+  );
 }
