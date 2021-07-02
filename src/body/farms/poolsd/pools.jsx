@@ -1,12 +1,11 @@
-import Web3 from "web3";
-import { useEffect } from "react";
+//mport Web3 from "web3";
+//import { useEffect } from "react";
 import config from "../../../pools_config.json";
 import Pool from "./pool";
-import getTokenPrice from "../../../utils/aprLib/index";
-import send from "../../../utils/getTvl";
+//import getTokenPrice from "../../../utils/aprLib/index";
+//import send from "../../../utils/getTvl";
 
 export default function Pools() {
-
   return (
     <div className="pools">
       {config.map((pool, i) => (
