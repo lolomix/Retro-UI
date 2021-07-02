@@ -394,7 +394,6 @@ export default function Pool(props) {
       "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
       18
     );
-
     const yearlyQbertRewardAllocation = new BigNumber(QBERT_PERBLOCK)
       .times(BLOCKS_PER_YEAR)
       .times(info.allocPoint / totalAlloc);
@@ -537,11 +536,21 @@ export default function Pool(props) {
     }
   }
 
+  function formatNumber(num) {
+    if (num > 999 && num < 1000000) {
+      return (num / 1000).toFixed(1) + "K";
+    } else if (num > 1000000) {
+      return (num / 1000000).toFixed(1) + "K";
+    } else if (num < 999) {
+      return num;
+    }
+  }
+
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-      setInterval(async () => {
-        await loadall();
+      setInterval(() => {
+        loadall();
       }, 1000);
     }
   });
