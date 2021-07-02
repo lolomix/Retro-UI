@@ -33,7 +33,7 @@ export default function Tvl() {
       if (window.ts) {
         setValue(window.ts.value);
       }
-    }, 1500);
+    }, 10000);
   });
 
   function numFormatter(num) {

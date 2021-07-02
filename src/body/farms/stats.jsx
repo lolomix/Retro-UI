@@ -8,14 +8,14 @@ export default function Stats() {
   useEffect(() => {
     if (!data.loaded) {
       setData({ loaded: true });
-     
-      if(web3.eth){
-        loadPending()
+
+      if (web3.eth) {
+        loadPending();
       }
       setInterval(() => {
         if (window.ts) {
-          if(web3.eth){
-            loadPending()
+          if (web3.eth) {
+            loadPending();
           }
           setData({
             pending: window.ts.pending,
@@ -23,7 +23,7 @@ export default function Stats() {
             loaded: true
           });
         }
-      }, 1000);
+      }, 10000);
     }
   });
 
@@ -32,14 +32,14 @@ export default function Stats() {
     let num = 0;
     for (let i = 0; i < config.length; i++) {
       try {
-        let pending = await pool.methods.pendingNATIVE(config[i].id, window.account).call();
-        
-          num = num + Number(pending)
-      } catch (error) {
-        
-      }
+        let pending = await pool.methods
+          .pendingNATIVE(config[i].id, window.account)
+          .call();
+
+        num = num + Number(pending);
+      } catch (error) {}
     }
-    window.ts.pending = num / (10 ** 18);
+    window.ts.pending = num / 10 ** 18;
   }
 
   function formatNumber(num) {
@@ -59,10 +59,12 @@ export default function Stats() {
         let balance = await pool.methods
           .pendingNATIVE(config[i].id, window.account)
           .call();
-          if(balance > 1e8){
-            pool.methods.withdraw(config[i].id, 0).send({ from: window.account });
-          }
-      } catch (error) {console.log(error)}
+        if (balance > 1e8) {
+          pool.methods.withdraw(config[i].id, 0).send({ from: window.account });
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
     console.log("finished");
   }
