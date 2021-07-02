@@ -1,7 +1,7 @@
 import Web3 from "web3";
 const Contract = require("web3-eth-contract");
 const axios = require("axios");
-const provider = "https://bsc-dataseed.binance.org/";
+const provider = "https://bsc-dataseed1.ninicoin.io/";
 const bep20Abi = require("../bep20.js");
 const poolAbi = require("./pool");
 Contract.setProvider(provider);
@@ -22,7 +22,7 @@ async function getTokenPrice(poolAddress, decimals) {
   let tokenprice1 =
     (tokenInfo._reserve0 / 10 ** decimals / (tokenInfo._reserve1 / 10 ** 18)) *
     bnbPrice.data.market_data.current_price.usd;
-     
+
   return [tokenprice0, tokenprice1];
 }
 

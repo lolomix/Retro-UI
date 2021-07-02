@@ -2,7 +2,7 @@ import Web3 from "web3";
 import farmAbi from "./nativeFarmAbi";
 import config from "../pools_config.json";
 const Contract = require("web3-eth-contract");
-const provider = "https://bsc-dataseed.binance.org/";
+const provider = "https://bsc-dataseed1.ninicoin.io/";
 
 const poolAbi = require("./aprLib/pool");
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
