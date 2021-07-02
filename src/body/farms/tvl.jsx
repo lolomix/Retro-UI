@@ -33,7 +33,7 @@ export default function Tvl() {
       if (window.ts) {
         setValue(window.ts.value);
       }
-    }, 10000);
+    }, 1000);
   });
 
   function numFormatter(num) {
@@ -46,7 +46,7 @@ export default function Tvl() {
     }
   }
 
-  const renderer = ({ hours, minutes, seconds, completed, api }) => {
+  function renderer({ hours, minutes, seconds, completed, api }) {
     if (completed) {
       // Render a completed state
       return <div></div>;
@@ -58,7 +58,7 @@ export default function Tvl() {
         </font>
       );
     }
-  };
+  }
 
   return (
     <Fragment>
