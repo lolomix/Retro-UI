@@ -7,7 +7,7 @@ const BSCmain = [
       symbol: "bnb",
       decimals: 18
     },
-    rpcUrls: ["https://bsc-dataseed.binance.org/"],
+    rpcUrls: ["https://bsc-dataseed1.ninicoin.io/"],
     blockExplorerUrls: ["https://bscscan.com/"]
   }
 ];
