@@ -10,33 +10,6 @@ export default function Tvl() {
   var [timeLeft, setTimeLeft] = useState(5);
   var [loaded, setLoaded] = useState(false);
   var [text, setText] = useState("...");
-  useEffect(async () => {
-    if (web3.eth && !loaded) {
-      setInterval(() => {
-        setLoaded(true);
-        async function refreshTVL() {
-          let pool = new web3.eth.Contract(nativeFarmAbi, farmAddress);
-          var currentBlock = await web3.eth.getBlockNumber();
-          let startBlockHarvest = await pool.methods.startBlockHarvest().call();
-          var startBlock = await pool.methods.startBlock().call();
-          var startBlockTime = startBlock - currentBlock;
-          var startBlockHarvestTime = startBlockHarvest - currentBlock;
-          if (startBlockTime > 0) {
-            setTimeLeft(startBlockTime * 3);
-            setText("Farms Start");
-          } else if (startBlockHarvestTime > 0) {
-            setTimeLeft(startBlockHarvestTime * 3);
-            setText("Pending Locked");
-          } else {
-            setTimeLeft(0);
-          }
-        }
-        // if (window.ts) {
-        //  setValue(window.ts.value);
-        // }
-      }, 1000);
-    }
-  });
 
   function numFormatter(num) {
     if (num > 999 && num < 1000000) {
