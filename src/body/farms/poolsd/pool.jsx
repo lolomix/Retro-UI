@@ -390,11 +390,18 @@ export default function Pool(props) {
     let perUint =
       (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
     let tvl = (balance / 10 ** props.decimals) * price;
+    var qbertPrice = await util.getTokenPrice(
+      "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
+      18
+    );
 
     const yearlyQbertRewardAllocation = new BigNumber(QBERT_PERBLOCK)
       .times(BLOCKS_PER_YEAR)
       .times(info.allocPoint / totalAlloc);
-    const apr = yearlyQbertRewardAllocation.times(0.6).div(tvl).times(100);
+    const apr = yearlyQbertRewardAllocation
+      .times(qbertPrice)
+      .div(tvl)
+      .times(100);
 
     //let apr = (BLOCKS_PER_DAY * (poolAlloc * 0.5)) / tvl;
     //let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
@@ -476,17 +483,7 @@ export default function Pool(props) {
       .call();
   }
 
-  function formatNumber(num) {
-    if (num > 999 && num < 1000000) {
-      return (num / 1000).toFixed(1) + "K";
-    } else if (num > 1000000) {
-      return (num / 1000000).toFixed(1) + "K";
-    } else if (num < 999) {
-      return num;
-    }
-  }
-
-  const deposit = async () => {
+  async function deposit() {
     if (balance >= depositState) {
       let depod = depositState.toLocaleString("fullwide", {
         useGrouping: false
@@ -504,11 +501,11 @@ export default function Pool(props) {
         window.ts.deposited =
           window.ts.deposited +
           (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-      }, 4000);
+      }, 3000);
     }
-  };
+  }
 
-  const whitdraw = async () => {
+  async function whitdraw() {
     if (poolInfo.deposited >= withdrawState) {
       let pool = new web3.eth.Contract(poolAbi, farmAddress);
       let withs = withdrawState.toLocaleString("fullwide", {
@@ -526,9 +523,9 @@ export default function Pool(props) {
         window.ts.deposited =
           window.ts.deposited -
           (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-      }, 4000);
+      }, 3000);
     }
-  };
+  }
 
   async function harvest() {
     let pool = new web3.eth.Contract(poolAbi, farmAddress);
@@ -543,9 +540,9 @@ export default function Pool(props) {
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-      setInterval(() => {
-        loadall();
-      }, 1000);
+      setInterval(async () => {
+        await loadall();
+      }, 1500);
     }
   });
 
