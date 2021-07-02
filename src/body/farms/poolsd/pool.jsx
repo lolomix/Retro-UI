@@ -1,14 +1,18 @@
-import { constants } from "ethers";
-import $ from "jquery";
-
-import info from "../../../assets/svg/info-primary.svg";
-import poolAbi from "../../../utils/nativeFarmAbi";
-import getBalance from "../../../utils/tokenUtils";
-
-const farmAddress = "0x470D6c58470E361a72934399603115d5CAb08aC0";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
 import util from "../../../utils/aprLib/index";
+import BigNumber from "bignumber.js";
+import info from "../../../assets/svg/info-primary.svg";
+import $ from "jquery";
+import getBalance from "../../../utils/tokenUtils";
+import poolAbi from "../../../utils/nativeFarmAbi";
+import strategyAbi from "../../../utils/strategyAbi";
+import { constants, utils } from "ethers";
+const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
+const BLOCKS_PER_DAY = new BigNumber((60 * 60 * 24) / 3);
+const BLOCKS_PER_YEAR = new BigNumber(BLOCKS_PER_DAY * 365);
+var QBERT_PERBLOCK;
+
 const tokenAbi = [
   {
     constant: true,
@@ -289,6 +293,7 @@ const tokenAbi = [
   }
 ];
 
+const rcubeAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"destination","type":"address"},{"indexed":false,"internalType":"uint256","name":"index","type":"uint256"},{"indexed":false,"internalType":"bytes","name":"data","type":"bytes"}],"name":"TransactionFailed","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"_getBurnLevy","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_getBurnRotations","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_getRotations","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_getTradedRotations","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"qAmount","type":"uint256"}],"name":"deliver","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"excludeAccount","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"includeAccount","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isExcluded","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"qAmount","type":"uint256"},{"internalType":"bool","name":"deductTransfebLevy","type":"bool"}],"name":"reflectionFromToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"burnLevy","type":"uint256"}],"name":"setLevy","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"bAmount","type":"uint256"}],"name":"tokenFromReflection","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalBurn","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalLevies","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"transactions","outputs":[{"internalType":"bool","name":"enabled","type":"bool"},{"internalType":"address","name":"destination","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 export default function Pool(props) {
   var [balance, setBalance] = useState(0);
   var [depositState, setDepositState] = useState(0);
@@ -300,7 +305,9 @@ export default function Pool(props) {
     pending: 0,
     price: 0,
     balance: 0,
-    apr: 0
+    apr: 0,
+    qbertPrice: 0,
+    locked: true
   });
   var [loaded, setLoaded] = useState(false);
   const loadall = async () => {
@@ -308,7 +315,6 @@ export default function Pool(props) {
       try {
         window.ts.times = 1;
         await loadPool();
-        console.log("update");
       } catch (error) {}
     }
   };
@@ -317,25 +323,55 @@ export default function Pool(props) {
     try {
       let token = new web3.eth.Contract(tokenAbi, props.token_address);
       let pool = new web3.eth.Contract(poolAbi, farmAddress);
+      let strategy = new web3.eth.Contract(strategyAbi, props.poolAddress);
       let balanced = await getBalance(props.token_address, window.account);
       setBalance(balanced);
+      var QBERT_PERBLOCK = await pool.methods.NATIVEPerBlock().call();
       let deposited = await pool.methods
         .stakedWantTokens(props.id, window.account)
         .call();
       let allowance = await token.methods
         .allowance(window.account, farmAddress)
         .call();
+      let pendingBefore = poolInfo.pending;
+      //console.log(pending);
       let pending = await pool.methods
         .pendingNATIVE(props.id, window.account)
         .call();
-      let price = await tokenPrice();
-      let balance = await token.methods.balanceOf(props.poolAddress).call();
+      let price;
+      if (!poolInfo.price) {
+        price = await tokenPrice();
+      }
+      let qbertPrice = await util.getTokenPrice(
+        "0x6D45A9C8f812DcBb800b7Ac186F1eD0C055e218f",
+        18
+      );
+      let locked;
+      if(props.token_address == "0xa6e53f07bD410df069e20Ced725bdC9135146Fe9"){
+        let rcube = new web3.eth.Contract(rcubeAbi , props.token_address)
+        let burnAmount = await rcube.methods._getBurnLevy.call().call();
+        console.log(burnAmount)
+        if(burnAmount > 1){
+          locked = true;
+        } else{ locked = false}
+
+      }
+
+      let balance;
+      if (!props.isLp || props.isLpCompund) {
+        balance = await strategy.methods.wantLockedTotal().call();
+      } else {
+        balance = await token.methods.balanceOf(props.poolAddress).call();
+      }
+      if (props.poolAddress == "0xB9468Ee4bEf2979615855aB1Eb6718505b1BB756") {
+        //console.log(price);
+      }
+
       let total = (balance / 10 ** props.decimals) * price;
-      let apr = await calculateApr(pool, balance);
+      let apr = await calculateApr(pool, balance, price);
       if (!window.ts.added.includes(props.token_address)) {
         window.ts.value =
           window.ts.value + (balance / 10 ** props.decimals) * price;
-        window.ts.pending = window.ts.pending + pending / 10 ** 18;
         window.ts.deposited =
           window.ts.deposited + (deposited / 10 ** props.decimals) * price;
         window.ts.added.push(props.token_address);
@@ -349,19 +385,40 @@ export default function Pool(props) {
         price,
         balance,
         apr,
-        userBalance: balanced
+        userBalance: balanced,
+        qbertPrice: qbertPrice[0],
+        locked
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  async function calculateApr(pool, balance) {
+  async function calculateApr(pool, balance, price) {
     let info = await pool.methods.poolInfo(props.id).call();
     let totalAlloc = await pool.methods.totalAllocPoint().call();
     let perBlock = await pool.methods.NATIVEPerBlock().call();
+    var QBERT_PERBLOCK = perBlock / 10 ** 18;
     let poolAlloc = (perBlock * (info.allocPoint / totalAlloc)) / 10 ** 18;
-    let perUint = (poolAlloc / (balance / 10 ** props.decimals)) * 1.5; // Cambiar 1.5 por el precio de qubert
-    let apr = perUint * ((60 * 60 * 24 * 366) / 3);
-    return apr;
+    let perUint =
+      (poolAlloc / ((balance / 10 ** props.decimals) * price)) * 1.9;
+    let tvl = (balance / 10 ** props.decimals) * price;
+
+    const yearlyQbertRewardAllocation = new BigNumber(QBERT_PERBLOCK)
+      .times(BLOCKS_PER_YEAR)
+      .times(info.allocPoint / totalAlloc);
+    const apr = yearlyQbertRewardAllocation.times(0.6).div(tvl).times(100);
+
+    //let apr = (BLOCKS_PER_DAY * (poolAlloc * 0.5)) / tvl;
+    //let dd = 1.9 * (poolAlloc/3)  * 604800  * 52  / price / (balance / 10 ** props.decimals)
+
+    const totalStaked = (balance / 10 ** props.decimals) * price;
+    const totalRewardPricePerYear = new BigNumber(2)
+      .times(poolAlloc)
+      .times(BLOCKS_PER_YEAR);
+    const aprr = totalRewardPricePerYear.div(totalStaked);
+    //return apr * 365 * 50;
+    return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber();
   }
 
   const maxButton = async (param) => {
@@ -395,18 +452,26 @@ export default function Pool(props) {
 
   async function tokenPrice() {
     if (!props.isLp) {
-      let tokenPrice = await util.getTokenPrice(
-        props.price.lpaddress,
-        props.decimals
-      );
-      tokenPrice = tokenPrice[props.price.reserve];
-      return tokenPrice;
+      if (!props.isBNB) {
+        let tokenPrice = await util.getTokenPrice(
+          props.price.lpaddress,
+          props.decimals
+        );
+        tokenPrice = tokenPrice[props.price.reserve];
+        return tokenPrice;
+      } else {
+        return 300;
+      }
     } else {
-      let value = await util.getLpPrice(props.price.lpaddress, props.decimals);
+      let value = await util.getLpPrice(
+        props.price.lpaddress,
+        props.tokenDecimals
+      );
       value = value[props.price.reserve] * 2;
+
       let tokenPrice = await util.getTokenPrice(
         props.price.bnnlpaddress,
-        props.decimals
+        props.tokenDecimals
       );
 
       tokenPrice = tokenPrice[props.price.reserve];
@@ -424,17 +489,7 @@ export default function Pool(props) {
       .call();
   }
 
-  function formatNumber(num) {
-    if (num > 999 && num < 1000000) {
-      return (num / 1000).toFixed(1) + "K";
-    } else if (num > 1000000) {
-      return (num / 1000000).toFixed(1) + "K";
-    } else if (num < 999) {
-      return num;
-    }
-  }
-
-  const deposit = async () => {
+  async function deposit() {
     if (balance >= depositState) {
       let depod = depositState.toLocaleString("fullwide", {
         useGrouping: false
@@ -445,19 +500,18 @@ export default function Pool(props) {
         .deposit(props.id, amount)
         .send({ from: window.account });
 
-        setTimeout(async () => {
-          let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
-          let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
-          window.ts.deposited = window.ts.deposited + (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-          window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
-        }, 3500);
-
-       
-     
+      setTimeout(async () => {
+        let tokenStakeds = await pool.methods
+          .stakedWantTokens(props.id, window.account)
+          .call();
+        window.ts.deposited =
+          window.ts.deposited +
+          (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
+      }, 4000);
     }
-  };
+  }
 
-  const whitdraw = async () => {
+  async function whitdraw() {
     if (poolInfo.deposited >= withdrawState) {
       let pool = new web3.eth.Contract(poolAbi, farmAddress);
       let withs = withdrawState.toLocaleString("fullwide", {
@@ -467,33 +521,34 @@ export default function Pool(props) {
       await pool.methods
         .withdraw(props.id, amount)
         .send({ from: window.account });
-        
-        setTimeout(async () => {
-          let tokenStakeds = await pool.methods.stakedWantTokens(props.id, window.account).call()
-          let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
-          window.ts.deposited = window.ts.deposited - (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
-          window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
-        }, 4000);
-        
+
+      setTimeout(async () => {
+        let tokenStakeds = await pool.methods
+          .stakedWantTokens(props.id, window.account)
+          .call();
+        window.ts.deposited =
+          window.ts.deposited -
+          (tokenStakeds / 10 ** props.decimals) * poolInfo.price;
+      }, 4000);
     }
-  };
+  }
 
   async function harvest() {
     let pool = new web3.eth.Contract(poolAbi, farmAddress);
     if (poolInfo.pending > 1e8) {
       await pool.methods.withdraw(props.id, 0).send({ from: window.account });
-      let pendingQbert = await pool.methods.pendingNATIVE(props.id, window.account).call();
-      window.ts.pending = window.ts.pending - (pendingQbert / 10 ** 18);
+      let pendingQbert = await pool.methods
+        .pendingNATIVE(props.id, window.account)
+        .call();
     }
   }
 
   useEffect(async () => {
     if (!loaded) {
       setLoaded(true);
-      console.log("loadded true");
       setInterval(async () => {
         await loadall();
-      }, 2500);
+      }, 1000);
     }
   });
 
@@ -502,7 +557,7 @@ export default function Pool(props) {
       return (num / 1000).toFixed(1) + "K"; // convert to K for number from > 1000 < 1 million
     } else if (num > 1000000) {
       return (num / 1000000).toFixed(1) + "M"; // convert to M for number from > 1 million
-    } else if (num < 900) {
+    } else if (num <= 999) {
       return num.toFixed(2); // if value < 1000, nothing to do
     }
   }
@@ -514,11 +569,18 @@ export default function Pool(props) {
 
   return (
     <div className={`pool-card  highlighted radioactive id${props.id}`}>
-      <div className="tag-container"></div>
+      <div className="tag-container">
+      {poolInfo.locked? <font style={{ color: "red", fontSize: 15 }}>
+        Locked
+        </font>
+        :
+        <div className="mini-tag">{poolInfo.locked? 'Locked':props.number_fee}</div>}
+       
+      </div>
       <div className="info">
         <div className="symbols">
-          <img src={window.location.href + "/images/" + props.image_name} />
-          <img src={window.location.href + "/images/" + props.pair_image} />
+          <img src={"../images/" + props.image_name} />
+          <img src={"../images/" + props.pair_image} />
         </div>
         <div className="pool">
           <div className="ttl">
@@ -532,7 +594,7 @@ export default function Pool(props) {
         </div>
         <div className="key-value apy shorter">
           <div className="val primary">{numFormatter(poolInfo.apr)}%</div>
-          <div className="key">Yearly</div>
+          <div className="key">APR</div>
         </div>
         <div className="key-value balance">
           <div className="val">
@@ -681,7 +743,10 @@ export default function Pool(props) {
               <span style={{ fontSize: 13 }} className="value">
                 {" "}
                 ($
-                {((poolInfo.pending / 10 ** 18) * 1.5).toFixed(2)})
+                {((poolInfo.pending / 10 ** 18) * poolInfo.qbertPrice).toFixed(
+                  2
+                )}
+                )
               </span>
             </div>
             <div
@@ -698,12 +763,13 @@ export default function Pool(props) {
           <div className="information">
             <div className="info">
               <div className="itm head">
-                <span className="ttl">Annual</span>
+                <span className="ttl">APR</span>
               </div>
               <div className="itm qbert-apy">
                 <span className="ttl">{props.name} APR:&nbsp;</span>
                 <span className="val">{numFormatter(poolInfo.apr)} %</span>
-                <img className="tooltip" src={info}></img></div>
+                <img className="tooltip" src={info}></img>
+              </div>
             </div>
             <div className="info">
               <div className="itm head">
@@ -728,25 +794,6 @@ export default function Pool(props) {
                   )}
                 </span>
               </div>
-            </div>
-            <div className="info learn">
-              <span className="ttl" style={{ color: "#ff0a9c" }}>
-                Deposit Fees
-              </span>
-              <br />
-              <span className="val">Deposit fee: 1.0%.</span>
-              <br />
-              <br />
-              <span className="ttl" style={{ color: "#ff0a9c" }}>
-                Harvest Fees:
-              </span>
-              <br />
-              <span className="val">Buyback: 2.0%.</span>
-              <br />
-              <span className="val">Network fee: 0.2%.</span>
-              <br />
-              <span className="val">Operational fee: 1.8%.</span>
-              <br />
             </div>
           </div>
         </div>

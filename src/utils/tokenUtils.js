@@ -2,7 +2,7 @@ require("dotenv").config();
 const Contract = require("web3-eth-contract");
 const bep20Abi = require("./bep20.js");
 
-const provider = "https://data-seed-prebsc-1-s1.binance.org:8545";
+const provider = "https://bsc-dataseed1.ninicoin.io/";
 
 async function getBalance(tokenAddress, userAddress) {
   await Contract.setProvider(provider);

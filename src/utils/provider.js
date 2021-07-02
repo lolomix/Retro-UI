@@ -1,31 +1,31 @@
-
-
-const  BSCmain =[
+const BSCmain = [
   {
-    chainId: `0x${parseInt(process.env.REACT_APP_CHAIN_ID_MAIN, 10).toString(16)}`,
-    chainName: 'Binance Smart Chain Mainnet',
+    chainId: `0x38`,
+    chainName: "Binance Smart Chain Mainnet",
     nativeCurrency: {
-      name: 'BNB',
-      symbol: 'bnb',
-      decimals: 18,
+      name: "BNB",
+      symbol: "bnb",
+      decimals: 18
     },
-    rpcUrls: ['https://bsc-dataseed.binance.org/'],
-    blockExplorerUrls: ['https://bscscan.com/'],
-  },
-]
+    rpcUrls: ["https://bsc-dataseed1.ninicoin.io/"],
+    blockExplorerUrls: ["https://bscscan.com/"]
+  }
+];
 
-const  BSCTest =[
+const BSCTest = [
   {
-      chainId: `0x61`,
-    chainName: 'Binance Smart Chain Testnet',
+    chainId: `0x${parseInt(process.env.REACT_APP_CHAIN_ID_MAIN, 10).toString(
+      16
+    )}`,
+    chainName: "Binance Smart Chain Testnet",
     nativeCurrency: {
-      name: 'BNB',
-      symbol: 'bnb',
-      decimals: 18,
+      name: "BNB",
+      symbol: "bnb",
+      decimals: 18
     },
-    rpcUrls: ['https://data-seed-prebsc-2-s1.binance.org:8545/'],
-    blockExplorerUrls: ['https://testnet.bscscan.com'],
-  },
-]
+    rpcUrls: ["https://data-seed-prebsc-2-s1.binance.org:8545/"],
+    blockExplorerUrls: ["https://testnet.bscscan.com"]
+  }
+];
 
-export default {BSCmain,BSCTest}
+export default { BSCmain, BSCTest };
