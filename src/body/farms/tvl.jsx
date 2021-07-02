@@ -12,24 +12,22 @@ export default function Tvl() {
   var [text, setText] = useState("...");
   useEffect(async () => {
     if (!loaded) {
-      setInterval(() => {
+      setInterval(async () => {
         setLoaded(true);
-        async function refresh() {
-          let pool = new web3.eth.Contract(nativeFarmAbi, farmAddress);
-          var currentBlock = await web3.eth.getBlockNumber();
-          let startBlockHarvest = await pool.methods.startBlockHarvest().call();
-          var startBlock = await pool.methods.startBlock().call();
-          var startBlockTime = startBlock - currentBlock;
-          var startBlockHarvestTime = startBlockHarvest - currentBlock;
-          if (startBlockTime > 0) {
-            setTimeLeft(startBlockTime * 3);
-            setText("Farms Start");
-          } else if (startBlockHarvestTime > 0) {
-            setTimeLeft(startBlockHarvestTime * 3);
-            setText("Pending Locked");
-          } else {
-            setTimeLeft(0);
-          }
+        let pool = new web3.eth.Contract(nativeFarmAbi, farmAddress);
+        var currentBlock = await web3.eth.getBlockNumber();
+        let startBlockHarvest = await pool.methods.startBlockHarvest().call();
+        var startBlock = await pool.methods.startBlock().call();
+        var startBlockTime = startBlock - currentBlock;
+        var startBlockHarvestTime = startBlockHarvest - currentBlock;
+        if (startBlockTime > 0) {
+          setTimeLeft(startBlockTime * 3);
+          setText("Farms Start");
+        } else if (startBlockHarvestTime > 0) {
+          setTimeLeft(startBlockHarvestTime * 3);
+          setText("Pending Locked");
+        } else {
+          setTimeLeft(0);
         }
         if (web3.eth && window.ts) {
           setValue(window.ts.value);
