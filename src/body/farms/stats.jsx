@@ -39,6 +39,20 @@ export default function Stats() {
   }
 
   function formatNumber(num) {
+    if (typeof num !== "number") {
+      num = parseFloat(num);
+    }
+    decimals = 2;
+    num = num.toFixed(decimals);
+    if (decimals == 0) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } else {
+      num = num.split(".");
+      return num[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + num[1];
+    }
+  }
+
+  function formatNumber1(num) {
     if (num > 999 && num < 1000000) {
       return (num / 1000).toFixed(1) + "K";
     } else if (num > 1000000) {
