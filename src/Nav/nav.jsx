@@ -318,7 +318,7 @@ export default function Nav() {
             });
           } catch (error) {}
         }
-      }, 1000);
+      }, 1500);
     }
   });
 

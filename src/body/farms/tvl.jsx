@@ -29,7 +29,7 @@ export default function Tvl() {
         if (web3.eth && window.ts) {
           setValue(window.ts.value);
         }
-      }, 1000);
+      }, 5000);
     }
   });
 

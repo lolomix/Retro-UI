@@ -1,29 +1,25 @@
 import { useState, useEffect } from "react";
 import poolAbi from "../../utils/nativeFarmAbi";
 import config from "../../pools_config.json";
-import Web3 from "web3";
+//import Web3 from "web3";
 const farmAddress = "0x738600B15B2b6845d7Fe5B6C7Cb911332Fb89949";
 export default function Stats() {
   let [data, setData] = useState({ pending: 0, deposit: 0, loaded: false });
-  useEffect(() => {
+  useEffect(async () => {
     if (!data.loaded) {
       setData({ loaded: true });
-
       if (web3.eth) {
-        loadPending();
-      }
-      setInterval(() => {
-        if (window.ts) {
-          if (web3.eth) {
-            loadPending();
+        setInterval(async () => {
+          await loadPending();
+          if (window.ts) {
+            setData({
+              pending: window.ts.pending,
+              deposited: window.ts.deposited,
+              loaded: true
+            });
           }
-          setData({
-            pending: window.ts.pending,
-            deposited: window.ts.deposited,
-            loaded: true
-          });
-        }
-      }, 1000);
+        }, 1500);
+      }
     }
   });
 
