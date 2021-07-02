@@ -32,9 +32,9 @@ export default function Tvl() {
           }
         }
       }
-      if (window.ts) {
-        setValue(window.ts.value);
-      }
+      // if (window.ts) {
+      //  setValue(window.ts.value);
+      // }
     }, 1000);
   });
 
