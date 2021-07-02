@@ -298,10 +298,10 @@ export default function Nav() {
   };
 
   useEffect(async () => {
-    if (window.account) {
-      setAccount(window.account);
-      if (!data.loaded) {
-        setInterval(async () => {
+    setInterval(async () => {
+      if (window.account) {
+        setAccount(window.account);
+        if (!data.loaded) {
           try {
             let qbert = new web3.eth.Contract(tokenAbi, qbertAddress);
             let balance = await qbert.methods.balanceOf(window.account).call();
@@ -318,9 +318,9 @@ export default function Nav() {
               loaded: true
             });
           } catch (error) {}
-        }, 1000);
+        }
       }
-    }
+    }, 1000);
   });
 
   return (
