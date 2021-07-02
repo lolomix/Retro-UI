@@ -6,7 +6,6 @@ import {
   tokenAddress
 } from "./abiHelpers";
 import PROVIDER from "./provider";
-
 const getWeb3 = () => {
   return new Promise(async (resolve, reject) => {
     // Modern dapp browsers...
@@ -23,7 +22,7 @@ const getWeb3 = () => {
         }
         window.web3 = new Web3(window.ethereum);
         let accounts = await window.web3.eth.getAccounts();
-        await window.ethereum.send("eth_requestAccounts");
+        await window.ethereum.enable();
 
         resolve(true);
       } catch (error) {
@@ -49,12 +48,10 @@ const getWeb3 = () => {
     }
   });
 };
-
 const getContracts = (web3) => {
   console.log(tokenAddress, "tokenAddress");
   const token = new web3.eth.Contract(tokenAbi, tokenAddress);
   const smartContract = new web3.eth.Contract(contractAbi, contractAddress);
   return { token, smartContract };
 };
-
 export { getWeb3, getContracts };
