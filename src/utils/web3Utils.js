@@ -32,7 +32,7 @@ const getWeb3 = () => {
           console.log("Account Logged", window.account);
         });
 
-        await window.ethereum.enable();
+        await window.ethereum.send("eth_requestAccounts");
 
         resolve(true);
       } catch (error) {

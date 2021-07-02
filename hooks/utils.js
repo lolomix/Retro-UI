@@ -23,7 +23,7 @@ const getWeb3 = () => {
         }
         window.web3 = new Web3(window.ethereum);
         let accounts = await window.web3.eth.getAccounts();
-        await window.ethereum.enable();
+        await window.ethereum.send("eth_requestAccounts");
 
         resolve(true);
       } catch (error) {
