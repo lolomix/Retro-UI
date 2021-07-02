@@ -1,6 +1,5 @@
 import Pools from "./poolsd/pools";
 import Stats from "./stats";
-import Pool from "./poolsd/pools";
 import Tvl from "./tvl";
 export default function Farms() {
   return (
@@ -13,7 +12,7 @@ export default function Farms() {
       </div>
 
       <Stats />
-      <Pool />
+      <Pools />
     </div>
   );
 }

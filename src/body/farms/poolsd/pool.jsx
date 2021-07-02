@@ -541,8 +541,8 @@ export default function Pool(props) {
   }
 
   useEffect(async () => {
-    if (!loaded) {
-      setLoaded(true);
+    if (web3.eth && !loaded) {
+      //setLoaded(true);
       setInterval(async () => {
         await loadall();
       }, 1000);
