@@ -1,4 +1,4 @@
-//import Stats from './stats'
+import Stats from "./stats";
 import Pools from "./poolsd/pools";
 //import Tvl from './tvl'
 export default function Farms() {
@@ -9,7 +9,7 @@ export default function Farms() {
           RetroDEFI <br></br> QBERT Optimized Farms
         </div>
       </div>
-
+      <Stats />
       <Pools />
     </div>
   );
