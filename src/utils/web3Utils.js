@@ -20,8 +20,9 @@ const getWeb3 = () => {
         });
         window.account = accounts[0];
         window.ts = { value: 0, pending: 0, deposited: 0, added: [] };
+        const web3 = window.ethereum;
         window.web3 = new Web3(window.ethereum);
-        console.log("Web3 enabled in window.web3");
+        console.log("Web3 enabled in window.ethereum");
         console.log("Account Logged", window.account);
         window.ethereum.on("accountsChanged", async (accounts) => {
           accounts = await ethereum.request({ method: "eth_requestAccounts" });
@@ -29,7 +30,10 @@ const getWeb3 = () => {
           console.log("Account Logged", window.account);
         });
 
-        await window.ethereum.enable();
+        await ethereum.request({
+          method: "eth_requestAccounts",
+          params: network.BSCmain
+        });
 
         resolve(true);
       } catch (error) {
@@ -37,13 +41,14 @@ const getWeb3 = () => {
       }
     }
     // Legacy dapp browsers...
-    //else if (window.web3) {
-    // Use Mist/MetaMask's provider.
-    //  const web3 = window.web3;
-    //  window.web3 = web3;
-    //  console.log("Injected web3 detected.");
-    //  resolve(true);
-    // }
+    else if (window.web3) {
+      // Use Mist/MetaMask's provider.
+      const web3 = window.web3;
+      window.web3 = web3;
+      console.log("Web3 enabled in window.web3");
+      console.log("Injected web3 detected.");
+      resolve(true);
+    }
     // Fallback to localhost; use dev console port by default...
     else {
       /* const provider = new Web3.providers.HttpProvider(
