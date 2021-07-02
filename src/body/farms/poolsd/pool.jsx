@@ -540,11 +540,14 @@ export default function Pool(props) {
     }
   }
 
-  Pool();
-
-  function Pool() {
-    recharge(loaded, setLoaded, loadall);
-  }
+  useEffect(async () => {
+    if (!loaded) {
+      setLoaded(true);
+      setInterval(async () => {
+        await loadall();
+      }, 1000);
+    }
+  });
 
   function numFormatter(num) {
     if (num > 999 && num < 1000000) {
@@ -789,14 +792,4 @@ export default function Pool(props) {
       </div>
     </div>
   );
-}
-function recharge(loaded, setLoaded, loadall) {
-  useEffect(async () => {
-    if (!loaded) {
-      setLoaded(true);
-      setInterval(async () => {
-        await loadall();
-      }, 1000);
-    }
-  });
 }
