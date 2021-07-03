@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logos/logo.png";
 import qbertpxl from "../assets/logos/qbertpxl.png";
+import qbertdice from "../assets/logos/QBERTSWAG.png";
 import Popup from "reactjs-popup";
 import utils from "../utils/aprLib/index";
 const tokenAbi = [
@@ -368,11 +369,6 @@ export default function Nav() {
                 BET QBERT<div className="mini-tag">PLAY</div>
               </a>
             </li>
-            <li>
-              <a href="https://wwww.retrofarms.net/rdice" target="_blank">
-                BET RCUBE<div className="mini-tag">PLAY</div>
-              </a>
-            </li>
           </ul>
         </menu>
         <div className="wallet">
@@ -475,7 +471,7 @@ export default function Nav() {
                 className="wallet-address"
                 style={{
                   textOverflow: "ellipsis",
-                  maxWidth: 250,
+                  maxWidth: 160,
                   whiteSpace: "nowrap",
                   overflow: "hidden"
                 }}
@@ -632,10 +628,18 @@ export default function Nav() {
               <a href="https://retrodefi.gitbook.io/retro-defi/">Docs</a>
             </li>
             <li>
-              <a href="https://wwww.retrofarms.net/qdice">BET QBERT</a>
-            </li>
-            <li>
-              <a href="https://wwww.retrofarms.net/rdice">BET RCUBE</a>
+              <a href="https://wwww.retrofarms.net/qdice">
+                <img
+                  src={qbertdice}
+                  style={{
+                    height: 35,
+                    width: 35,
+                    marginBottom: -10,
+                    marginRight: 10
+                  }}
+                />
+                BET QBERT
+              </a>
             </li>
           </ul>
         </div>
