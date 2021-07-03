@@ -365,7 +365,7 @@ export default function Nav() {
               </a>
             </li>
             <li>
-              <a href="https://wwww.retrofarms.net/qdice" target="_blank">
+              <a href="https://luckyqbert.retrofarms.net/" target="_blank">
                 Lucky QBERT<div className="mini-tag">PLAY</div>
               </a>
             </li>
@@ -433,7 +433,7 @@ export default function Nav() {
                     <a
                       className="chart"
                       target="_blank"
-                      href="https://dex.guru/token/"
+                      href="https://dex.guru/token/0x6ed390befbb50f4b492f08ea0965735906034f81-bsc"
                     >
                       View chart
                     </a>
@@ -592,7 +592,7 @@ export default function Nav() {
                     <a
                       className="chart"
                       target="_blank"
-                      href="https://dex.guru/token/"
+                      href="https://dex.guru/token/0x6ed390befbb50f4b492f08ea0965735906034f81-bsc"
                     >
                       View chart
                     </a>
@@ -628,7 +628,7 @@ export default function Nav() {
               <a href="https://retrodefi.gitbook.io/retro-defi/">Docs</a>
             </li>
             <li>
-              <a href="https://wwww.retrofarms.net/qdice">
+              <a href="https://luckyqbert.retrofarms.net/">
                 <img
                   src={qbertdice}
                   style={{
