@@ -365,7 +365,12 @@ export default function Nav() {
             </li>
             <li>
               <a href="https://wwww.retrofarms.net/qdice" target="_blank">
-                Lucky QBERT <div className="mini-tag">PLAY</div>
+                BET QBERT<div className="mini-tag">PLAY</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://wwww.retrofarms.net/rdice" target="_blank">
+                BET RCUBE<div className="mini-tag">PLAY</div>
               </a>
             </li>
           </ul>
@@ -628,6 +633,9 @@ export default function Nav() {
             </li>
             <li>
               <a href="https://wwww.retrofarms.net/qdice">BET QBERT</a>
+            </li>
+            <li>
+              <a href="https://wwww.retrofarms.net/rdice">BET RCUBE</a>
             </li>
           </ul>
         </div>
