@@ -366,7 +366,7 @@ export default function Nav() {
             </li>
             <li>
               <a href="https://wwww.retrofarms.net/qdice" target="_blank">
-                BET QBERT<div className="mini-tag">PLAY</div>
+                LUCKY QBERT<div className="mini-tag">PLAY</div>
               </a>
             </li>
           </ul>
@@ -638,7 +638,7 @@ export default function Nav() {
                     marginRight: 10
                   }}
                 />
-                BET QBERT
+                LUCKY QBERT
               </a>
             </li>
           </ul>
