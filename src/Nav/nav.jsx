@@ -380,7 +380,7 @@ export default function Nav() {
             trigger={
               <a className="btn small ml-20 primary buy-qbert hidden">
                 {" "}
-                Buy QBERT{" "}
+                QBERT Stats{" "}
               </a>
             }
             modal
@@ -539,7 +539,7 @@ export default function Nav() {
           </div>
           <Popup
             trigger={
-              <a className="btn small ml-20 primary buy-qbert"> Buy QBERT </a>
+              <a className="btn small ml-20 primary buy-qbert"> QBERT Stats </a>
             }
             modal
             nested
