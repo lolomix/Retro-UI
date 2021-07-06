@@ -570,7 +570,15 @@ export default function Pool(props) {
   return (
     <div className={`pool-card  highlighted radioactive id${props.id}`}>
       <div className="tag-container">
-      {poolInfo.locked? <font style={{ color: "red", fontSize: 15 }}>
+      {poolInfo.locked? <font style={{ 
+      color: "red",
+      fontSize: 15,
+      backgroundColor: 'var(--c-background-2)',
+      borderRadius: 'var(--r-border-2)',
+      border: '#d40000 2px solid',
+      padding: '2px 4px',
+      boxShadow: 'var(--t-shadow-3)'
+     }}>
         Locked
         </font>
         :
