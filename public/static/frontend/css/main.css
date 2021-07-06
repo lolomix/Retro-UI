@@ -1814,6 +1814,7 @@ main .content .app-version {
   width: calc(100% + 2px);
   border: var(--c-primary) 4px solid;
   box-shadow: var(--t-shadow-2);
+  border-radius: 50px;
 }
 
 .app .content .pools .pool-card.radioactive {
@@ -1883,6 +1884,7 @@ main .content .app-version {
   flex-direction: row;
   align-items: center;
   z-index: 1;
+  position: inherit;
 }
 
 .app .content .pools .pool-card .info .symbols {
