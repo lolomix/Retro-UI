@@ -14,6 +14,7 @@ export default function Pools() {
           id={pool.id}
           name={pool.name}
           number_fee={pool.number_fee}
+          special={pool.special}
           image_name={pool.image_name}
           pair_image={pool.pair_image}
           pool_multiplier={pool.pool_multiplier}
