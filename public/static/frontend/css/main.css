@@ -1882,6 +1882,7 @@ main .content .app-version {
   height: 110px;
   flex-direction: row;
   align-items: center;
+  z-index: 1;
 }
 
 .app .content .pools .pool-card .info .symbols {
@@ -4872,7 +4873,7 @@ div.create-lp-content .btn.create {
     }
 }
 
-.main__plan-item {
+.app .content .pools .pool-card.holostar {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -4884,12 +4885,12 @@ div.create-lp-content .btn.create {
     vertical-align: middle
 }
 
-.main__plan-item>span {
+.app .content .pools .pool-card.holostar>span {
     position: relative;
     top: 45%
 }
 
-.holostar:before,.holostar:after {
+.app .content .pools .pool-card.holostar:before,.holostar:after {
     content: "";
     position: absolute;
     left: 0;
@@ -4907,7 +4908,7 @@ div.create-lp-content .btn.create {
     animation: holoGradient 15s ease infinite
 }
 
-.holostar:after {
+.app .content .pools .pool-card.holostar:after {
     background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif);
     background-position: center;
     background-size: 180%;
@@ -4918,13 +4919,13 @@ div.create-lp-content .btn.create {
     animation: holoSparkle 15s ease infinite
 }
 
-.holostar.active:before {
+.app .content .pools .pool-card.holostar.active:before {
     opacity: 1;
     animation: none;
     transition: none;
     background-image: linear-gradient( 115deg,transparent 0%,transparent 25%,rgba(0,231,255,0.7) 45%,rgba(255,0,231,0.7) 55%,transparent 70%,transparent 100% )
 }
 
-.holostar.active:before,.holostar.active:after {
+.app .content .pools .pool-card.holostar.active:before,.holostar.active:after {
     animation: none
 }
