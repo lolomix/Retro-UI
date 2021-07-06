@@ -225,15 +225,15 @@
     "image_name": "cosmic.png",
     "pair_image": "qbert.png",
     "pool_multiplier": "2x",
-    "token_address": "0x0000000000000000000000000000000000000000",
+    "token_address": "0x768Bacfd3bd11336d63B34fc92AEd75598f25E57",
     "decimals": 18,
     "tokenDecimals": 8,
     "url": "https://exchange.pancakeswap.finance/#/add/BNB/0x376ba3ffac2643555731349fae9fc8ca28e2c9a2",
     "isLP": false,
     "poolAddress": "0x0000000000000000000000000000000000000000",
     "price": {
-      "lpaddress": "0x0000000000000000000000000000000000000000",
-      "bnnlpaddress": "0x0000000000000000000000000000000000000000",
+      "lpaddress": "0x768Bacfd3bd11336d63B34fc92AEd75598f25E57",
+      "bnnlpaddress": "0x768Bacfd3bd11336d63B34fc92AEd75598f25E57",
       "reserve": 0
     }
   }
