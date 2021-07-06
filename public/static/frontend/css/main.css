@@ -4900,7 +4900,7 @@ div.create-lp-content .btn.create {
     bottom: 0;
     top: 0;
     background: linear-gradient( 115deg,transparent 0%,rgb(0,231,255) 30%,rgb(255,0,231) 70%,transparent 100% );
-    border-radius: 20px;
+    border-radius: 50px;
     background-position: 0% 0%;
     background-repeat: no-repeat;
     background-size: 300% 300%;
