@@ -872,7 +872,9 @@ export default function Pool(props) {
   };
 
   return (
-    <div className={`pool-card  highlighted  ${props.special} id${props.id}`}>
+    <div
+      className={`pool-card  highlighted radioactive  ${props.special} id${props.id}`}
+    >
       <div className="tag-container">
         {poolInfo.locked ? (
           <font
