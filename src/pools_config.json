@@ -94,7 +94,7 @@
     "pool_multiplier": "2x",
     "token_address": "0x960cc8f437165b7362a34d95d1ec62dd2a940f00",
     "decimals": 18,
-    "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x960cC8F437165b7362a34D95D1ec62Dd2A940f00",
+    "url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x960cc8f437165b7362a34d95d1ec62dd2a940f00",
     "isLP": false,
     "poolAddress": "0x10bd84602628B9B2DAC2273003b60f1f38A8EDf0",
     "price": {
