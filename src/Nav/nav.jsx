@@ -364,11 +364,11 @@ export default function Nav() {
                 Docs
               </a>
             </li>
-            <li>
+            {/** <li>
               <a href="https://luckyqbert.retrofarms.net/" target="_blank">
                 Lucky QBERT<div className="mini-tag">PLAY</div>
               </a>
-            </li>
+            </li>**/}
           </ul>
         </menu>
         <div className="wallet">
@@ -627,7 +627,8 @@ export default function Nav() {
             <li>
               <a href="https://retrodefi.gitbook.io/retro-defi/">Docs</a>
             </li>
-            <li>
+
+            {/** <li>
               <a href="https://luckyqbert.retrofarms.net/">
                 <img
                   src={qbertdice}
@@ -640,7 +641,7 @@ export default function Nav() {
                 />
                 Lucky QBERT
               </a>
-            </li>
+            </li> **/}
           </ul>
         </div>
       </div>
