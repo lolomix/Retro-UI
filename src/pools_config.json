@@ -228,7 +228,7 @@
     "token_address": "0xaBFdA784F8bc6aA54B1E401AcfF13d40148AaB2A",
     "decimals": 18,
     "tokenDecimals": 8,
-    "url": "https://exchange.pancakeswap.finance/#/add/BNB/0x376ba3ffac2643555731349fae9fc8ca28e2c9a2",
+    "url": "https://exchange.pancakeswap.finance/#/add/0x6ED390Befbb50f4b492f08Ea0965735906034F81/0x960cC8F437165b7362a34D95D1ec62Dd2A940f00",
     "isLP": true,
     "poolAddress": "0x77C3d82946C4Bc0A93cA3F17eD65AF63a5aB0eB2",
     "price": {
